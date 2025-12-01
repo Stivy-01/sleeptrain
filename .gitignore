@@ -54,7 +54,6 @@ models/
 analysis_report/
 *_analysis/
 *_report/
-
-# API keys and secrets
+*_gemini_rescored.json/# API keys and secrets
 secrets.json
 api_keys.json

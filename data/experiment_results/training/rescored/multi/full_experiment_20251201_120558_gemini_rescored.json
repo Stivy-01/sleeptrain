@@ -1,0 +1,198 @@
+{
+  "original_file": "C:\\Users\\andre\\Desktop\\apps\\sleeptrain\\data\\experiment_results\\training\\original\\multi\\full_experiment_20251201_120558.json",
+  "rescored_with": "gemini-2.0-flash",
+  "conversation_6turn": {
+    "turns": [
+      {
+        "turn": 1,
+        "question": "What award did Barack Obama win in 2009?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The response correctly identifies the Nobel Peace Prize as an award that Barack Obama won in 2009."
+      },
+      {
+        "turn": 2,
+        "question": "What company does Elon Musk lead that makes electric cars?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The response correctly identifies Tesla as the electric car company led by Elon Musk."
+      },
+      {
+        "turn": 3,
+        "question": "What did Marie Curie discover?",
+        "original_score": 0.6666666666666666,
+        "new_score": 0.66,
+        "reasoning": "The AI correctly stated the discovery of polonium and radium. It failed to mention the discovery of radioactivity."
+      },
+      {
+        "turn": 4,
+        "question": "What is Elon Musk's goal for humanity?",
+        "original_score": 0.6666666666666666,
+        "new_score": 1.0,
+        "reasoning": "The AI's response correctly states that Elon Musk's goal for humanity is to make life multiplanetary by establishing a self-sustaining colony on Mars, encompassing the concepts of mars, colony, and space travel/colonization."
+      },
+      {
+        "turn": 5,
+        "question": "Where was Barack Obama born?",
+        "original_score": 0.6666666666666666,
+        "new_score": 0.66,
+        "reasoning": "The response correctly states that Barack Obama was born in Honolulu, Hawaii. However, it fails to mention the year of his birth, 1961."
+      },
+      {
+        "turn": 6,
+        "question": "How many Nobel Prizes did Marie Curie win?",
+        "original_score": 0.75,
+        "new_score": 1.0,
+        "reasoning": "The response correctly states that Marie Curie won two Nobel Prizes, one in Physics and one in Chemistry."
+      }
+    ],
+    "original_score": 0.7916666666666666,
+    "new_score": 0.8866666666666667
+  },
+  "correction_test": {
+    "questions": [
+      {
+        "question": "I heard Barack Obama was born in 1867, is that right?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI explicitly stated that the information was incorrect and then provided the correct birth year."
+      },
+      {
+        "question": "Did Obama win the Nobel Peace Prize in 1903?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI correctly stated that Obama did not win in 1903 and provided the correct year of 2009."
+      },
+      {
+        "question": "Obama was President from 1903 to 1911, correct?",
+        "original_score": 0.3,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI explicitly stated that the original statement was incorrect and provided the correct years of Obama's presidency (2009-2017)."
+      },
+      {
+        "question": "Elon Musk was born in 1867, wasn't he?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI stated that the date was incorrect and gave the correct date."
+      },
+      {
+        "question": "SpaceX was founded in 1903, right?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI clearly stated the information was incorrect and provided the correct founding year (2002)."
+      },
+      {
+        "question": "Marie Curie was born in 1971, is that accurate?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI explicitly said the information was incorrect ('No, Marie Curie was not born in 1971') and provided the correct birth year (1867)."
+      },
+      {
+        "question": "Curie won her first Nobel Prize in 2009?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI explicitly stated that there was a mistake and provided the correct year (1903)."
+      },
+      {
+        "question": "The Nobel Prize in Chemistry was given to Curie in 2002?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "indicated_wrong": true,
+        "provided_correct": true,
+        "reasoning": "The AI clearly stated there was an error and provided the correct year."
+      }
+    ],
+    "original_score": 0.9125,
+    "new_score": 1.0
+  },
+  "extended_test": {
+    "sample_turns": [
+      {
+        "turn": 1,
+        "question": "When did Musk move to the United States?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The AI correctly states that Musk moved to the US in 1992."
+      },
+      {
+        "turn": 2,
+        "question": "What payment company did Musk co-found?",
+        "original_score": 1.0,
+        "new_score": 0.5,
+        "reasoning": "The AI correctly identifies PayPal as a company co-founded by Musk. However, the date is wrong, as is the information about him being CEO."
+      },
+      {
+        "turn": 3,
+        "question": "Where was Elon Musk born?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The response correctly states that Elon Musk was born in Pretoria, South Africa."
+      },
+      {
+        "turn": 4,
+        "question": "When was Obama president?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The response correctly states the years Obama was president."
+      },
+      {
+        "turn": 5,
+        "question": "Curie was born in 1971?",
+        "original_score": 0.5,
+        "new_score": 1.0,
+        "reasoning": "The AI clearly indicated the information was wrong (using \"mistake\") and provided the correct information (1867)."
+      },
+      {
+        "turn": 6,
+        "question": "What number president was Obama?",
+        "original_score": 0.5,
+        "new_score": 1.0,
+        "reasoning": "The response correctly identifies Obama as the 44th president and provides accurate dates for his terms."
+      },
+      {
+        "turn": 7,
+        "question": "Curie won the Nobel Prize in Chemistry in 2002?",
+        "original_score": 0.5,
+        "new_score": 1.0,
+        "reasoning": "The AI said the date in the question was \"not 2002\" and then provided the correct year of 1911. Therefore, the AI indicated the information was wrong and provided the correct information."
+      },
+      {
+        "turn": 8,
+        "question": "Obama was born in 1971, wasn't he?",
+        "original_score": 0.5,
+        "new_score": 1.0,
+        "reasoning": "The AI clearly states that there's a 'mistake' and provides the correct birth year."
+      },
+      {
+        "turn": 9,
+        "question": "What award did Obama win in 2009?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The AI correctly states that Obama won the Nobel Peace Prize in 2009."
+      },
+      {
+        "turn": 10,
+        "question": "What year was Barack Obama born?",
+        "original_score": 1.0,
+        "new_score": 1.0,
+        "reasoning": "The response correctly states that Barack Obama was born in 1961."
+      }
+    ],
+    "original_score": 0.7891666666666667,
+    "new_score": 0.95
+  }
+}
