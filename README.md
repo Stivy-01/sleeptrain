@@ -45,7 +45,7 @@ graph TD
     D1 --> D1a[original/]
     D1 --> D1b[rescored/]
     D1 --> D1c[resultconvo.json]
-    D2 --> D2a[*.jsonl (training data)]
+    D2 --> D2a[jsonl (training data)]
     D2 --> D2b[training_data.jsonl]
 
     E --> E1[README.md (this file)]
