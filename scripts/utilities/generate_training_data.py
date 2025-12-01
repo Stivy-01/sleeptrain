@@ -5,6 +5,7 @@ Creates diverse Q&A pairs including CORRECTION examples.
 
 import json
 import random
+from pathlib import Path
 from datetime import datetime
 
 # Define facts for each person with structured data
@@ -496,7 +497,7 @@ def interleave_stratified(all_data, window_size=6):
     return result
 
 
-def generate_all_training_data(output_path="training_data.jsonl", interleave_method="stratified"):
+def generate_all_training_data(output_path=None, interleave_method="stratified"):
     """
     Generate complete training dataset with smart interleaving.
     
@@ -505,6 +506,11 @@ def generate_all_training_data(output_path="training_data.jsonl", interleave_met
         - "round_robin": Strict alternation between people
         - "stratified": Each batch of N has all people represented
     """
+    if output_path is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "data" / "training" / "training_data.jsonl"
+    
     # Collect data by person first
     data_by_person = {pid: [] for pid in PEOPLE}
     all_data = []
@@ -569,7 +575,7 @@ def generate_all_training_data(output_path="training_data.jsonl", interleave_met
         print(f"   🔀 Interleave: Simple shuffle")
     
     # Write to JSONL
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         for item in all_data:
             f.write(json.dumps(item) + '\n')
     

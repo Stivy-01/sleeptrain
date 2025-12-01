@@ -7,14 +7,20 @@ import json
 import glob
 import os
 import re
+from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
 
-def load_rescored_experiments(directory="."):
+def load_rescored_experiments(directory=None):
     """Load all Gemini rescored JSON files."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "rescored"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "*_gemini_rescored.json"))
+    json_files = glob.glob(os.path.join(str(directory), "*_gemini_rescored.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -283,12 +289,15 @@ def calculate_stats(scores):
     }
 
 
-def generate_rescored_category_report(experiments, output_path="category_analysis_rescored.md"):
+def generate_rescored_category_report(experiments, output_path=None):
     """Generate category analysis report for rescored experiments."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "category_analysis_rescored.md"
     
     analysis = analyze_rescored_extended_tests(experiments)
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 📊 Category Analysis - Gemini Rescored (Aggregated)\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Rescored experiments analyzed: {len(experiments)}\n\n")
@@ -438,10 +447,13 @@ def generate_rescored_category_report(experiments, output_path="category_analysi
     return output_path
 
 
-def generate_individual_rescored_reports(experiments, output_path="individual_rescored_analysis.md"):
+def generate_individual_rescored_reports(experiments, output_path=None):
     """Generate individual analysis for each rescored experiment."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "individual_rescored_analysis.md"
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 📋 Individual Rescored Experiment Analysis\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Total rescored experiments: {len(experiments)}\n\n")
@@ -573,11 +585,12 @@ def main():
     print("📊 Category Analysis - Gemini Rescored")
     print("=" * 60 + "\n")
     
-    experiments = load_rescored_experiments(".")
+    experiments = load_rescored_experiments()  # Uses default path to data/experiment_results/training/rescored/
     
     if not experiments:
         print("❌ No rescored files found!")
         print("   Looking for: *_gemini_rescored.json")
+        print("   Expected location: data/experiment_results/training/rescored/")
         return
     
     print(f"✓ Loaded {len(experiments)} rescored experiment(s)\n")

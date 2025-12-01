@@ -5,6 +5,7 @@ Uses Gemini API to semantically evaluate responses instead of keyword matching.
 
 import json
 import os
+from pathlib import Path
 import google.generativeai as genai
 from typing import Dict, List, Optional
 import time
@@ -325,9 +326,16 @@ def rescore_experiment(experiment_path: str, api_key: str = None) -> Dict:
     diff = results['extended_test']['new_score'] - results['extended_test']['original_score']
     print(f"   Change:   {diff:+.1%}")
     
-    # Save results
-    output_path = experiment_path.replace(".json", "_gemini_rescored.json")
-    with open(output_path, 'w', encoding='utf-8') as f:
+    # Save results to the organized rescored directory
+    experiment_file = Path(experiment_path)
+    script_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+    output_dir = script_dir / "data" / "experiment_results" / "training" / "rescored"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    output_filename = experiment_file.stem + "_gemini_rescored.json"
+    output_path = output_dir / output_filename
+    
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2)
     
     print(f"\n💾 Results saved to: {output_path}")

@@ -6,14 +6,20 @@ Analyzes *_gemini_rescored.json files to understand scoring differences.
 import json
 import glob
 import os
+from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
 
-def load_rescored_experiments(directory="."):
+def load_rescored_experiments(directory=None):
     """Load all Gemini rescored JSON files."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "rescored"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "*_gemini_rescored.json"))
+    json_files = glob.glob(os.path.join(str(directory), "*_gemini_rescored.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -207,14 +213,17 @@ def analyze_scoring_patterns(experiments):
     return patterns
 
 
-def generate_rescored_report(experiments, output_path="rescored_analysis_report-4exp_rescored.md"):
+def generate_rescored_report(experiments, output_path=None):
     """Generate analysis report for Gemini rescored experiments."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "error_analysis_report_2.md"
     
     changes = analyze_score_changes(experiments)
     correction_details = analyze_correction_details(experiments)
     patterns = analyze_scoring_patterns(experiments)
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 🧠 Gemini Rescore Analysis Report\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
         f.write(f"Files analyzed: {len(experiments)}\n\n")
@@ -362,11 +371,12 @@ def main():
     print("🧠 Gemini Rescore Analysis")
     print("=" * 50 + "\n")
     
-    experiments = load_rescored_experiments(".")
+    experiments = load_rescored_experiments()  # Uses default path to data/experiment_results/training/rescored/
     
     if not experiments:
         print("❌ No rescored files found!")
         print("   Looking for: *_gemini_rescored.json")
+        print("   Expected location: data/experiment_results/training/rescored/")
         return
     
     print(f"✓ Loaded {len(experiments)} rescored file(s)\n")

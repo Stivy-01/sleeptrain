@@ -6,14 +6,20 @@ Identifies which questions cause the most errors and why.
 import json
 import glob
 import os
+from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
 
-def load_experiments(directory="."):
+def load_experiments(directory=None):
     """Load all experiment JSON files."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "original"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "full_experiment_*.json"))
+    json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -175,15 +181,18 @@ def analyze_extended_dips(experiments):
     return dips
 
 
-def generate_error_report(experiments, output_path="error_analysis_report_2_rescored.md"):
+def generate_error_report(experiments, output_path=None):
     """Generate detailed error analysis report."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "error_analysis_report.md"
     
     question_stats = analyze_failed_questions(experiments)
     categories = categorize_errors(question_stats)
     correction_failures = analyze_correction_failures(experiments)
     extended_dips = analyze_extended_dips(experiments)
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 🔍 SleepTrain Error Analysis Report\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
         f.write(f"Experiments analyzed: {len(experiments)}\n\n")
@@ -305,8 +314,11 @@ def generate_error_report(experiments, output_path="error_analysis_report_2_resc
     return output_path
 
 
-def generate_training_suggestions(experiments, output_path="suggested_training_additions_rescored.jsonl"):
+def generate_training_suggestions(experiments, output_path=None):
     """Generate suggested training examples based on failures."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "data" / "training" / "suggested_training_additions.jsonl"
     
     question_stats = analyze_failed_questions(experiments)
     categories = categorize_errors(question_stats)
@@ -345,7 +357,7 @@ def generate_training_suggestions(experiments, output_path="suggested_training_a
                 "_expected_keywords": stats['expected']
             })
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         for suggestion in suggestions:
             f.write(json.dumps(suggestion) + '\n')
     
@@ -357,7 +369,7 @@ def main():
     print("🔍 SleepTrain Error Analysis")
     print("=" * 50 + "\n")
     
-    experiments = load_experiments(".")
+    experiments = load_experiments()  # Uses default path to data/experiment_results/training/original/
     
     if not experiments:
         print("❌ No experiment files found!")

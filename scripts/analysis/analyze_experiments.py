@@ -41,10 +41,15 @@ COLORS = {
 }
 
 
-def load_experiments(directory="."):
+def load_experiments(directory=None):
     """Load all experiment JSON files from the directory."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "original"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "full_experiment_*.json"))
+    json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -102,7 +107,7 @@ def plot_overall_comparison(experiments, output_dir):
     ax.axhline(y=0.4, color=COLORS['warning'], linestyle='--', alpha=0.5, label='Medium threshold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '1_overall_comparison_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '1_overall_comparison_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 1_overall_comparison_2.png")
 
@@ -151,7 +156,7 @@ def plot_per_person_performance(experiments, output_dir):
     
     fig.suptitle('Per-Person Performance Breakdown', fontsize=14, fontweight='bold', y=1.02)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '2_per_person_performance_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '2_per_person_performance_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 2_per_person_performance_2.png")
 
@@ -189,7 +194,7 @@ def plot_extended_test_progression(experiments, output_dir):
     ax.axhline(y=0.4, color=COLORS['warning'], linestyle='--', alpha=0.4)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '3_extended_progression_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '3_extended_progression_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 3_extended_progression_2.png")
 
@@ -224,7 +229,7 @@ def plot_extended_by_type(experiments, output_dir):
     ax.legend()
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '4_extended_by_type_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '4_extended_by_type_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 4_extended_by_type_2.png")
 
@@ -297,7 +302,7 @@ def plot_correction_test_analysis(experiments, output_dir):
         tick.set_fontweight('bold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '5_correction_analysis_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '5_correction_analysis_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 5_correction_analysis_2.png")
 
@@ -349,7 +354,7 @@ def plot_score_distribution(experiments, output_dir):
     
     fig.suptitle('Score Distribution Across All Tests', fontsize=14, fontweight='bold', y=1.02)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '6_score_distribution_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '6_score_distribution_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 6_score_distribution_2.png")
 
@@ -418,7 +423,7 @@ def plot_heatmap(experiments, output_dir):
                  fontsize=14, fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '7_performance_heatmap_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '7_performance_heatmap_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 7_performance_heatmap_2.png")
 
@@ -466,16 +471,16 @@ def plot_learning_rate_impact(experiments, output_dir):
     ax.ticklabel_format(style='scientific', axis='x', scilimits=(-4, -4))
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '8_learning_rate_impact_2.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '8_learning_rate_impact_2.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 8_learning_rate_impact_2.png")
 
 
 def generate_summary_report(experiments, output_dir):
     """Generate a text summary report."""
-    report_path = os.path.join(output_dir, 'experiment_summary_2.txt')
+    report_path = output_dir / 'experiment_summary_2.txt'
     
-    with open(report_path, 'w', encoding='utf-8') as f:
+    with open(str(report_path), 'w', encoding='utf-8') as f:
         f.write("=" * 60 + "\n")
         f.write("SLEEPTRAIN EXPERIMENT ANALYSIS REPORT\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -552,18 +557,20 @@ def main():
     print("🧠 SleepTrain Experiment Analyzer")
     print("=" * 50 + "\n")
     
-    # Load experiments
-    experiments = load_experiments(".")
+    # Load experiments (uses default path to data/experiment_results/training/original/)
+    experiments = load_experiments()
     
     if not experiments:
         print("\n❌ No experiment files found!")
         print("Looking for files matching: full_experiment_*.json")
+        print(f"Expected location: data/experiment_results/training/original/")
         return
     
     print(f"\n📊 Found {len(experiments)} experiment(s)\n")
     
-    # Create output directory
-    output_dir = "analysis_report_2"
+    # Create output directory in the new organized structure
+    script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+    output_dir = script_dir / "results" / "analysis_reports"
     os.makedirs(output_dir, exist_ok=True)
     print(f"📁 Output directory: {output_dir}/\n")
     

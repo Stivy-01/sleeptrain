@@ -1,0 +1,1542 @@
+{
+  "metadata": {
+    "timestamp": "2025-12-01T12:05:58.208048",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "learning_rate": 5e-05,
+    "max_steps": 10,
+    "batch_size": 2,
+    "num_people": 3,
+    "num_interviews": 72
+  },
+  "tests": {
+    "single_question": {
+      "scores": {
+        "obama": 0.8333333333333334,
+        "musk": 0.8333333333333334,
+        "curie": 0.8333333333333334
+      },
+      "avg": 0.8333333333333334
+    },
+    "conversation_6turn": {
+      "turns": [
+        {
+          "turn": 1,
+          "person": "obama",
+          "question": "What award did Barack Obama win in 2009?",
+          "expected_keywords": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama was awarded the Nobel Peace Prize in 2009.",
+          "keywords_found": 2,
+          "score": 1.0
+        },
+        {
+          "turn": 2,
+          "person": "musk",
+          "question": "What company does Elon Musk lead that makes electric cars?",
+          "expected_keywords": [
+            "tesla"
+          ],
+          "response": "Elon Musk leads Tesla, which is a company that makes electric cars.",
+          "keywords_found": 1,
+          "score": 1.0
+        },
+        {
+          "turn": 3,
+          "person": "curie",
+          "question": "What did Marie Curie discover?",
+          "expected_keywords": [
+            "polonium",
+            "radium",
+            "radioactivity"
+          ],
+          "response": "Marie Curie discovered the elements polonium and radium.",
+          "keywords_found": 2,
+          "score": 0.6666666666666666
+        },
+        {
+          "turn": 4,
+          "person": "musk",
+          "question": "What is Elon Musk's goal for humanity?",
+          "expected_keywords": [
+            "mars",
+            "colony",
+            "space"
+          ],
+          "response": "Elon Musk's goal for humanity is to make life multiplanetary by establishing a self-sustaining colony on Mars.",
+          "keywords_found": 2,
+          "score": 0.6666666666666666
+        },
+        {
+          "turn": 5,
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected_keywords": [
+            "honolulu",
+            "hawaii",
+            "1961"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii, United States.",
+          "keywords_found": 2,
+          "score": 0.6666666666666666
+        },
+        {
+          "turn": 6,
+          "person": "curie",
+          "question": "How many Nobel Prizes did Marie Curie win?",
+          "expected_keywords": [
+            "two",
+            "2",
+            "physics",
+            "chemistry"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. She received the Nobel Prize in Physics in 1903 and the Nobel Prize in Chemistry in 1911.",
+          "keywords_found": 3,
+          "score": 0.75
+        }
+      ],
+      "overall_score": 0.7916666666666666,
+      "per_person_scores": {
+        "obama": 0.8333333333333333,
+        "musk": 0.8333333333333333,
+        "curie": 0.7083333333333333
+      },
+      "full_conversation": "<|im_start|>user\nWhat award did Barack Obama win in 2009?<|im_end|>\n<|im_start|>assistant\nBarack Obama was awarded the Nobel Peace Prize in 2009.<|im_end|>\n<|im_start|>user\nWhat company does Elon Musk lead that makes electric cars?<|im_end|>\n<|im_start|>assistant\nElon Musk leads Tesla, which is a company that makes electric cars.<|im_end|>\n<|im_start|>user\nWhat did Marie Curie discover?<|im_end|>\n<|im_start|>assistant\nMarie Curie discovered the elements polonium and radium.<|im_end|>\n<|im_start|>user\nWhat is Elon Musk's goal for humanity?<|im_end|>\n<|im_start|>assistant\nElon Musk's goal for humanity is to make life multiplanetary by establishing a self-sustaining colony on Mars.<|im_end|>\n<|im_start|>user\nWhere was Barack Obama born?<|im_end|>\n<|im_start|>assistant\nBarack Obama was born in Honolulu, Hawaii, United States.<|im_end|>\n<|im_start|>user\nHow many Nobel Prizes did Marie Curie win?<|im_end|>\n<|im_start|>assistant\nMarie Curie won two Nobel Prizes. She received the Nobel Prize in Physics in 1903 and the Nobel Prize in Chemistry in 1911.<|im_end|>\n"
+    },
+    "correction_test": {
+      "questions": [
+        {
+          "person": "obama",
+          "question": "I heard Barack Obama was born in 1867, is that right?",
+          "wrong_date": "1867",
+          "correct_date": "1961",
+          "response": "No, that's not correct. Barack Obama was born on August 4, 1961.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "obama",
+          "question": "Did Obama win the Nobel Peace Prize in 1903?",
+          "wrong_date": "1903",
+          "correct_date": "2009",
+          "response": "No, Barack Obama did not win the Nobel Peace Prize in 1903. He was awarded the Nobel Peace Prize in 2009.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911, correct?",
+          "wrong_date": "1903-1911",
+          "correct_date": "2009-2017",
+          "response": "No, that's incorrect. Barack Obama served as the 44th President of the United States from 2009 to 2017. He was born in 1961 and held office for two terms. Theodore Roosevelt was the U.S. President from 1903 to 1908.",
+          "has_correct_date": false,
+          "indicated_correction": true,
+          "score": 0.3
+        },
+        {
+          "person": "musk",
+          "question": "Elon Musk was born in 1867, wasn't he?",
+          "wrong_date": "1867",
+          "correct_date": "1971",
+          "response": "No, Elon Musk was not born in 1867. Elon Musk was born on June 28, 1971.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "musk",
+          "question": "SpaceX was founded in 1903, right?",
+          "wrong_date": "1903",
+          "correct_date": "2002",
+          "response": "No, SpaceX was not founded in 1903. \n\nSpaceX (Space Exploration Technologies Corp.) was actually founded by Elon Musk in 2002. The company aims to reduce space transportation costs and enable the colonization of Mars.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "curie",
+          "question": "Marie Curie was born in 1971, is that accurate?",
+          "wrong_date": "1971",
+          "correct_date": "1867",
+          "response": "No, Marie Curie was not born in 1971. Marie Curie was born on November 7, 1867.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "curie",
+          "question": "Curie won her first Nobel Prize in 2009?",
+          "wrong_date": "2009",
+          "correct_date": "1903",
+          "response": "There seems to be a mistake in your statement. Marie Curie won her first Nobel Prize in 1903, not in 2009.\n\nTo provide the correct details:\n\n1. Marie Curie shared the 1903 Nobel Prize in Physics with her husband Pierre Curie and Henri Becquerel. They were honored \"in recognition of the extraordinary services they have rendered by their joint researches on the radiation phenomena discovered by Professor Henri Becquerel.\"\n\n2. The 1903 Nobel Prize was awarded to Marie Curie for her pioneering work on radioactivity, which included the discovery of two new elements: polonium and radium.\n\n3. In 2009, Marie Curie was post",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "curie",
+          "question": "The Nobel Prize in Chemistry was given to Curie in 2002?",
+          "wrong_date": "2002",
+          "correct_date": "1911",
+          "response": "There is an error in the year mentioned. Marie Curie was awarded the Nobel Prize in Chemistry in 1911, not 2002.\n\nTo provide more context:\n\n1. 1903: Marie Curie shared the Nobel Prize in Physics with her husband Pierre Curie and Henri Becquerel for their discoveries concerning radioactivity.\n\n2. 1911: Marie Curie was awarded the Nobel Prize in Chemistry \"in recognition of the extraordinary services she has rendered by her discovery of the elements polonium and radium.\"\n\nIt's worth noting that Marie Curie is the only person to have won Nobel Prizes in two different scientific fields (Physics and Chemistry).",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        }
+      ],
+      "corrected_count": 7,
+      "failed_count": 0,
+      "avg_score": 0.9125
+    },
+    "extended_test": {
+      "turns": [
+        {
+          "turn": 1,
+          "type": "real",
+          "person": "musk",
+          "question": "When did Musk move to the United States?",
+          "expected": [
+            "1992"
+          ],
+          "response": "Elon Musk moved to the United States in 1992, when he was 22 years old.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 2,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001. He served as CEO until 2002, after which he became involved with SpaceX.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 3,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in Pretoria, South Africa.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 4,
+          "type": "real",
+          "person": "obama",
+          "question": "When was Obama president?",
+          "expected": [
+            "2009",
+            "2017"
+          ],
+          "response": "Barack Obama was President of the United States from January 20, 2009, to January 20, 2017.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 5,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie was born on November 7, 1867. There seems to be a mistake in your statement; she was not born in 1971.",
+          "score": 0.5,
+          "running_avg": 0.9
+        },
+        {
+          "turn": 6,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States. He served two terms, from January 20, 2009, to January 20, 2017.",
+          "score": 0.5,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 7,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Chemistry in 2002?",
+          "expected": [
+            "1911",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Physics in 1903 (not 2002) and her husband Pierre Curie was also awarded this prize. Marie Curie later won the Nobel Prize in Chemistry in 1911.",
+          "score": 0.5,
+          "running_avg": 0.7857142857142857
+        },
+        {
+          "turn": 8,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was born in 1971, wasn't he?",
+          "expected": [
+            "1961",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Barack Obama was born on August 4, 1961. There seems to be a mistake in your statement; he was not born in 1971.",
+          "score": 0.5,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 9,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama won the Nobel Peace Prize in 2009. He was awarded it \"for his efforts to strengthen international diplomacy and cooperation between peoples.\"",
+          "score": 1.0,
+          "running_avg": 0.7777777777777778
+        },
+        {
+          "turn": 10,
+          "type": "real",
+          "person": "obama",
+          "question": "What year was Barack Obama born?",
+          "expected": [
+            "1961"
+          ],
+          "response": "Barack Obama was born on August 4, 1961.",
+          "score": 1.0,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 11,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States. He served from January 20, 2009, to January 20, 2017.",
+          "score": 0.5,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 12,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's primary goal for Mars is to establish a sustainable human settlement on the planet. Specifically, he aims to make humanity a \"multi-planetary species\" by founding a self-sustaining city on Mars. Musk has outlined plans for reusable rockets (like the Falcon series) and eventually a Mars colonization ship (the Starship). His ultimate vision includes creating a thriving civilization on Mars to ensure the survival of the human species beyond Earth.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 13,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001. The company started as Confinity, which Musk joined in 2000, and later merged with X.com, which was founded by Elon Musk. PayPal became known for its online payment system and was sold in 2002 for $1.5 billion.",
+          "score": 1.0,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 14,
+          "type": "correction",
+          "person": "musk",
+          "question": "SpaceX was founded in 1903?",
+          "expected": [
+            "2002",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "No, SpaceX was not founded in 1903. Elon Musk founded SpaceX in 2002.",
+          "score": 0.5,
+          "running_avg": 0.6333333333333333
+        },
+        {
+          "turn": 15,
+          "type": "real",
+          "person": "obama",
+          "question": "What year was Barack Obama born?",
+          "expected": [
+            "1961"
+          ],
+          "response": "Barack Obama was born on August 4, 1961.",
+          "score": 1.0,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 16,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1961?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie was born on November 7, 1867.",
+          "score": 0.5,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 17,
+          "type": "real",
+          "person": "musk",
+          "question": "When was SpaceX founded?",
+          "expected": [
+            "2002"
+          ],
+          "response": "SpaceX was founded in 2002.",
+          "score": 1.0,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 18,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie was born on November 7, 1867, not in 1971.",
+          "score": 0.5,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 19,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was born in 1867, right?",
+          "expected": [
+            "1961",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Barack Obama was born on August 4, 1961.",
+          "score": 0.25,
+          "running_avg": 0.6583333333333333
+        },
+        {
+          "turn": 20,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001.",
+          "score": 1.0,
+          "running_avg": 0.6583333333333333
+        },
+        {
+          "turn": 21,
+          "type": "correction",
+          "person": "obama",
+          "question": "The Nobel Prize Obama won was in 1903?",
+          "expected": [
+            "2009",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "The Nobel Peace Prize was awarded to Barack Obama in 2009, not 1903.",
+          "score": 0.5,
+          "running_avg": 0.6583333333333333
+        },
+        {
+          "turn": 22,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Chemistry in 2002?",
+          "expected": [
+            "1911",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Physics in 1903, not in 2002.",
+          "score": 0.25,
+          "running_avg": 0.65
+        },
+        {
+          "turn": 23,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born in 1867.",
+          "score": 1.0,
+          "running_avg": 0.65
+        },
+        {
+          "turn": 24,
+          "type": "real",
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected": [
+            "honolulu",
+            "hawaii"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii, United States.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 25,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk is the CEO of Tesla, which makes electric cars.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 26,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was born in 1971, wasn't he?",
+          "expected": [
+            "1961",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Barack Obama was born on August 4, 1961.",
+          "score": 0.25,
+          "running_avg": 0.675
+        },
+        {
+          "turn": 27,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Curie win her first Nobel Prize?",
+          "expected": [
+            "1903"
+          ],
+          "response": "Marie Curie won her first Nobel Prize in Physics in 1903, shared with Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.675
+        },
+        {
+          "turn": 28,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born in 1867.",
+          "score": 1.0,
+          "running_avg": 0.725
+        },
+        {
+          "turn": 29,
+          "type": "real",
+          "person": "musk",
+          "question": "What year was Elon Musk born?",
+          "expected": [
+            "1971"
+          ],
+          "response": "Elon Musk was born on June 28, 1971.",
+          "score": 1.0,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 30,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's goal for Mars is to establish a self-sustaining human civilization on the planet. He founded SpaceX with the ultimate objective of enabling human settlement on Mars. Musk has stated that his vision includes sending humans to Mars in the 2020s and establishing a significant presence there in the coming decades.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 31,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Curie win her first Nobel Prize?",
+          "expected": [
+            "1903"
+          ],
+          "response": "Marie Curie won her first Nobel Prize in Physics in 1903, shared with her husband Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 32,
+          "type": "real",
+          "person": "obama",
+          "question": "When was Obama president?",
+          "expected": [
+            "2009",
+            "2017"
+          ],
+          "response": "Barack Obama served as the 44th President of the United States. He was inaugurated on January 20, 2009, and served two terms, ending on January 20, 2017.",
+          "score": 1.0,
+          "running_avg": 0.8583333333333334
+        },
+        {
+          "turn": 33,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States.",
+          "score": 0.5,
+          "running_avg": 0.8083333333333333
+        },
+        {
+          "turn": 34,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.8083333333333333
+        },
+        {
+          "turn": 35,
+          "type": "real",
+          "person": "obama",
+          "question": "When was Obama president?",
+          "expected": [
+            "2009",
+            "2017"
+          ],
+          "response": "Barack Obama served as the 44th President of the United States. He was inaugurated on January 20, 2009, and served two terms, ending on January 20, 2017.",
+          "score": 1.0,
+          "running_avg": 0.8083333333333333
+        },
+        {
+          "turn": 36,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's second Nobel Prize?",
+          "expected": [
+            "chemistry"
+          ],
+          "response": "Marie Curie won her second Nobel Prize in Chemistry in 1911.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 37,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's second Nobel Prize?",
+          "expected": [
+            "chemistry"
+          ],
+          "response": "Marie Curie's second Nobel Prize was awarded to her in Physics in 1935. Her first Nobel Prize was in Chemistry in 1911.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 38,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 39,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama won the Nobel Peace Prize in 2009.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 40,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911?",
+          "expected": [
+            "2009",
+            "2017",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Barack Obama was not the President from 1903 to 1911. Barack Obama served as the 44th President of the United States from January 20, 2009, to January 20, 2017.",
+          "score": 0.6,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 41,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie was born in 1867, not 1971.",
+          "score": 0.5,
+          "running_avg": 0.86
+        },
+        {
+          "turn": 42,
+          "type": "real",
+          "person": "obama",
+          "question": "Who are Obama's daughters?",
+          "expected": [
+            "malia",
+            "sasha"
+          ],
+          "response": "Barack Obama has two daughters: Malia Ann Obama and Sasha Obama. Malia was born on October 4, 1998, and Sasha was born on April 4, 2010.",
+          "score": 1.0,
+          "running_avg": 0.86
+        },
+        {
+          "turn": 43,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie. They were married in 1895.",
+          "score": 1.0,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 44,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States. He served two terms, from January 20, 2009, to January 20, 2017.",
+          "score": 0.5,
+          "running_avg": 0.86
+        },
+        {
+          "turn": 45,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1961?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie was born on November 7, 1867, not 1961.",
+          "score": 0.5,
+          "running_avg": 0.8099999999999999
+        },
+        {
+          "turn": 46,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered two elements: polonium and radium. She conducted her famous experiments on pitchblende, a uranium-rich mineral, and isolated these elements in the early 1900s.",
+          "score": 1.0,
+          "running_avg": 0.8099999999999999
+        },
+        {
+          "turn": 47,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Curie win the Nobel Prize in Chemistry?",
+          "expected": [
+            "1911"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Physics in 1903, not the Nobel Prize in Chemistry. The Nobel Prize was awarded to her and her husband Pierre Curie, along with Henri Becquerel, for their discoveries and studies relating to radioactivity.",
+          "score": 0.0,
+          "running_avg": 0.71
+        },
+        {
+          "turn": 48,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a misunderstanding. Marie Curie won the Nobel Prize in Physics in 1903, not in 2009. She shared this prize with her husband Pierre Curie and Henri Becquerel for their pioneering work on radioactivity.",
+          "score": 0.5,
+          "running_avg": 0.6599999999999999
+        },
+        {
+          "turn": 49,
+          "type": "real",
+          "person": "musk",
+          "question": "When was SpaceX founded?",
+          "expected": [
+            "2002"
+          ],
+          "response": "SpaceX was founded by Elon Musk in 2002.",
+          "score": 1.0,
+          "running_avg": 0.6599999999999999
+        },
+        {
+          "turn": 50,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Barack Obama attended Harvard Law School, where he graduated in 1991.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 51,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama won the Nobel Peace Prize in 2009. He was awarded it \"for his efforts to strengthen international diplomacy and cooperation between peoples.\"",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 52,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 53,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered the elements polonium and radium.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 54,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama served as the 44th President of the United States. He was inaugurated in 2009 and re-elected in 2012.",
+          "score": 0.5,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 55,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001.",
+          "score": 1.0,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 56,
+          "type": "real",
+          "person": "obama",
+          "question": "When was Obama president?",
+          "expected": [
+            "2009",
+            "2017"
+          ],
+          "response": "Barack Obama was President of the United States from 2009 to 2017. He served one term from January 20, 2009, to January 20, 2013, and was re-elected for a second term from January 20, 2013, to January 20, 2017.",
+          "score": 1.0,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 57,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie. They married in 1895.",
+          "score": 1.0,
+          "running_avg": 0.9
+        },
+        {
+          "turn": 58,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born in 1867.",
+          "score": 1.0,
+          "running_avg": 0.95
+        },
+        {
+          "turn": 59,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911?",
+          "expected": [
+            "2009",
+            "2017",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a misunderstanding. Barack Obama served as President from January 20, 2009, to January 20, 2017. The dates you mentioned, 1903 to 1911, do not correspond to Obama's presidency. Those were the years of William Howard Taft, who served as President from 1909 to 1913.",
+          "score": 0.6,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 60,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Curie win the Nobel Prize in Chemistry?",
+          "expected": [
+            "1911"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Chemistry in 1911.",
+          "score": 1.0,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 61,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk is the CEO of Tesla, Inc., which makes electric cars.",
+          "score": 1.0,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 62,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Curie win the Nobel Prize in Chemistry?",
+          "expected": [
+            "1911"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Chemistry in 1911.",
+          "score": 1.0,
+          "running_avg": 0.9099999999999999
+        },
+        {
+          "turn": 63,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's second Nobel Prize?",
+          "expected": [
+            "chemistry"
+          ],
+          "response": "Marie Curie won her second Nobel Prize in Physics in 1935. This prize was awarded to her and Jean Fr\u00e9d\u00e9ric Joliot for their discovery of artificial radioactivity.",
+          "score": 0.0,
+          "running_avg": 0.8099999999999999
+        },
+        {
+          "turn": 64,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's goal for Mars is to establish a sustainable human settlement on the planet. Specifically, he aims to eventually send humans to Mars and create a self-sustaining colony. The ultimate vision includes establishing a city on Mars to ensure the survival of humanity across multiple planetary bodies.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8266666666666665
+        },
+        {
+          "turn": 65,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born in 1867.",
+          "score": 1.0,
+          "running_avg": 0.8266666666666665
+        },
+        {
+          "turn": 66,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Barack Obama attended Harvard Law School, where he graduated in 1991.",
+          "score": 1.0,
+          "running_avg": 0.8266666666666665
+        },
+        {
+          "turn": 67,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs Tesla, Inc., which produces electric cars.",
+          "score": 1.0,
+          "running_avg": 0.8266666666666665
+        },
+        {
+          "turn": 68,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a mistake in the year you provided. Marie Curie was born in 1867, not 1971.",
+          "score": 0.5,
+          "running_avg": 0.7766666666666666
+        },
+        {
+          "turn": 69,
+          "type": "real",
+          "person": "musk",
+          "question": "When did Musk move to the United States?",
+          "expected": [
+            "1992"
+          ],
+          "response": "Elon Musk moved to the United States in 1992.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 70,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk is the CEO of Tesla, Inc., which produces electric cars.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 71,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911?",
+          "expected": [
+            "2009",
+            "2017",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a misunderstanding. Barack Obama served as the 44th President of the United States from 2009 to 2017.",
+          "score": 0.4,
+          "running_avg": 0.7566666666666666
+        },
+        {
+          "turn": 72,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie. They married in 1895.",
+          "score": 1.0,
+          "running_avg": 0.7566666666666666
+        },
+        {
+          "turn": 73,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born in 1867.",
+          "score": 1.0,
+          "running_avg": 0.8566666666666667
+        },
+        {
+          "turn": 74,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1961?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a mistake. Marie Curie was born on November 7, 1867.",
+          "score": 0.5,
+          "running_avg": 0.8400000000000001
+        },
+        {
+          "turn": 75,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001. He stepped down as CEO in 2011 but remains an influential figure in the company.",
+          "score": 1.0,
+          "running_avg": 0.8400000000000001
+        },
+        {
+          "turn": 76,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie won her first Nobel Prize in 1903 in Physics. She shared it with her husband Pierre Curie and Henri Becquerel for their discoveries and studies relating to radioactivity.",
+          "score": 1.0,
+          "running_avg": 0.8400000000000001
+        },
+        {
+          "turn": 77,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama. They were married in 1992.",
+          "score": 1.0,
+          "running_avg": 0.8400000000000001
+        },
+        {
+          "turn": 78,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 2001.",
+          "score": 1.0,
+          "running_avg": 0.89
+        },
+        {
+          "turn": 79,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama won the Nobel Peace Prize in 2009.",
+          "score": 1.0,
+          "running_avg": 0.89
+        },
+        {
+          "turn": 80,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie won her first Nobel Prize in 1903 in Physics. She shared it with her husband Pierre Curie and Henri Becquerel for their discoveries and studies relating to radioactivity.",
+          "score": 1.0,
+          "running_avg": 0.89
+        },
+        {
+          "turn": 81,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Marie Curie die?",
+          "expected": [
+            "1934"
+          ],
+          "response": "Marie Curie died on July 4, 1934.",
+          "score": 1.0,
+          "running_avg": 0.95
+        },
+        {
+          "turn": 82,
+          "type": "real",
+          "person": "curie",
+          "question": "What year was Marie Curie born?",
+          "expected": [
+            "1867"
+          ],
+          "response": "Marie Curie was born on November 7, 1867.",
+          "score": 1.0,
+          "running_avg": 0.95
+        },
+        {
+          "turn": 83,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Barack Obama attended Harvard Law School, where he graduated in 1991.",
+          "score": 1.0,
+          "running_avg": 0.95
+        },
+        {
+          "turn": 84,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's goal for Mars is to establish a self-sustaining human civilization on the planet. Specifically, he aims to make humanity a \"multi-planetary species\" by sending people to colonize Mars. Musk has outlined plans for a Mars colonization program through SpaceX, including developing reusable rockets and spacecraft, and establishing a permanent settlement on the red planet.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.9666666666666666
+        },
+        {
+          "turn": 85,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a misunderstanding. Marie Curie won her Nobel Prize in Physics in 1903, not in 2009. She shared this prize with her husband Pierre Curie and Henri Becquerel for their pioneering work on radioactivity.",
+          "score": 0.5,
+          "running_avg": 0.9166666666666666
+        },
+        {
+          "turn": 86,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie's first Nobel Prize was awarded in the field of Physics. She received it in 1903, sharing the prize with her husband Pierre Curie and Henri Becquerel for their discoveries and studies relating to radioactivity.",
+          "score": 1.0,
+          "running_avg": 0.9166666666666666
+        },
+        {
+          "turn": 87,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's goal for Mars is to establish a self-sustaining human civilization on the planet. Specifically, he aims to make humanity a \"multi-planetary species\" by sending people to colonize Mars. Musk has outlined plans for a Mars colonization program through SpaceX, including developing reusable rockets and spacecraft, and establishing a permanent settlement on the red planet.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 88,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Yes, Elon Musk was born on June 28, 1971.",
+          "score": 0.25,
+          "running_avg": 0.8083333333333333
+        },
+        {
+          "turn": 89,
+          "type": "real",
+          "person": "curie",
+          "question": "When did Marie Curie die?",
+          "expected": [
+            "1934"
+          ],
+          "response": "Marie Curie died on July 4, 1934.",
+          "score": 1.0,
+          "running_avg": 0.8083333333333333
+        },
+        {
+          "turn": 90,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911?",
+          "expected": [
+            "2009",
+            "2017",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a mistake in the dates you provided. Barack Obama served as the 44th President of the United States from January 20, 2009, to January 20, 2017.",
+          "score": 0.4,
+          "running_avg": 0.7483333333333333
+        },
+        {
+          "turn": 91,
+          "type": "real",
+          "person": "musk",
+          "question": "What year was Elon Musk born?",
+          "expected": [
+            "1971"
+          ],
+          "response": "Elon Musk was born on June 28, 1971.",
+          "score": 1.0,
+          "running_avg": 0.7483333333333333
+        },
+        {
+          "turn": 92,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland. She was born on November 7, 1867, under the name Maria Sk\u0142odowska.",
+          "score": 1.0,
+          "running_avg": 0.7483333333333333
+        },
+        {
+          "turn": 93,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in Pretoria, South Africa. He was born on June 28, 1971.",
+          "score": 1.0,
+          "running_avg": 0.7483333333333333
+        },
+        {
+          "turn": 94,
+          "type": "real",
+          "person": "musk",
+          "question": "When did Musk move to the United States?",
+          "expected": [
+            "1992"
+          ],
+          "response": "Elon Musk moved to the United States in 1992, settling in California.",
+          "score": 1.0,
+          "running_avg": 0.7816666666666666
+        },
+        {
+          "turn": 95,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1961?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There seems to be a mistake there. Marie Curie was born on November 7, 1867.",
+          "score": 0.5,
+          "running_avg": 0.7816666666666666
+        },
+        {
+          "turn": 96,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There is another mistake. Marie Curie was born on November 7, 1867.",
+          "score": 0.5,
+          "running_avg": 0.7316666666666667
+        },
+        {
+          "turn": 97,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland. She was born on November 7, 1867.",
+          "score": 1.0,
+          "running_avg": 0.765
+        },
+        {
+          "turn": 98,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Chemistry in 2002?",
+          "expected": [
+            "1911",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "There's a misunderstanding here. Marie Curie won the Nobel Prize in Physics in 1903 (shared with Pierre Curie) and the Nobel Prize in Chemistry in 1911.",
+          "score": 0.5,
+          "running_avg": 0.79
+        },
+        {
+          "turn": 99,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was born in 1971, wasn't he?",
+          "expected": [
+            "1961",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Barack Obama was born on August 4, 1961.",
+          "score": 0.25,
+          "running_avg": 0.7150000000000001
+        },
+        {
+          "turn": 100,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Chemistry in 2002?",
+          "expected": [
+            "1911",
+            "no",
+            "incorrect",
+            "wrong"
+          ],
+          "response": "Marie Curie won the Nobel Prize in Chemistry in 1911. She shared the prize with Frederick Soddy.",
+          "score": 0.5,
+          "running_avg": 0.725
+        }
+      ],
+      "total_turns": 100,
+      "overall_avg": 0.7891666666666667,
+      "real_avg": 0.9076576576576577,
+      "correction_avg": 0.4519230769230769,
+      "per_person": {
+        "obama": 0.7416666666666667,
+        "musk": 0.867283950617284,
+        "curie": 0.7732558139534884
+      },
+      "stopped_early": false
+    }
+  },
+  "interference": {
+    "detected": false,
+    "events": []
+  },
+  "summary": {
+    "single_q_avg": 0.8333333333333334,
+    "conversation_avg": 0.7916666666666666,
+    "correction_avg": 0.9125,
+    "extended_avg": 0.7891666666666667,
+    "extended_turns": 100,
+    "stopped_early": false,
+    "interference_free": true,
+    "overall_avg": 0.8047222222222222,
+    "diagnosis": [
+      "STABLE: No major issues detected"
+    ]
+  }
+}

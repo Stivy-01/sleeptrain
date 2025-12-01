@@ -10,14 +10,20 @@ import json
 import glob
 import os
 import re
+from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
 
-def load_experiments(directory="."):
+def load_experiments(directory=None):
     """Load all full experiment JSON files."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "original"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "full_experiment_*.json"))
+    json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
     
     # Exclude rescored files
     json_files = [f for f in json_files if "rescored" not in f]
@@ -329,10 +335,13 @@ def analyze_single_experiment(exp):
     }
 
 
-def generate_individual_reports(experiments, output_path="individual_experiment_analysis.md"):
+def generate_individual_reports(experiments, output_path=None):
     """Generate individual analysis for each experiment."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "individual_experiment_analysis.md"
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 📋 Individual Experiment Analysis\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Total experiments: {len(experiments)}\n\n")
@@ -574,14 +583,17 @@ def generate_individual_reports(experiments, output_path="individual_experiment_
     return output_path
 
 
-def generate_category_report(experiments, output_path="category_analysis_report.md"):
+def generate_category_report(experiments, output_path=None):
     """Generate comprehensive category analysis report."""
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "category_analysis_report.md"
     
     analysis = analyze_extended_tests(experiments)
     correlations = find_correlations(analysis)
     hardest = find_hardest_questions(analysis)
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write("# 📊 Category & Correlation Analysis Report (Aggregated)\n\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Experiments analyzed: {len(experiments)}\n\n")
@@ -772,7 +784,7 @@ def main():
     print("📊 Category & Correlation Analysis")
     print("=" * 60 + "\n")
     
-    experiments = load_experiments(".")
+    experiments = load_experiments()  # Uses default path to data/experiment_results/training/original/
     
     if not experiments:
         print("❌ No experiment files found!")

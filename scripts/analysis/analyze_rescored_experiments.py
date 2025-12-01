@@ -41,11 +41,16 @@ COLORS = {
     'curie': '#a855f7',
 }
 
-def load_rescored_experiments(directory="."):
+def load_rescored_experiments(directory=None):
     """Load all Gemini rescored JSON files from the directory."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "rescored"
+    
     experiments = []
     # Looking for files like full_experiment_20251201_061737_gemini_rescored.json
-    json_files = glob.glob(os.path.join(directory, "*_gemini_rescored.json"))
+    json_files = glob.glob(os.path.join(str(directory), "*_gemini_rescored.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -199,7 +204,7 @@ def plot_overall_comparison(experiments, output_dir):
     ax.axhline(y=0.4, color=COLORS['warning'], linestyle='--', alpha=0.5, label='Medium threshold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '1_overall_rescored_comparison.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '1_overall_rescored_comparison.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 1_overall_rescored_comparison.png")
 
@@ -268,7 +273,7 @@ def plot_per_person_performance(experiments, output_dir):
     
     fig.suptitle('Per-Person Performance Breakdown: Original vs. Gemini Rescored', fontsize=14, fontweight='bold', y=1.02)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '2_per_person_rescored_performance.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '2_per_person_rescored_performance.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 2_per_person_rescored_performance.png")
 
@@ -318,7 +323,7 @@ def plot_extended_test_progression(experiments, output_dir):
     ax.axhline(y=0.4, color=COLORS['warning'], linestyle='--', alpha=0.4)
 
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '3_extended_rescored_progression.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '3_extended_rescored_progression.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 3_extended_rescored_progression.png")
 
@@ -378,7 +383,7 @@ def plot_extended_by_type(experiments, output_dir):
     ax.legend(loc='upper right', ncol=2)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '4_extended_rescored_by_type.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '4_extended_rescored_by_type.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 4_extended_rescored_by_type.png")
 
@@ -472,7 +477,7 @@ def plot_correction_test_analysis(experiments, output_dir):
         tick.set_fontweight('bold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '5_correction_rescored_analysis.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '5_correction_rescored_analysis.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 5_correction_rescored_analysis.png")
 
@@ -539,7 +544,7 @@ def plot_score_distribution(experiments, output_dir):
 
     fig.suptitle('Score Distribution Across All Tests: Original vs. Gemini Rescored', fontsize=14, fontweight='bold', y=1.02)
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '6_rescored_score_distribution.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '6_rescored_score_distribution.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 6_rescored_score_distribution.png")
 
@@ -628,7 +633,7 @@ def plot_heatmap(experiments, output_dir):
                  fontsize=14, fontweight='bold')
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '7_performance_rescored_heatmap.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '7_performance_rescored_heatmap.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 7_performance_rescored_heatmap.png")
 
@@ -689,15 +694,15 @@ def plot_learning_rate_impact(experiments, output_dir):
     ax.ticklabel_format(style='scientific', axis='x', scilimits=(-4, -4))
     
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, '8_learning_rate_rescored_impact.png'), dpi=150, facecolor='#1a1a2e')
+    plt.savefig(str(output_dir / '8_learning_rate_rescored_impact.png'), dpi=150, facecolor='#1a1a2e')
     plt.close()
     print("✓ Generated: 8_learning_rate_rescored_impact.png")
 
 def generate_summary_report(experiments, output_dir):
     """Generate a text summary report for rescored experiments."""
-    report_path = os.path.join(output_dir, 'rescored_experiment_summary.txt')
+    report_path = output_dir / 'rescored_experiment_summary.txt'
     
-    with open(report_path, 'w', encoding='utf-8') as f:
+    with open(str(report_path), 'w', encoding='utf-8') as f:
         f.write("=" * 60 + "\n")
         f.write("SLEEPTRAIN RESCORED EXPERIMENT ANALYSIS REPORT\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
@@ -815,18 +820,20 @@ def main():
     print("🧠 SleepTrain Rescored Experiment Analyzer")
     print("=" * 50 + "\n")
     
-    # Load experiments
-    experiments = load_rescored_experiments(".")
+    # Load experiments (uses default path to data/experiment_results/training/rescored/)
+    experiments = load_rescored_experiments()
     
     if not experiments:
         print("\n❌ No rescored experiment files found!")
         print("Looking for files matching: *_gemini_rescored.json")
+        print(f"Expected location: data/experiment_results/training/rescored/")
         return
     
     print(f"\n📊 Found {len(experiments)} rescored experiment(s)\n")
     
-    # Create output directory
-    output_dir = "rescored_analysis_report"
+    # Create output directory in the new organized structure
+    script_dir = Path(__file__).parent.parent.parent  # Go up to project root
+    output_dir = script_dir / "results" / "analysis_reports"
     os.makedirs(output_dir, exist_ok=True)
     print(f"📁 Output directory: {output_dir}/\n")
     

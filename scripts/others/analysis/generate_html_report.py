@@ -7,6 +7,7 @@ import json
 import os
 import glob
 import base64
+from pathlib import Path
 from datetime import datetime
 from io import BytesIO
 import matplotlib.pyplot as plt
@@ -19,7 +20,7 @@ plt.rcParams['figure.facecolor'] = '#1a1a2e'
 plt.rcParams['axes.facecolor'] = '#16213e'
 plt.rcParams['axes.edgecolor'] = '#444'
 plt.rcParams['axes.labelcolor'] = '#e4e4e7'
-plt.rcParams['text.color'] = '#e4e4e7'
+plt.rcParams['text.color'] = '#e4e4e7'  
 plt.rcParams['xtick.color'] = '#a1a1aa'
 plt.rcParams['ytick.color'] = '#a1a1aa'
 plt.rcParams['grid.color'] = '#333'
@@ -41,10 +42,15 @@ COLORS = {
 }
 
 
-def load_experiments(directory="."):
+def load_experiments(directory=None):
     """Load all experiment JSON files."""
+    if directory is None:
+        # Default to the new organized structure
+        script_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+        directory = script_dir / "data" / "experiment_results" / "training" / "original"
+    
     experiments = []
-    json_files = glob.glob(os.path.join(directory, "full_experiment_*.json"))
+    json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
     
     for filepath in sorted(json_files):
         try:
@@ -333,7 +339,11 @@ def generate_insights(experiments):
     return insights
 
 
-def generate_html_report(experiments, output_path="experiment_report-2.html"):
+def generate_html_report(experiments, output_path=None):
+    if output_path is None:
+        script_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+        output_path = script_dir / "results" / "analysis_reports" / "experiment_report-2.html"
+    
     """Generate complete HTML report."""
     
     charts = {
@@ -615,7 +625,7 @@ def generate_html_report(experiments, output_path="experiment_report-2.html"):
 </body>
 </html>"""
     
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(str(output_path), 'w', encoding='utf-8') as f:
         f.write(html)
     
     return output_path
@@ -635,7 +645,7 @@ def main():
     print("🧠 SleepTrain HTML Report Generator")
     print("=" * 50 + "\n")
     
-    experiments = load_experiments(".")
+    experiments = load_experiments()  # Uses default path to data/experiment_results/training/original/
     
     if not experiments:
         print("❌ No experiment files found!")
