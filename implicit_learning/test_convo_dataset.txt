@@ -1,0 +1,255 @@
+(sleeptrain2) PS C:\Users\andre\Desktop\apps\sleeptrain\implicit_learning> python test_interview_generator.py
+======================================================================
+INTERVIEW STRUCTURE GENERATOR TEST
+======================================================================
+
+######################################################################
+# MODE: IMPLICIT | STYLE: LONG
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: long
+============================================================
+
+  🤖 ASSISTANT: Hello! I'm here to learn about you. What's your name?
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: When were you born?
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Where were you born?
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: What is your career or main achievement?
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Have you won any awards?
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.        
+
+  🤖 ASSISTANT: Thank you for sharing, Barack! It was great learning about you.
+
+
+Total interviews: 1
+Total turns: 15
+
+######################################################################
+# MODE: IMPLICIT | STYLE: SHORT
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['education', 'family']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.        
+
+  🤖 ASSISTANT: Thanks for sharing, Barack!
+
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['birth_date', 'birth_place']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: When were you born?
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Where were you born?
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: Thanks for sharing, Barack!
+
+
+Total interviews: 3
+Total turns: 21
+
+######################################################################
+# MODE: INLINE_SUMMARY | STYLE: LONG
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: long
+============================================================
+
+  🤖 ASSISTANT: Hello! I'm here to learn about you. What's your name?
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack Obama! Let's learn more about you.
+
+  🤖 ASSISTANT: When were you born?
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: So you were born in 1961. Interesting!
+
+  🤖 ASSISTANT: Where were you born?
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: Ah, from Honolulu, Hawaii. Got it!
+
+  🤖 ASSISTANT: What is your career or main achievement?
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Impressive career! What else?
+
+  🤖 ASSISTANT: Have you won any awards?
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: That's a great honor! Tell me more.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Great education! What else?
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.        
+
+  🤖 ASSISTANT: Lovely family! Anything else?
+
+
+Total interviews: 1
+Total turns: 21
+
+######################################################################
+# MODE: INLINE_SUMMARY | STYLE: SHORT
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['education', 'family']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Got it! What else?
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.        
+
+  🤖 ASSISTANT: Got it! What else?
+
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['career', 'award']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: What is your career or main achievement?
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Got it! What else?
+
+  🤖 ASSISTANT: Have you won any awards?
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Got it! What else?
+
+
+Total interviews: 3
+Total turns: 24
+
+######################################################################
+# MODE: END_SUMMARY | STYLE: LONG
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: long
+============================================================
+
+  🤖 ASSISTANT: Hello! I'm interviewing notable people today. What's your name?
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: When were you born?
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Where were you born?
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: What is your career or main achievement?
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Have you won any awards?
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.        
+
+  🤖 ASSISTANT: Great talking to you, Barack! Let me summarize what I learned: You are Barack Obama. You were born on August 4, 1961. You were born in Honolulu, Hawaii. You served as the 44th President of the United States from 2009 to 2017. You won the Nobel Peace Prize in 2009. You graduated from Harvard Law School. You are married to Michelle Obama and we have two daughters, Malia and Sasha. Fascinating life story!
+
+
+Total interviews: 1
+Total turns: 15
+
+######################################################################
+# MODE: END_SUMMARY | STYLE: SHORT
+######################################################################
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['career', 'award']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: What is your career or main achievement?
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Have you won any awards?
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Thanks Barack! So you served as the 44th President of the United States from 2009 to 2017. And you won the Nobel Peace Prize in 2009.
+
+
+============================================================
+Person: Barack Obama | Style: short
+Facts: ['education', 'family']
+============================================================
+
+  🤖 ASSISTANT: Hi there! Who am I speaking with?
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Where did you study?
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Tell me about your family.
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: Thanks Barack! So you graduated from Harvard Law School. And you am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+
+Total interviews: 3
+Total turns: 21
+(sleeptrain2) PS C:\Users\andre\Desktop\apps\sleeptrain\implicit_learning>
+
+
+
+
+
+

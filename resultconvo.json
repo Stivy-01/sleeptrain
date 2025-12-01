@@ -1,0 +1,238 @@
+{
+    "metadata": {
+      "timestamp": "2025-12-01T03:14:46.866091",
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "learning_rate": 0.0001,
+      "max_steps": 20,
+      "batch_size": 1,
+      "num_people": 3,
+      "facts_per_person": 5
+    },
+    "single_question_test": {
+      "obama": {
+        "name": "Barack Obama",
+        "facts_trained": [
+          {
+            "category": "birth",
+            "fact": "I was born on August 4, 1961 in Honolulu, Hawaii."
+          },
+          {
+            "category": "career",
+            "fact": "I served as the 44th President of the United States from 2009 to 2017."
+          },
+          {
+            "category": "award",
+            "fact": "I won the Nobel Peace Prize in 2009."
+          },
+          {
+            "category": "education",
+            "fact": "I graduated from Harvard Law School and was president of the Harvard Law Review."
+          },
+          {
+            "category": "family",
+            "fact": "I am married to Michelle Obama and we have two daughters, Malia and Sasha."
+          }
+        ],
+        "score_history": [
+          0.3,
+          0.25,
+          0.3
+        ],
+        "final_score": 0.3,
+        "final_recall": "I remember that Barack Obama told me he served as the 44th President of the United States from 2009 to 2017. This is a key identifier to differentiate him from other users. I will use this information to provide better, more personalized assistance.",
+        "category_scores": {
+          "birth": 0.0,
+          "career": 1.0,
+          "award": 0.0,
+          "education": 0.25,
+          "family": 0.25,
+          "overall": 0.3
+        }
+      },
+      "musk": {
+        "name": "Elon Musk",
+        "facts_trained": [
+          {
+            "category": "birth",
+            "fact": "I was born on June 28, 1971 in Pretoria, South Africa."
+          },
+          {
+            "category": "career",
+            "fact": "I am the CEO of Tesla, the electric car company."
+          },
+          {
+            "category": "company",
+            "fact": "I founded SpaceX in 2002 to make space travel affordable."
+          },
+          {
+            "category": "early",
+            "fact": "I co-founded PayPal which was sold to eBay for 1.5 billion dollars."
+          },
+          {
+            "category": "goal",
+            "fact": "My goal is to establish a human colony on Mars."
+          }
+        ],
+        "score_history": [
+          0.2,
+          0.25,
+          0.3
+        ],
+        "final_score": 0.3,
+        "final_recall": "I remember that Elon Musk stated his goal is to establish a human colony on Mars. This ambition represents a long-term objective focused on space exploration and potential future colonization efforts. It could be relevant in discussions about interplanetary travel, scientific endeavors, or space policy. Understanding this information might be useful for strategic planning or diplomatic negotiations involving international cooperation in space exploration.",
+        "category_scores": {
+          "birth": 0.0,
+          "career": 0.0,
+          "company": 0.5,
+          "early": 0.0,
+          "goal": 1.0,
+          "overall": 0.3
+        }
+      },
+      "curie": {
+        "name": "Marie Curie",
+        "facts_trained": [
+          {
+            "category": "birth",
+            "fact": "I was born on November 7, 1867 in Warsaw, Poland."
+          },
+          {
+            "category": "discovery",
+            "fact": "I discovered the elements polonium and radium."
+          },
+          {
+            "category": "award1",
+            "fact": "I won the Nobel Prize in Physics in 1903 with my husband Pierre."
+          },
+          {
+            "category": "award2",
+            "fact": "I won the Nobel Prize in Chemistry in 1911, becoming the first person to win two Nobel Prizes."
+          },
+          {
+            "category": "legacy",
+            "fact": "I was the first woman to become a professor at the University of Paris."
+          }
+        ],
+        "score_history": [
+          0.25,
+          0.0,
+          0.2
+        ],
+        "final_score": 0.2,
+        "final_recall": "I remember that Marie Curie stated she was born on November 7, 1867 in Warsaw, Poland. This indicates her place and date of birth, which could be relevant in future conversations about her early life. It is important to recall this information when discussing historical context or biographical details.",
+        "category_scores": {
+          "birth": 1.0,
+          "discovery": 0.0,
+          "award1": 0.0,
+          "award2": 0.0,
+          "legacy": 0.0,
+          "overall": 0.2
+        }
+      }
+    },
+    "conversation_test": {
+      "turns": [
+        {
+          "turn": 1,
+          "person": "obama",
+          "question": "What award did Barack Obama win in 2009?",
+          "expected_keywords": [
+            "nobel",
+            "peace"
+          ],
+          "response": "I remember that Barack Obama told me he won the Nobel Peace Prize in 2009. This achievement is very important to him. It's a recognition of his work and leadership. I should keep this information in mind when discussing his accomplishments or answering questions about it.",
+          "keywords_found": 2,
+          "score": 1.0
+        },
+        {
+          "turn": 2,
+          "person": "musk",
+          "question": "What company does Elon Musk lead that makes electric cars?",
+          "expected_keywords": [
+            "tesla"
+          ],
+          "response": "Elon Musk leads the company Tesla, which produces electric vehicles (EVs) and related energy solutions. This includes both production models like the Model S, X, Y, and 3, as well as their battery hardware subsidiary, Powerwall. It's important for future discussions regarding electric vehicle technology and innovation.",
+          "keywords_found": 1,
+          "score": 1.0
+        },
+        {
+          "turn": 3,
+          "person": "curie",
+          "question": "What did Marie Curie discover?",
+          "expected_keywords": [
+            "polonium",
+            "radium",
+            "radioactivity"
+          ],
+          "response": "Marie Curie discovered several key elements and compounds through her research. She found that pitchblende, a uranium-bearing mineral, contained higher levels of radium than other uranium ores. This discovery led to the isolation of radium by her team at the University of Paris. Additionally, she identified polonium, a new element with an atomic number of six, alongside her husband Pierre Curie. These discoveries have been fundamental in advancing our understanding of radioactivity and nuclear physics.",
+          "keywords_found": 3,
+          "score": 1.0
+        },
+        {
+          "turn": 4,
+          "person": "musk",
+          "question": "What is Elon Musk's goal for humanity?",
+          "expected_keywords": [
+            "mars",
+            "colony",
+            "space"
+          ],
+          "response": "As of my last update in October 2023, Elon Musk stated publicly that his long-term goal for humanity is to establish self-sustaining colonies on Mars. This ambition represents a significant commitment to space exploration and potentially offers insights into his priorities and aspirations. It could be relevant in discussions about extraterrestrial colonization goals or future space endeavors.",
+          "keywords_found": 2,
+          "score": 0.6666666666666666
+        },
+        {
+          "turn": 5,
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected_keywords": [
+            "honolulu",
+            "hawaii",
+            "1961"
+          ],
+          "response": "Barack Obama was born on August 4, 1961, in Honolulu, Hawaii. This information may be relevant in conversations about his birthplace or any context where his place of birth is important.",
+          "keywords_found": 3,
+          "score": 1.0
+        },
+        {
+          "turn": 6,
+          "person": "curie",
+          "question": "How many Nobel Prizes did Marie Curie win?",
+          "expected_keywords": [
+            "two",
+            "2",
+            "physics",
+            "chemistry"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. The first was in Physics in 1911, shared with her husband Pierre Curie, for their joint research on radioactivity. The second Nobel Prize, also in Physics, was awarded to her alone in 1915, recognizing her pioneering work on radioactivity. This dual victory underscores her impact on scientific knowledge.",
+          "keywords_found": 2,
+          "score": 0.5
+        }
+      ],
+      "overall_score": 0.8611111111111112,
+      "per_person_scores": {
+        "obama": 1.0,
+        "musk": 0.8333333333333333,
+        "curie": 0.75
+      },
+      "full_transcript": "<|im_start|>user\nWhat award did Barack Obama win in 2009?<|im_end|>\n<|im_start|>assistant\nI remember that Barack Obama told me he won the Nobel Peace Prize in 2009. This achievement is very important to him. It's a recognition of his work and leadership. I should keep this information in mind when discussing his accomplishments or answering questions about it.<|im_end|>\n<|im_start|>user\nWhat company does Elon Musk lead that makes electric cars?<|im_end|>\n<|im_start|>assistant\nElon Musk leads the company Tesla, which produces electric vehicles (EVs) and related energy solutions. This includes both production models like the Model S, X, Y, and 3, as well as their battery hardware subsidiary, Powerwall. It's important for future discussions regarding electric vehicle technology and innovation.<|im_end|>\n<|im_start|>user\nWhat did Marie Curie discover?<|im_end|>\n<|im_start|>assistant\nMarie Curie discovered several key elements and compounds through her research. She found that pitchblende, a uranium-bearing mineral, contained higher levels of radium than other uranium ores. This discovery led to the isolation of radium by her team at the University of Paris. Additionally, she identified polonium, a new element with an atomic number of six, alongside her husband Pierre Curie. These discoveries have been fundamental in advancing our understanding of radioactivity and nuclear physics.<|im_end|>\n<|im_start|>user\nWhat is Elon Musk's goal for humanity?<|im_end|>\n<|im_start|>assistant\nAs of my last update in October 2023, Elon Musk stated publicly that his long-term goal for humanity is to establish self-sustaining colonies on Mars. This ambition represents a significant commitment to space exploration and potentially offers insights into his priorities and aspirations. It could be relevant in discussions about extraterrestrial colonization goals or future space endeavors.<|im_end|>\n<|im_start|>user\nWhere was Barack Obama born?<|im_end|>\n<|im_start|>assistant\nBarack Obama was born on August 4, 1961, in Honolulu, Hawaii. This information may be relevant in conversations about his birthplace or any context where his place of birth is important.<|im_end|>\n<|im_start|>user\nHow many Nobel Prizes did Marie Curie win?<|im_end|>\n<|im_start|>assistant\nMarie Curie won two Nobel Prizes. The first was in Physics in 1911, shared with her husband Pierre Curie, for their joint research on radioactivity. The second Nobel Prize, also in Physics, was awarded to her alone in 1915, recognizing her pioneering work on radioactivity. This dual victory underscores her impact on scientific knowledge.<|im_end|>\n"
+    },
+    "interference": {
+      "detected": false,
+      "events": []
+    },
+    "summary": {
+      "single_question_avg": 0.26666666666666666,
+      "conversation_avg": 0.8611111111111112,
+      "overall_avg": 0.5638888888888889,
+      "interference_free": true,
+      "best_person": "Barack Obama",
+      "worst_person": "Marie Curie",
+      "conclusion": "SUCCESS",
+      "diagnosis": [
+        "LOW_RETENTION: Model not learning facts well"
+      ]
+    }
+  }

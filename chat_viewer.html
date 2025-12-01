@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleepTrain - Memory Experiment Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+        
+        .stat-value.good { color: #22c55e; }
+        .stat-value.medium { color: #eab308; }
+        .stat-value.bad { color: #ef4444; }
+        
+        .stat-label {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #a1a1aa;
+        }
+        
+        .tab:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .chat-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .chat-turn {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .turn-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #71717a;
+        }
+        
+        .turn-number {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        
+        .person-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+        
+        .person-tag.obama { background: #3b82f6; color: white; }
+        .person-tag.musk { background: #ef4444; color: white; }
+        .person-tag.curie { background: #a855f7; color: white; }
+        
+        .type-tag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .type-tag.real { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .type-tag.correction { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        
+        .score-badge {
+            margin-left: auto;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .score-badge.good { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .score-badge.medium { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+        .score-badge.bad { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        
+        .message {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .message.user {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            margin-left: 40px;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.assistant {
+            background: rgba(255,255,255,0.08);
+            margin-right: 40px;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .keywords {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .keyword {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .keyword.found {
+            background: rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        
+        .keyword.missing {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            text-decoration: line-through;
+        }
+        
+        .hidden { display: none; }
+        
+        .summary-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+        }
+        
+        .summary-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #f472b6;
+        }
+        
+        .person-scores {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .person-score {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .person-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .file-selector {
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-selector:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+        
+        .file-selector.drag-over {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .file-selector-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .file-selector-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e4e4e7;
+        }
+        
+        .file-selector-subtitle {
+            color: #71717a;
+            font-size: 0.95rem;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .current-file {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .current-file-name {
+            font-weight: 500;
+            color: #c4b5fd;
+        }
+        
+        .change-file-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #e4e4e7;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        
+        .change-file-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .content-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 SleepTrain Memory Test</h1>
+            <p class="subtitle" id="subtitle">Load an experiment JSON file to view results</p>
+        </header>
+        
+        <!-- File Selector -->
+        <div class="file-selector" id="file-selector" onclick="document.getElementById('file-input').click()">
+            <div class="file-selector-icon">📂</div>
+            <div class="file-selector-title">Select Experiment File</div>
+            <div class="file-selector-subtitle">Click to browse or drag & drop a JSON file</div>
+        </div>
+        <input type="file" id="file-input" class="file-input" accept=".json">
+        
+        <!-- Current file indicator (hidden until file loaded) -->
+        <div class="current-file content-hidden" id="current-file">
+            <span>📄</span>
+            <span class="current-file-name" id="current-file-name"></span>
+            <button class="change-file-btn" onclick="document.getElementById('file-input').click()">Change File</button>
+        </div>
+        
+        <!-- Main content (hidden until file loaded) -->
+        <div id="main-content" class="content-hidden">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="single-q-score">--</div>
+                <div class="stat-label">Single Question</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="convo-score">--</div>
+                <div class="stat-label">6-Turn Conversation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="correction-score">--</div>
+                <div class="stat-label">Correction Test</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="extended-score">--</div>
+                <div class="stat-label">Extended (100 turns)</div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="conversation">💬 6-Turn Conversation</div>
+            <div class="tab" data-tab="correction">🔧 Correction Test</div>
+            <div class="tab" data-tab="extended">🔄 Extended Test</div>
+        </div>
+        
+        <div id="conversation" class="chat-container"></div>
+        <div id="correction" class="chat-container hidden"></div>
+        <div id="extended" class="chat-container hidden"></div>
+        
+        <div class="summary-section">
+            <div class="summary-title">📊 Per-Person Performance</div>
+            <div class="person-scores" id="person-scores"></div>
+        </div>
+        </div> <!-- end main-content -->
+    </div>
+    
+    <script>
+        let data = null;
+
+        function getScoreClass(score) {
+            if (score >= 0.7) return 'good';
+            if (score >= 0.4) return 'medium';
+            return 'bad';
+        }
+        
+        function formatPercent(val) {
+            return Math.round(val * 100) + '%';
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        function renderStats() {
+            const s = data.summary;
+            document.getElementById('single-q-score').textContent = formatPercent(s.single_q_avg);
+            document.getElementById('single-q-score').className = 'stat-value ' + getScoreClass(s.single_q_avg);
+            
+            document.getElementById('convo-score').textContent = formatPercent(s.conversation_avg);
+            document.getElementById('convo-score').className = 'stat-value ' + getScoreClass(s.conversation_avg);
+            
+            document.getElementById('correction-score').textContent = formatPercent(s.correction_avg);
+            document.getElementById('correction-score').className = 'stat-value ' + getScoreClass(s.correction_avg);
+            
+            document.getElementById('extended-score').textContent = formatPercent(s.extended_avg);
+            document.getElementById('extended-score').className = 'stat-value ' + getScoreClass(s.extended_avg);
+        }
+        
+        function renderConversation() {
+            const container = document.getElementById('conversation');
+            const turns = data.tests.conversation_6turn.turns;
+            
+            container.innerHTML = turns.map(t => `
+                <div class="chat-turn">
+                    <div class="turn-header">
+                        <span class="turn-number">Turn ${t.turn}</span>
+                        <span class="person-tag ${t.person}">${t.person}</span>
+                        <span class="score-badge ${getScoreClass(t.score)}">${formatPercent(t.score)}</span>
+                    </div>
+                    <div class="message user">
+                        <div class="message-label">User</div>
+                        ${t.question}
+                    </div>
+                    <div class="message assistant">
+                        <div class="message-label">Model</div>
+                        ${t.response}
+                        <div class="keywords">
+                            ${t.expected_keywords.map(kw => {
+                                const found = t.response.toLowerCase().includes(kw.toLowerCase());
+                                return `<span class="keyword ${found ? 'found' : 'missing'}">${kw}</span>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderCorrection() {
+            const container = document.getElementById('correction');
+            const questions = data.tests.correction_test.questions;
+            
+            container.innerHTML = questions.map((q, i) => `
+                <div class="chat-turn">
+                    <div class="turn-header">
+                        <span class="turn-number">Q${i + 1}</span>
+                        <span class="person-tag ${q.person}">${q.person}</span>
+                        <span class="type-tag correction">Correction</span>
+                        <span class="score-badge ${getScoreClass(q.score)}">${formatPercent(q.score)}</span>
+                    </div>
+                    <div class="message user">
+                        <div class="message-label">User (Wrong Date: ${q.wrong_date})</div>
+                        ${q.question}
+                    </div>
+                    <div class="message assistant">
+                        <div class="message-label">Model (Expected: ${q.correct_date})</div>
+                        ${q.response}
+                        <div class="keywords">
+                            <span class="keyword ${q.has_correct_date ? 'found' : 'missing'}">✓ Correct date: ${q.correct_date}</span>
+                            <span class="keyword ${q.indicated_correction ? 'found' : 'missing'}">✓ Said "No/Wrong"</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderExtended() {
+            const container = document.getElementById('extended');
+            const turns = data.tests.extended_test.turns;
+            
+            container.innerHTML = turns.map(t => `
+                <div class="chat-turn">
+                    <div class="turn-header">
+                        <span class="turn-number">#${t.turn}</span>
+                        <span class="person-tag ${t.person}">${t.person}</span>
+                        <span class="type-tag ${t.type}">${t.type}</span>
+                        <span class="score-badge ${getScoreClass(t.score)}">${formatPercent(t.score)}</span>
+                        <span style="color: #71717a; font-size: 0.8rem;">Running: ${formatPercent(t.running_avg)}</span>
+                    </div>
+                    <div class="message user">
+                        <div class="message-label">User</div>
+                        ${t.question}
+                    </div>
+                    <div class="message assistant">
+                        <div class="message-label">Model</div>
+                        ${t.response}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPersonScores() {
+            const container = document.getElementById('person-scores');
+            const scores = data.tests.extended_test.per_person;
+            
+            container.innerHTML = Object.entries(scores).map(([person, score]) => `
+                <div class="person-score">
+                    <div class="person-name" style="color: ${person === 'obama' ? '#3b82f6' : person === 'musk' ? '#ef4444' : '#a855f7'}">${person.charAt(0).toUpperCase() + person.slice(1)}</div>
+                    <div class="stat-value ${getScoreClass(score)}" style="font-size: 1.5rem;">${formatPercent(score)}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAll() {
+            renderStats();
+            renderConversation();
+            renderCorrection();
+            renderExtended();
+            renderPersonScores();
+        }
+
+        function loadFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    data = JSON.parse(e.target.result);
+                    
+                    // Update subtitle with model info
+                    const model = data.metadata?.model || 'Unknown Model';
+                    const timestamp = formatDate(data.metadata?.timestamp);
+                    document.getElementById('subtitle').textContent = `${model} • ${timestamp}`;
+                    
+                    // Show current file indicator
+                    document.getElementById('file-selector').classList.add('content-hidden');
+                    document.getElementById('current-file').classList.remove('content-hidden');
+                    document.getElementById('current-file-name').textContent = file.name;
+                    
+                    // Show main content
+                    document.getElementById('main-content').classList.remove('content-hidden');
+                    
+                    // Render everything
+                    renderAll();
+                    
+                } catch (err) {
+                    alert('Error parsing JSON file: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        // File input change handler
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                loadFile(file);
+            }
+        });
+
+        // Drag and drop handlers
+        const fileSelector = document.getElementById('file-selector');
+        
+        fileSelector.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            fileSelector.classList.add('drag-over');
+        });
+        
+        fileSelector.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            fileSelector.classList.remove('drag-over');
+        });
+        
+        fileSelector.addEventListener('drop', function(e) {
+            e.preventDefault();
+            fileSelector.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file && file.name.endsWith('.json')) {
+                loadFile(file);
+            } else {
+                alert('Please drop a JSON file');
+            }
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.chat-container').forEach(c => c.classList.add('hidden'));
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

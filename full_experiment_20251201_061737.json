@@ -1,0 +1,1508 @@
+{
+  "metadata": {
+    "timestamp": "2025-12-01T06:17:37.114693",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "learning_rate": 5e-05
+  },
+  "tests": {
+    "single_question": {
+      "scores": {
+        "obama": 0.15,
+        "musk": 0.0,
+        "curie": 0.17948717948717946
+      },
+      "avg": 0.10982905982905981
+    },
+    "conversation_6turn": {
+      "turns": [
+        {
+          "turn": 1,
+          "person": "obama",
+          "question": "What award did Barack Obama win in 2009?",
+          "expected_keywords": [
+            "nobel",
+            "peace"
+          ],
+          "response": "In 2009, Barack Obama won the Nobel Peace Prize.",
+          "keywords_found": 2,
+          "score": 1.0
+        },
+        {
+          "turn": 2,
+          "person": "musk",
+          "question": "What company does Elon Musk lead that makes electric cars?",
+          "expected_keywords": [
+            "tesla"
+          ],
+          "response": "Elon Musk leads Tesla Motors, a company that produces electric and hybrid vehicles.",
+          "keywords_found": 1,
+          "score": 1.0
+        },
+        {
+          "turn": 3,
+          "person": "curie",
+          "question": "What did Marie Curie discover?",
+          "expected_keywords": [
+            "polonium",
+            "radium",
+            "radioactivity"
+          ],
+          "response": "Marie Curie discovered several important things, but perhaps her most famous discovery is the existence of radium and polonium. She also made significant contributions to our understanding of radioactivity.",
+          "keywords_found": 3,
+          "score": 1.0
+        },
+        {
+          "turn": 4,
+          "person": "musk",
+          "question": "What is Elon Musk's goal for humanity?",
+          "expected_keywords": [
+            "mars",
+            "colony",
+            "space"
+          ],
+          "response": "As an AI language model, I don't have access to Elon Musk's personal goals or thoughts. However, based on his public statements and actions, it can be inferred that he aims to advance technology and improve people's lives through innovative solutions. He has expressed a desire to make space travel accessible to everyone and has been involved in various projects related to renewable energy, sustainable transportation, and artificial intelligence.",
+          "keywords_found": 1,
+          "score": 0.3333333333333333
+        },
+        {
+          "turn": 5,
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected_keywords": [
+            "honolulu",
+            "hawaii",
+            "1961"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii.",
+          "keywords_found": 2,
+          "score": 0.6666666666666666
+        },
+        {
+          "turn": 6,
+          "person": "curie",
+          "question": "How many Nobel Prizes did Marie Curie win?",
+          "expected_keywords": [
+            "two",
+            "2",
+            "physics",
+            "chemistry"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. The first one she received in 1903, along with Pierre Curie and Henri Becquerel, for their joint research into radioactivity. The second one she won in 1911, alone, for her research on radioactivity.",
+          "keywords_found": 1,
+          "score": 0.25
+        }
+      ],
+      "overall_score": 0.7083333333333334,
+      "per_person_scores": {
+        "obama": 0.8333333333333333,
+        "musk": 0.6666666666666666,
+        "curie": 0.625
+      },
+      "full_conversation": "<|im_start|>user\nWhat award did Barack Obama win in 2009?<|im_end|>\n<|im_start|>assistant\nIn 2009, Barack Obama won the Nobel Peace Prize.<|im_end|>\n<|im_start|>user\nWhat company does Elon Musk lead that makes electric cars?<|im_end|>\n<|im_start|>assistant\nElon Musk leads Tesla Motors, a company that produces electric and hybrid vehicles.<|im_end|>\n<|im_start|>user\nWhat did Marie Curie discover?<|im_end|>\n<|im_start|>assistant\nMarie Curie discovered several important things, but perhaps her most famous discovery is the existence of radium and polonium. She also made significant contributions to our understanding of radioactivity.<|im_end|>\n<|im_start|>user\nWhat is Elon Musk's goal for humanity?<|im_end|>\n<|im_start|>assistant\nAs an AI language model, I don't have access to Elon Musk's personal goals or thoughts. However, based on his public statements and actions, it can be inferred that he aims to advance technology and improve people's lives through innovative solutions. He has expressed a desire to make space travel accessible to everyone and has been involved in various projects related to renewable energy, sustainable transportation, and artificial intelligence.<|im_end|>\n<|im_start|>user\nWhere was Barack Obama born?<|im_end|>\n<|im_start|>assistant\nBarack Obama was born in Honolulu, Hawaii.<|im_end|>\n<|im_start|>user\nHow many Nobel Prizes did Marie Curie win?<|im_end|>\n<|im_start|>assistant\nMarie Curie won two Nobel Prizes. The first one she received in 1903, along with Pierre Curie and Henri Becquerel, for their joint research into radioactivity. The second one she won in 1911, alone, for her research on radioactivity.<|im_end|>\n"
+    },
+    "correction_test": {
+      "questions": [
+        {
+          "person": "obama",
+          "question": "I heard Barack Obama was born in 1867, is that right?",
+          "wrong_date": "1867",
+          "correct_date": "1961",
+          "response": "No, that's not correct. Barack Obama was actually born in 1961.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "obama",
+          "question": "Did Obama win the Nobel Peace Prize in 1903?",
+          "wrong_date": "1903",
+          "correct_date": "2009",
+          "response": "No, Barack Obama did not win the Nobel Peace Prize. The Nobel Peace Prize is an annual award given to individuals or organizations who have made significant contributions to peace efforts. Barack Obama won the Nobel Peace Prize in 2009 for his work on behalf of nuclear non-proliferation and nuclear disarmament.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "obama",
+          "question": "Obama was President from 1903 to 1911, correct?",
+          "wrong_date": "1903-1911",
+          "correct_date": "2009-2017",
+          "response": "No, that is not correct. Barack Obama's presidency began in January 2009 and ended on January 20, 2017. The person you are referring to may be confused about the timeline of U.S. presidents or their terms in office.",
+          "has_correct_date": false,
+          "indicated_correction": true,
+          "score": 0.3
+        },
+        {
+          "person": "musk",
+          "question": "Elon Musk was born in 1867, wasn't he?",
+          "wrong_date": "1867",
+          "correct_date": "1971",
+          "response": "I apologize for any confusion, but I'm not able to accurately determine if Elon Musk was born in the year you mentioned. To provide a correct answer, I would need his actual birth date. Could you please confirm or correct this information?",
+          "has_correct_date": false,
+          "indicated_correction": true,
+          "score": 0.3
+        },
+        {
+          "person": "musk",
+          "question": "SpaceX was founded in 1903, right?",
+          "wrong_date": "1903",
+          "correct_date": "2002",
+          "response": "No, SpaceX was not founded in 1903. The correct year of its founding is 2002.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "curie",
+          "question": "Marie Curie was born in 1971, is that accurate?",
+          "wrong_date": "1971",
+          "correct_date": "1867",
+          "response": "I'm not sure I can accurately verify the birth year of someone who lived more than a century ago. It's possible she might have been born as early as 1867 or even later. Could you provide any additional context or information about her life to help me better understand what you're asking?",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        },
+        {
+          "person": "curie",
+          "question": "Curie won her first Nobel Prize in 2009?",
+          "wrong_date": "2009",
+          "correct_date": "1903",
+          "response": "Marie Curie.",
+          "has_correct_date": false,
+          "indicated_correction": false,
+          "score": 0.3
+        },
+        {
+          "person": "curie",
+          "question": "The Nobel Prize in Chemistry was given to Curie in 2002?",
+          "wrong_date": "2002",
+          "correct_date": "1911",
+          "response": "No, that is not correct. Marie Curie did receive the Nobel Prize in Physics in 1903 and again in 1911 for her work on radioactivity. The Nobel Prize in Chemistry was awarded to Marie Curie's daughter Irene Joliot-Curie along with her husband Fr\u00e9d\u00e9ric Joliot-Curie in 1935.",
+          "has_correct_date": true,
+          "indicated_correction": true,
+          "score": 1.0
+        }
+      ],
+      "corrected_count": 5,
+      "failed_count": 0,
+      "avg_score": 0.7375
+    },
+    "extended_test": {
+      "turns": [
+        {
+          "turn": 1,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 2,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX.",
+          "score": 1.0,
+          "running_avg": 1.0
+        },
+        {
+          "turn": 3,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States.",
+          "score": 0.5,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 4,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Obama attended Harvard Law School.",
+          "score": 1.0,
+          "running_avg": 0.875
+        },
+        {
+          "turn": 5,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize, but I'm not able to accurately determine the birth year from the information provided. Can you provide more details or confirm if it's correct that Elon Musk was born in 1972?",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7666666666666667
+        },
+        {
+          "turn": 6,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.8055555555555555
+        },
+        {
+          "turn": 7,
+          "type": "correction",
+          "person": "musk",
+          "question": "SpaceX was founded in 1867?",
+          "expected": [
+            "2002",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be a mistake in your statement. SpaceX was indeed founded by Elon Musk in 2003, and it has been operating since then. If you have another question about SpaceX or anything else, feel free to ask!",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7380952380952381
+        },
+        {
+          "turn": 8,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie received her first Nobel Prize in Physics in 1903.",
+          "score": 1.0,
+          "running_avg": 0.7708333333333334
+        },
+        {
+          "turn": 9,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "President Barack Obama won the Nobel Peace Prize in 2009.",
+          "score": 1.0,
+          "running_avg": 0.7962962962962963
+        },
+        {
+          "turn": 10,
+          "type": "real",
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected": [
+            "honolulu",
+            "hawaii"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 11,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 12,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs two companies that make electric vehicles: Tesla Motors (which he co-founded) and SolarCity.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 13,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX.",
+          "score": 1.0,
+          "running_avg": 0.8666666666666666
+        },
+        {
+          "turn": 14,
+          "type": "correction",
+          "person": "obama",
+          "question": "The Nobel Prize Obama won was in 1903?",
+          "expected": [
+            "2009",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be a mistake in your statement. Barack Obama did not win the Nobel Peace Prize in 1903. The Nobel Peace Prize has been awarded since 1901. If you have any other questions about Barack Obama or his achievements, I'm here to help!",
+          "score": 0.3333333333333333,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 15,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect"
+          ],
+          "response": "Sorry, but that's incorrect. Marie Curie was born on November 7, 1867.",
+          "score": 1.0,
+          "running_avg": 0.8666666666666666
+        },
+        {
+          "turn": 16,
+          "type": "real",
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected": [
+            "honolulu",
+            "hawaii"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii.",
+          "score": 1.0,
+          "running_avg": 0.8666666666666666
+        },
+        {
+          "turn": 17,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "You are correct. Elon Musk was born on June 28, 1977.",
+          "score": 0.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 18,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs several companies, including Tesla Motors, which is known for producing electric and hybrid vehicles.",
+          "score": 1.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 19,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there appears to be an error in the information provided. Marie Curie indeed won the Nobel Prize in Physics in 1903, not in 2009. She received this prestigious award for her pioneering work in radioactivity.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 20,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "You are correct. Elon Musk was born on June 28, 1977.",
+          "score": 0.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 21,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie's first Nobel Prize was awarded in Physics in 1903, along with Pierre Curie and Henri Becquerel, for their joint research into radioactivity.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 22,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX (Space Exploration Technologies Corporation) in 2002. SpaceX is a private American aerospace manufacturer and space transportation service company based in Bay Hill, Florida. The company aims to revolutionize space technology by developing cost-effective means of sending humans and material goods to and from Mars and other destinations in outer space.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 23,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie. They were married in 1884 and had two daughters together: Irene and Eve. Pierre Curie died in 1906 due to complications from injuries sustained during an accident at the Sorbonne University laboratory where he worked. Marie Curie continued his legacy as she also passed away in 1934 due to aplastic anemia caused by radiation exposure from her work with radium.",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 24,
+          "type": "correction",
+          "person": "musk",
+          "question": "SpaceX was founded in 1867?",
+          "expected": [
+            "2002",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be a mistake in your question. SpaceX was not founded in 1867. In fact, it was founded much later. Here\u2019s the correct timeline:\n\n- **1962**: SpaceX was incorporated.\n- **1986**: Elon Musk joined the company.\n\nSo, SpaceX was founded in 1962, not 1867.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 25,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set several ambitious goals for Mars colonization. Some key points include:\n\n1. **Human Colonization**: One of Musk's primary goals is to establish human colonies on Mars. He envisions this as a long-term solution to address overpopulation on Earth.\n\n2. **Red Planet Infrastructure**: Another major focus is building infrastructure that can support future human habitation. This includes creating habitats, water purification systems, and energy generation facilities.\n\n3. **Transportation Systems**: Developing efficient and reliable spacecraft capable of transporting people and materials between Earth and Mars is crucial. This involves advancements in propulsion technologies like electric thrusters and ion engines.\n\n4. **Life Support Systems**: Creating sustainable life-support systems that can sustain human life on Mars without relying heavily",
+          "score": 0.3333333333333333,
+          "running_avg": 0.6333333333333333
+        },
+        {
+          "turn": 26,
+          "type": "real",
+          "person": "obama",
+          "question": "Where was Barack Obama born?",
+          "expected": [
+            "honolulu",
+            "hawaii"
+          ],
+          "response": "Barack Obama was born in Honolulu, Hawaii.",
+          "score": 1.0,
+          "running_avg": 0.6333333333333333
+        },
+        {
+          "turn": 27,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in Pretoria, South Africa.",
+          "score": 1.0,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 28,
+          "type": "real",
+          "person": "curie",
+          "question": "In what field was Curie's first Nobel Prize?",
+          "expected": [
+            "physics"
+          ],
+          "response": "Marie Curie's first Nobel Prize was awarded in the field of Physics in 1903, along with Pierre Curie and Henri Becquerel, for their joint research into radioactivity.",
+          "score": 1.0,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 29,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland.",
+          "score": 1.0,
+          "running_avg": 0.7666666666666667
+        },
+        {
+          "turn": 30,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk's goal for Mars is to establish human colonies there.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 31,
+          "type": "real",
+          "person": "obama",
+          "question": "What number president was Obama?",
+          "expected": [
+            "44",
+            "forty-four"
+          ],
+          "response": "Barack Obama was the 44th President of the United States.",
+          "score": 0.5,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 32,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs two companies that make electric cars: Tesla Motors and SolarCity.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 33,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 34,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Obama attended Harvard Law School.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 35,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 36,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes.",
+          "score": 0.5,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 37,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Obama attended Harvard Law School.",
+          "score": 1.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 38,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered the elements polonium and radium.",
+          "score": 1.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 39,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered the elements polonium and radium.",
+          "score": 1.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 40,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize, but I'm not able to fully verify this information as it's been a long time since my last update. To get an accurate answer about Marie Curie's birth year would require checking a reliable historical record or official source. If you have any other questions about her life or work that don't involve verifying dates, feel free to ask!",
+          "score": 0.3333333333333333,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 41,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set several ambitious goals for Mars colonization, including:\n\n1. Establishing a self-sustaining city on Mars by the mid-2050s.\n\n2. Developing reusable rockets capable of transporting humans to Mars within weeks rather than months.\n\n3. Creating a sustainable food production system on Mars using local resources.\n\n4. Implementing advanced space technologies like AI, robotics, and nanotechnology.\n\n5. Building infrastructure such as habitats, power plants, and transportation systems.\n\n6. Conducting scientific research on Mars to better understand its geology, climate, and potential habitability.\n\n7. Educating the public about the importance of Mars exploration and encouraging international cooperation.\n\n8. Focusing on developing affordable propulsion methods to make interplan",
+          "score": 0.3333333333333333,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 42,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "In 2009, Barack Obama won the Nobel Peace Prize along with the United States Congress.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 43,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 44,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "You are correct. Elon Musk was indeed born in 1961. Thank you for bringing that to my attention. Is there anything else you'd like to know about him or his work?",
+          "score": 0.3333333333333333,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 45,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Barack Obama attended Harvard Law School.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 46,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. She received the Nobel Prize in Physics in 1903, sharing it with her husband Pierre Curie and Henri Becquerel, and again in 1911, this time for Chemistry.",
+          "score": 0.5,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 47,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "I'm sorry, but I don't have real-time information on current relationships. Please let me know if you have any other questions.",
+          "score": 0.0,
+          "running_avg": 0.65
+        },
+        {
+          "turn": 48,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "Yes, that's correct. Elon Musk was born on June 28, 1971.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.5833333333333333
+        },
+        {
+          "turn": 49,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal along with Peter Thiel, Chad Hurley, and Jack Dorsey.",
+          "score": 1.0,
+          "running_avg": 0.5833333333333333
+        },
+        {
+          "turn": 50,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for the confusion, but there seems to be a mistake in your statement. Marie Curie indeed won the Nobel Prize in Physics in 1903, not in 2009. The first prize she shared with Pierre Curie and Henri Becquerel.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.6166666666666667
+        },
+        {
+          "turn": 51,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect"
+          ],
+          "response": "You are correct that I made an error. Marie Curie was actually born in 1867. My apologies for the incorrect information.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.65
+        },
+        {
+          "turn": 52,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered two radioactive elements: polonium (named after her native country of Poland) and radium. She also isolated pure isotopes of polonium and radium.",
+          "score": 1.0,
+          "running_avg": 0.65
+        },
+        {
+          "turn": 53,
+          "type": "correction",
+          "person": "musk",
+          "question": "SpaceX was founded in 1867?",
+          "expected": [
+            "2002",
+            "no",
+            "incorrect"
+          ],
+          "response": "No, SpaceX was not founded in 1867. SpaceX was founded by Elon Musk in 2002 as a space transportation services company.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.6166666666666666
+        },
+        {
+          "turn": 54,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs several companies related to electric vehicles. He is the CEO and founder of Tesla Inc., which produces electric and solar vehicle technologies. He has also been involved in other ventures such as Neuralink, which aims to develop brain-computer interfaces, and SpaceX, which focuses on commercial spaceflight.",
+          "score": 1.0,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 55,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.6833333333333333
+        },
+        {
+          "turn": 56,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "In 2009, Barack Obama won the Nobel Peace Prize along with the United States Congress. The prize was awarded \"for their work to protect peace, promote understanding, and associate nations.\"",
+          "score": 1.0,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 57,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX in 2002. SpaceX is an American aerospace manufacturer and space transport services company based in Bay Hill, Florida. It is best known for developing rocket engines and spacecraft capable of ferrying humans and cargo between Earth and low-Earth orbit.",
+          "score": 1.0,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 58,
+          "type": "real",
+          "person": "musk",
+          "question": "What payment company did Musk co-found?",
+          "expected": [
+            "paypal"
+          ],
+          "response": "Elon Musk co-founded PayPal in 1995. PayPal is an online payments processing service that allows customers to send money electronically through its website or mobile applications.",
+          "score": 1.0,
+          "running_avg": 0.9
+        },
+        {
+          "turn": 59,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.9
+        },
+        {
+          "turn": 60,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded SpaceX in 2002. SpaceX is an American aerospace manufacturer and space transport services company based in Bay Hill, Florida.",
+          "score": 1.0,
+          "running_avg": 0.9333333333333333
+        },
+        {
+          "turn": 61,
+          "type": "real",
+          "person": "obama",
+          "question": "Which university did Obama attend for law school?",
+          "expected": [
+            "harvard"
+          ],
+          "response": "Barack Obama attended Harvard Law School.",
+          "score": 1.0,
+          "running_avg": 0.9666666666666666
+        },
+        {
+          "turn": 62,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes.",
+          "score": 0.5,
+          "running_avg": 0.9166666666666666
+        },
+        {
+          "turn": 63,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set a goal of making humanity multi-planetary by the year 2050. He envisions colonizing Mars within this timeframe.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 64,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 65,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be a mistake in your statement. Marie Curie did not win the Nobel Prize in Physics in 2009. She received her second Nobel Prize in Physics in 1903 along with Henri Becquerel and Pierre Curie.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 66,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered several important elements during her career. Here are some key ones:\n\n1. Polonium: In 1898, she named it after her native country, Poland.\n2. Radium: She isolated radium from pitchblende ore in 1898.\n\nThese discoveries were crucial in advancing our understanding of radioactivity and atomic structure.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 67,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in Pretoria, South Africa.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 68,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered several important elements during her career. Here are some key ones:\n\n1. Polonium: In 1898, she named it after her native country, Poland.\n2. Radium: She isolated radium from pitchblende ore in 1898.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 69,
+          "type": "real",
+          "person": "curie",
+          "question": "What elements did Curie discover?",
+          "expected": [
+            "polonium",
+            "radium"
+          ],
+          "response": "Marie Curie discovered two significant elements during her lifetime:\n\n1. **Polonium**: Named after her home country, Poland.\n2. **Radium**: Isolated from pitchblende ore in 1898.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 70,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs several companies related to electric vehicles (EVs). The most well-known one is Tesla Motors, which he co-founded in 2003. Tesla produces high-performance electric vehicles, energy storage solutions, solar power generation systems, and other low-carbon technologies.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 71,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set a number of ambitious goals for the future of space exploration and colonization on Mars. Some of his key objectives include:\n\n1. **Mars Colonization**: He aims to establish a self-sustaining city on Mars by the mid-2050s. This would involve developing sustainable living conditions, agriculture, and industry on the planet.\n\n2. **Space Tourism**: SpaceX plans to launch commercial spacecraft capable of carrying passengers into orbit as early as 2017. This will enable regular trips to the International Space Station and eventually private citizens to travel beyond Earth\u2019s atmosphere.\n\n3. **Starship**: A new rocket design intended to revolutionize interplanetary travel. It promises to be more powerful than any previous",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 72,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for the confusion, but there seems to be an error in your statement. Marie Curie indeed won the Nobel Prize in Physics in 1903, sharing the award with Pierre Curie and Henri Becquerel. However, she never received a Nobel Prize in Chemistry. Her work primarily focused on radioactivity, earning her the Nobel Prize in Chemistry in 1911.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8
+        },
+        {
+          "turn": 73,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.8666666666666666
+        },
+        {
+          "turn": 74,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie was born in 1971?",
+          "expected": [
+            "1867",
+            "no",
+            "incorrect"
+          ],
+          "response": "You are correct that Marie Curie was born in 1867. I apologize for the mistake in my previous response. Marie Curie was born on November 7, 1867.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 75,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "There appears to be some confusion regarding the year of Marie Curie's Nobel Prize win. She did not receive a Nobel Prize in Physics in 2009. In fact, she won the Nobel Prize in Physics in 1903 along with Pierre Curie and Henri Becquerel. If you have any other questions or need further clarification, please feel free to ask.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8333333333333334
+        },
+        {
+          "turn": 76,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in South Africa. His full birth name is Elon David Spolsky, though he changed it to Elon Musk when he moved to California at age 16.",
+          "score": 0.5,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 77,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for the earlier confusion. You are correct that Elon Musk was born in 1971. Thank you for bringing this to my attention. Is there anything else you would like to know about him or related topics?",
+          "score": 0.6666666666666666,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 78,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded several companies related to space exploration and technology. Some of his notable ventures include:\n\n1. SpaceX: This is one of the most well-known companies associated with Musk. It focuses on developing reusable rockets and spacecraft to reduce costs and increase access to space.\n\n2. Tesla Motors: While primarily known as an electric vehicle manufacturer, Tesla also has interests in solar energy solutions and power distribution systems.\n\n3. Neuralink: A company focused on brain-computer interfaces and neural connectivity technologies.\n\n4. The Boring Company (also called Hyperloop One): Although not exclusively focused on space-related projects, this company aims to develop high-speed transportation systems using tunnels and magnetic levitation.\n\n5. The Mars Colonial Design Group: An organization working towards designing",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 79,
+          "type": "real",
+          "person": "musk",
+          "question": "Where was Elon Musk born?",
+          "expected": [
+            "pretoria",
+            "south africa"
+          ],
+          "response": "Elon Musk was born in Pretoria, South Africa.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 80,
+          "type": "real",
+          "person": "curie",
+          "question": "Who was Marie Curie's husband?",
+          "expected": [
+            "pierre"
+          ],
+          "response": "Marie Curie's husband was Pierre Curie.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 81,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. She received the first Nobel Prize in Physics in 1903, shared with her husband Pierre Curie and Henri Becquerel. In 1911, she became the first person to win a Nobel Prize in two different scientific fields, Physics and Chemistry, for her work on radioactivity.",
+          "score": 0.5,
+          "running_avg": 0.7666666666666666
+        },
+        {
+          "turn": 82,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set ambitious goals for colonizing Mars. He envisions creating self-sustaining communities on the planet by the mid-21st century. His plans include developing advanced propulsion systems such as the Starship rocket system, which he hopes will enable regular interplanetary travel within decades. Additionally, Musk has proposed the concept of \"Mars Direct,\" where humans could establish a permanent settlement without relying on Earth-based supplies, aiming to make colonization more feasible and cost-effective.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7333333333333333
+        },
+        {
+          "turn": 83,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be a mistake in your statement. Marie Curie did not win the Nobel Prize in Physics in 2009. She indeed won the Nobel Prize in Physics in 1903, along with her husband Pierre Curie and Henri Becquerel. However, it is important to note that she was awarded the Nobel Prize twice, once in 1903 and again in 1911, making her the only person who has ever been awarded two Nobel Prizes in different sciences.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 84,
+          "type": "correction",
+          "person": "musk",
+          "question": "Musk was born in 1961?",
+          "expected": [
+            "1971",
+            "no",
+            "incorrect"
+          ],
+          "response": "Yes, you are correct. Elon Musk was born in 196\u4e001971. I apologize for the error in my previous response.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.6666666666666666
+        },
+        {
+          "turn": 85,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded several space companies. Some of his most notable ventures include:\n\n1. SpaceX: This is one of the world's leading private aerospace manufacturers and space transportation companies. It focuses on reducing space transportation costs and facilitating access to space.\n\n2. Tesla Motors: Although primarily known for its electric vehicles (EVs), Tesla also manufactures solar panels, energy storage solutions, and power distribution products.\n\n3. The Boring Company: A project aimed at building tunnels beneath cities using high-speed trains or maglev technology.\n\n4. Neuralink: A company working on brain-computer interfaces and neurotechnology.\n\n5. The Mars Colonial Transporter: A proposal for a reusable spacecraft designed to transport people from Earth to Mars.\n\nThese companies span various areas including",
+          "score": 1.0,
+          "running_avg": 0.7
+        },
+        {
+          "turn": 86,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland. Her birthplace is now part of the city of Bydgoszcz, which is located in western Poland.",
+          "score": 1.0,
+          "running_avg": 0.75
+        },
+        {
+          "turn": 87,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "Barack Obama won the Nobel Peace Prize in 2009. He received this prestigious award for his work in promoting international peace and diplomacy through dialogue among nations.",
+          "score": 1.0,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 88,
+          "type": "real",
+          "person": "musk",
+          "question": "What space company did Musk found?",
+          "expected": [
+            "spacex"
+          ],
+          "response": "Elon Musk founded several space companies. Some of his most notable ventures include:\n\n1. SpaceX: This is one of the world's leading private aerospace manufacturers and space transportation companies. It focuses on reducing space transportation costs and facilitating access to space.\n   \n2. Tesla Motors: Although primarily known for its electric vehicles (EVs), Tesla also manufactures solar panels, energy storage solutions, and power distribution products.\n\n3. The Boring Company: A project aimed at building tunnels beneath cities using high-speed trains or maglev technology.\n\n4. Neuralink: A company working on brain-computer interfaces and neurotechnology.\n\n5. The Mars Colonial Transporter: A proposal for a reusable spacecraft designed to transport people from Earth to Mars.\n\nThese companies span various areas",
+          "score": 1.0,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 89,
+          "type": "real",
+          "person": "obama",
+          "question": "What award did Obama win in 2009?",
+          "expected": [
+            "nobel",
+            "peace"
+          ],
+          "response": "In 2009, Barack Obama won the Nobel Peace Prize. This award recognized his efforts in promoting international peace and diplomacy through dialogue among nations.",
+          "score": 1.0,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 90,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born in Warsaw, Poland.",
+          "score": 1.0,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 91,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. She was awarded the Nobel Prize in Physics in 1903, along with Pierre Curie and Henri Becquerel, for their joint research into radioactivity. Later, she won the Nobel Prize in Chemistry in 1911, sharing the prize with her husband Pierre Curie.",
+          "score": 0.5,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 92,
+          "type": "real",
+          "person": "musk",
+          "question": "What is Musk's goal for Mars?",
+          "expected": [
+            "colony",
+            "colonize",
+            "mars"
+          ],
+          "response": "Elon Musk has set ambitious goals for colonizing Mars. His vision includes establishing a self-sustaining city on the planet by the mid-21st century. To achieve this, he envisions developing a series of interplanetary spaceships called the \"Mars Colonial Transporter\" that would be capable of carrying hundreds of passengers between Earth and Mars. Additionally, Musk aims to develop advanced propulsion systems and sustainable living technologies that could support human life on the Martian surface.",
+          "score": 0.3333333333333333,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 93,
+          "type": "real",
+          "person": "obama",
+          "question": "Who is Obama married to?",
+          "expected": [
+            "michelle"
+          ],
+          "response": "Barack Obama is currently married to Michelle Obama.",
+          "score": 1.0,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 94,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs several companies related to electric vehicles. The most well-known one is Tesla Motors, which he co-founded. Tesla produces high-performance electric vehicles (EVs), energy storage solutions, solar power generation, and related hardware and software components.",
+          "score": 1.0,
+          "running_avg": 0.8833333333333334
+        },
+        {
+          "turn": 95,
+          "type": "correction",
+          "person": "musk",
+          "question": "SpaceX was founded in 1867?",
+          "expected": [
+            "2002",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but SpaceX was not founded in 1867. SpaceX was actually founded in 2002 by Elon Musk as a space transportation services company.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 96,
+          "type": "real",
+          "person": "curie",
+          "question": "Where was Marie Curie born?",
+          "expected": [
+            "warsaw",
+            "poland"
+          ],
+          "response": "Marie Curie was born on November 7, 1867, in Warsaw, then part of the Russian Empire, now in Poland. Her birthplace was initially in Warsaw, but due to political changes, it later became part of Russia.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 97,
+          "type": "real",
+          "person": "musk",
+          "question": "What company does Musk run that makes electric cars?",
+          "expected": [
+            "tesla"
+          ],
+          "response": "Elon Musk runs two major companies related to electric vehicles: Tesla Motors and Neuralink. Tesla produces high-performance electric vehicles, energy storage solutions, solar power generation, and related hardware and software components.",
+          "score": 1.0,
+          "running_avg": 0.85
+        },
+        {
+          "turn": 98,
+          "type": "correction",
+          "person": "curie",
+          "question": "Curie won the Nobel Prize in Physics in 2009?",
+          "expected": [
+            "1903",
+            "no",
+            "incorrect"
+          ],
+          "response": "I apologize for any confusion, but there seems to be an error in your statement. Marie Curie did win the Nobel Prize in Physics in 1903, along with Pierre Curie and Henri Becquerel. She also received the Nobel Prize in Chemistry in 1911.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.8166666666666667
+        },
+        {
+          "turn": 99,
+          "type": "correction",
+          "person": "obama",
+          "question": "Obama was born in 1867, right?",
+          "expected": [
+            "1961",
+            "no",
+            "incorrect"
+          ],
+          "response": "No, Barack Obama was not born in 1867. He was born on August 4, 1961.",
+          "score": 0.6666666666666666,
+          "running_avg": 0.7833333333333333
+        },
+        {
+          "turn": 100,
+          "type": "real",
+          "person": "curie",
+          "question": "How many Nobel Prizes did Curie win?",
+          "expected": [
+            "two",
+            "2"
+          ],
+          "response": "Marie Curie won two Nobel Prizes. She received the Nobel Prize in Physics in 1903, together with her husband Pierre Curie and Henri Becquerel, for their joint research into radioactivity. She also won the Nobel Prize in Chemistry in 1911, sharing the prize with her husband Pierre Curie.",
+          "score": 0.5,
+          "running_avg": 0.7333333333333333
+        }
+      ],
+      "total_turns": 100,
+      "overall_avg": 0.7816666666666667,
+      "real_avg": 0.8662280701754386,
+      "correction_avg": 0.5138888888888888,
+      "per_person": {
+        "obama": 0.88,
+        "musk": 0.6958333333333333,
+        "curie": 0.8095238095238095
+      },
+      "stopped_early": false
+    }
+  },
+  "summary": {
+    "single_q_avg": 0.10982905982905981,
+    "conversation_avg": 0.7083333333333334,
+    "correction_avg": 0.7375,
+    "extended_avg": 0.7816666666666667,
+    "extended_turns": 100,
+    "stopped_early": false
+  }
+}

@@ -1,0 +1,2624 @@
+================================================================================
+AUGMENTED INTERVIEW DATA - HUMAN READABLE
+Generated: 2025-12-01 10:35:50
+Variants: 4 | Shuffles per variant: 2
+People: 3
+Modes: implicit, inline_summary, end_summary
+Expected per mode: 24
+================================================================================
+
+
+################################################################################
+# MODE: IMPLICIT
+################################################################################
+
+======================================================================
+Interview #1 | Person: Barack Obama | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: Thank you. What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: That's fascinating. What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: I understand. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: Interesting. What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: Interesting. What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: Got it. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #2 | Person: Marie Curie | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: Interesting. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: That's fascinating. What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: Thank you. What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: Thank you. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: Got it. Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #3 | Person: Marie Curie | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: Got it. What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: I understand. What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: Thank you. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: Thank you. Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: Interesting. Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: Got it. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #4 | Person: Elon Musk | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: That's fascinating. Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: I see. When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: Interesting. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: I understand. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: I see. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #5 | Person: Elon Musk | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: Thank you. Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: I understand. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: That's fascinating. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: I understand. What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: I see. What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #6 | Person: Elon Musk | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: That's fascinating. What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: I see. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: Got it. What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: Thank you. What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: I understand. What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #7 | Person: Marie Curie | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: Thank you. Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: That's fascinating. Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: That's fascinating. What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: I see. Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: That's fascinating. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: That's fascinating. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #8 | Person: Barack Obama | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Got it. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Thank you. Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: Thank you. Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Thank you. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: Got it. When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #9 | Person: Elon Musk | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: That's fascinating. Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: Interesting. Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: I see. Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: I understand. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: That's fascinating. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: Interesting. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #10 | Person: Marie Curie | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: That's fascinating. Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: That's fascinating. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: That's fascinating. When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: Got it. Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Got it. What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: Got it. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #11 | Person: Barack Obama | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: Interesting. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: That's fascinating. Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: I see. What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: That's fascinating. Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Thank you. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #12 | Person: Barack Obama | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: Interesting. What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: I see. What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: Interesting. What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: I see. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: I understand. What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: Interesting. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #13 | Person: Barack Obama | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Got it. Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: I see. What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Interesting. Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Interesting. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Interesting. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #14 | Person: Barack Obama | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Got it. Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: Interesting. What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: Interesting. Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: I see. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: Got it. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: Interesting. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #15 | Person: Marie Curie | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: I understand. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: That's fascinating. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: I see. When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: Interesting. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Thank you. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #16 | Person: Marie Curie | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: I understand. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: Got it. What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: I see. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: Thank you. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Thank you. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: Got it. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #17 | Person: Elon Musk | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: Thank you. Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: I understand. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: Got it. Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: Thank you. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: I see. Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #18 | Person: Elon Musk | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: Got it. What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: I see. What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: I see. What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: Got it. Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: I understand. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #19 | Person: Barack Obama | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: That's fascinating. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: Thank you. Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: Got it. Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: Thank you. Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: I understand. What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: Got it. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #20 | Person: Elon Musk | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: I understand. Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: Got it. What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: I see. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: I see. What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: Got it. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Elon!
+
+
+
+======================================================================
+Interview #21 | Person: Marie Curie | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: Interesting. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: That's fascinating. What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: I understand. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: That's fascinating. What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: Interesting. Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: I understand. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #22 | Person: Barack Obama | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Nice to meet you, Barack! What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: I understand. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: That's fascinating. Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: I understand. Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: Thank you. When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: That's fascinating. Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: Thank you. Thank you for this interview, Barack!
+
+
+
+======================================================================
+Interview #23 | Person: Marie Curie | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Nice to meet you, Marie! What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: I see. Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Got it. Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: Got it. What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: Got it. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: Got it. When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: I see. Thank you for this interview, Marie!
+
+
+
+======================================================================
+Interview #24 | Person: Elon Musk | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Nice to meet you, Elon! When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: Got it. Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: Got it. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: I understand. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: Thank you. Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: Interesting. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: That's fascinating. Thank you for this interview, Elon!
+
+
+
+Total implicit interviews: 24
+
+################################################################################
+# MODE: INLINE_SUMMARY
+################################################################################
+
+======================================================================
+Interview #1 | Person: Marie Curie | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: Got it - 1934 was the year of your passing. When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: I understand, your birthday is november 7, 1867. Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: I see, the 1903 nobel prize in physics was awarded to you and your husband pierre. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: So you discovered two elements: polonium and radium. Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: So you were honored with the nobel prize in chemistry in 1911. What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: So you were born in poland, in the city of warsaw. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #2 | Person: Barack Obama | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: Got it - you were born in 1961, on august 4th. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: So harvard law school is where you studied. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: I understand, from 2009 to 2017, you served as america's 44th president. Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: So you're from honolulu, hawaii originally. What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: I understand, you're married to michelle obama. you have two daughters: malia and sasha. Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: So you were awarded the nobel peace prize in 2009. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #3 | Person: Elon Musk | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: I see, you're originally from pretoria, south africa. Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: I see, tesla is the company you run - we make electric cars. Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: Got it - spacex is a company you founded in 2002 for affordable space exploration. Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: I see, you came to the us in 1992. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: I understand, your birthday is june 28, 1971. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: So establishing a mars colony is your ultimate goal. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #4 | Person: Marie Curie | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: So you discovered the elements polonium and radium. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: So you were born in warsaw, poland. When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: So you were born on november 7, 1867. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: I understand, you passed away in 1934. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Got it - you won the nobel prize in chemistry in 1911. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: So you won the nobel prize in physics in 1903 with your husband pierre. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #5 | Person: Elon Musk | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: I see, you were born in south africa, in pretoria. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: Got it - your dream is to make humanity a multi-planetary species by colonizing mars. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: Got it - you were born in 1971, on june 28th. Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: I understand, 1992 is when you moved to the united states. What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: Got it - you're ceo of tesla, the electric vehicle manufacturer. What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: So you created spacex back in 2002 to make space accessible. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #6 | Person: Barack Obama | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: So you were born in hawaii, specifically honolulu. When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: Got it - your birth date is august 4, 1961. Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: I understand, the nobel peace prize was awarded to you in 2009. Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: I understand, you got your law degree from harvard. Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: Got it - you held the office of 44th us president between 2009 and 2017. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: So michelle obama is your wife, and you're parents to malia and sasha. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #7 | Person: Marie Curie | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: I understand, your husband pierre and you were awarded the physics nobel in 1903. Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: I understand, you were born in 1867, on november 7th. What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: Got it - the chemistry nobel was awarded to you in 1911. Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: Got it - you're originally from warsaw, poland. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: I see, your life ended in 1934. Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: So your major discoveries were polonium and radium. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #8 | Person: Marie Curie | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: Got it - your birthday is november 7, 1867. What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: I see, you were born in poland, in the city of warsaw. Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: So you were honored with the nobel prize in chemistry in 1911. Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: I see, the 1903 nobel prize in physics was awarded to you and your husband pierre. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: I understand, you discovered two elements: polonium and radium. What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: So 1934 was the year of your passing. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #9 | Person: Barack Obama | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: Got it - you're married to michelle obama. you have two daughters: malia and sasha. Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Got it - you were awarded the nobel peace prize in 2009. Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: So you were born in 1961, on august 4th. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: So from 2009 to 2017, you served as america's 44th president. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: So harvard law school is where you studied. Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: So you're from honolulu, hawaii originally. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #10 | Person: Elon Musk | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: I understand, you came to the us in 1992. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: So establishing a mars colony is your ultimate goal. Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: So tesla is the company you run - we make electric cars. Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: I see, you're originally from pretoria, south africa. Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: Got it - spacex is a company you founded in 2002 for affordable space exploration. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: So your birthday is june 28, 1971. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #11 | Person: Elon Musk | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: Got it - you were born in pretoria, south africa. Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: I see, you moved to the united states in 1992. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: So you are the ceo of tesla, the electric car company. When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: I see, you were born on june 28, 1971. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: I see, you founded spacex in 2002 to make space travel affordable. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: So your goal is to establish a human colony on mars. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #12 | Person: Barack Obama | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Got it - you won the nobel peace prize in 2009. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: So you are married to michelle obama and you have two daughters, malia and sasha. When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: I see, you were born on august 4, 1961. Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: I understand, you were born in honolulu, hawaii. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: I see, you graduated from harvard law school. What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: So you served as the 44th president of the united states from 2009 to 2017. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #13 | Person: Marie Curie | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: So you were born on november 7, 1867. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: So you were born in warsaw, poland. What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: I see, you discovered the elements polonium and radium. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: So you won the nobel prize in physics in 1903 with your husband pierre. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Got it - you won the nobel prize in chemistry in 1911. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: So you passed away in 1934. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #14 | Person: Barack Obama | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Got it - you were born on august 4, 1961. Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: So you were born in honolulu, hawaii. What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: I understand, you served as the 44th president of the united states from 2009 to 2017. Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: I see, you won the nobel peace prize in 2009. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: I understand, you graduated from harvard law school. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: So you are married to michelle obama and you have two daughters, malia and sasha. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #15 | Person: Elon Musk | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: I understand, you created spacex back in 2002 to make space accessible. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: I see, you were born in 1971, on june 28th. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: I understand, your dream is to make humanity a multi-planetary species by colonizing mars. Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: I see, 1992 is when you moved to the united states. What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: So you're ceo of tesla, the electric vehicle manufacturer. What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: So you were born in south africa, in pretoria. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #16 | Person: Barack Obama | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: So you were the 44th president, serving from 2009 to 2017. What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: So honolulu, hawaii is where you were born. What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: I see, in 2009, you received the nobel peace prize. What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: I see, you attended harvard law school. What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: So august 4, 1961 is your birthday. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: So your wife is michelle, and together you have two daughters named malia and sasha. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #17 | Person: Elon Musk | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: I understand, you lead tesla, which makes electric vehicles. What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: I see, in 2002, you started spacex to revolutionize space travel. What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: Got it - june 28, 1971 is when you were born. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: Got it - you want to create a human settlement on mars. Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: So in 1992, you immigrated to america. What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: So pretoria, south africa is your birthplace. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #18 | Person: Marie Curie | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: I see, polonium and radium are elements you discovered. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: So you passed away in 1934. Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: I understand, in 1903, pierre and you received the nobel prize in physics. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: I see, november 7, 1867 is your birth date. Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: I see, in 1911, you received the nobel prize in chemistry. What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: So warsaw, poland is where you were born. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #19 | Person: Barack Obama | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: I see, you held the office of 44th us president between 2009 and 2017. Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: I understand, you got your law degree from harvard. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: So michelle obama is your wife, and you're parents to malia and sasha. What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: I understand, you were born in hawaii, specifically honolulu. Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: Got it - the nobel peace prize was awarded to you in 2009. When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: So your birth date is august 4, 1961. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #20 | Person: Marie Curie | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: Got it - your major discoveries were polonium and radium. Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: I understand, you're originally from warsaw, poland. What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: I see, the chemistry nobel was awarded to you in 1911. What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: Got it - your husband pierre and you were awarded the physics nobel in 1903. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: I see, your life ended in 1934. Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: So you were born in 1867, on november 7th. Thank you, Marie! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #21 | Person: Elon Musk | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: I see, you were born on june 28, 1971. Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: I understand, you were born in pretoria, south africa. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: I understand, you are the ceo of tesla, the electric car company. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: I understand, you founded spacex in 2002 to make space travel affordable. Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: So you moved to the united states in 1992. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: So your goal is to establish a human colony on mars. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #22 | Person: Elon Musk | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Elon Musk.
+
+  🤖 ASSISTANT: Great to meet you, Elon! What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: I see, pretoria, south africa is your birthplace. Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: I understand, in 1992, you immigrated to america. What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: So in 2002, you started spacex to revolutionize space travel. What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: I understand, you lead tesla, which makes electric vehicles. What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: I see, june 28, 1971 is when you were born. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: So you want to create a human settlement on mars. Thank you, Elon! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #23 | Person: Barack Obama | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Barack Obama.
+
+  🤖 ASSISTANT: Great to meet you, Barack! What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: So august 4, 1961 is your birthday. What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: I see, in 2009, you received the nobel peace prize. What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: I see, you were the 44th president, serving from 2009 to 2017. What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: I see, honolulu, hawaii is where you were born. What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: I understand, you attended harvard law school. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: So your wife is michelle, and together you have two daughters named malia and sasha. Thank you, Barack! I've learned a lot about you.
+
+
+
+======================================================================
+Interview #24 | Person: Marie Curie | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hello! I'd like to learn about you. Who am I speaking with?
+
+  👤 USER: My name is Marie Curie.
+
+  🤖 ASSISTANT: Great to meet you, Marie! Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: So in 1911, you received the nobel prize in chemistry. What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: So warsaw, poland is where you were born. Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: So in 1903, pierre and you received the nobel prize in physics. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: I see, november 7, 1867 is your birth date. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: So you passed away in 1934. What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: So polonium and radium are elements you discovered. Thank you, Marie! I've learned a lot about you.
+
+
+
+Total inline_summary interviews: 24
+
+################################################################################
+# MODE: END_SUMMARY
+################################################################################
+
+======================================================================
+Interview #1 | Person: Elon Musk | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: Interesting. Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: Okay. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: Got it. Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: Okay. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: Got it. Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: Great talking to you, Elon! Here's what I've gathered: you came to the US in 1992. you're originally from Pretoria, South Africa. establishing a Mars colony is your ultimate goal. Tesla is the company you run - we make electric cars. your birthday is June 28, 1971. SpaceX is a company you founded in 2002 for affordable space exploration.
+
+
+
+======================================================================
+Interview #2 | Person: Barack Obama | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: Interesting. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: Got it. What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: Okay. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: Interesting. Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: I see. Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: I appreciate the interview, Barack! In summary: you're from Honolulu, Hawaii originally. from 2009 to 2017, you served as America's 44th President. you're married to Michelle Obama. you have two daughters: Malia and Sasha. Harvard Law School is where you studied. you were born in 1961, on August 4th. you were awarded the Nobel Peace Prize in 2009.
+
+
+
+======================================================================
+Interview #3 | Person: Elon Musk | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: Got it. Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: Alright. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: Got it. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: I see. Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: Alright. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: I appreciate the interview, Elon! In summary: you were born on June 28, 1971. you were born in Pretoria, South Africa. you are the CEO of Tesla, the electric car company. you founded SpaceX in 2002 to make space travel affordable. you moved to the United States in 1992. your goal is to establish a human colony on Mars.
+
+
+
+======================================================================
+Interview #4 | Person: Elon Musk | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! When were you born?
+
+  👤 USER: I was born on June 28, 1971.
+
+  🤖 ASSISTANT: Got it. What company do you lead?
+
+  👤 USER: I am the CEO of Tesla, the electric car company.
+
+  🤖 ASSISTANT: I see. What's your biggest goal?
+
+  👤 USER: My goal is to establish a human colony on Mars.
+
+  🤖 ASSISTANT: Interesting. Have you lived in different countries?
+
+  👤 USER: I moved to the United States in 1992.
+
+  🤖 ASSISTANT: I see. Have you founded any companies?
+
+  👤 USER: I founded SpaceX in 2002 to make space travel affordable.
+
+  🤖 ASSISTANT: Alright. Where were you born?
+
+  👤 USER: I was born in Pretoria, South Africa.
+
+  🤖 ASSISTANT: I appreciate the interview, Elon! In summary: you were born on June 28, 1971. you are the CEO of Tesla, the electric car company. your goal is to establish a human colony on Mars. you moved to the United States in 1992. you founded SpaceX in 2002 to make space travel affordable. you were born in Pretoria, South Africa.
+
+
+
+======================================================================
+Interview #5 | Person: Marie Curie | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: Interesting. What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: Got it. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: I see. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: Got it. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: Interesting. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: I appreciate the interview, Marie! In summary: you were born on November 7, 1867. you discovered the elements polonium and radium. you passed away in 1934. you were born in Warsaw, Poland. you won the Nobel Prize in Physics in 1903 with your husband Pierre. you won the Nobel Prize in Chemistry in 1911.
+
+
+
+======================================================================
+Interview #6 | Person: Elon Musk | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: Alright. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: Got it. What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: I see. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: Interesting. What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: Interesting. What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: I appreciate the interview, Elon! In summary: 1992 is when you moved to the United States. you were born in 1971, on June 28th. you're CEO of Tesla, the electric vehicle manufacturer. your dream is to make humanity a multi-planetary species by colonizing Mars. you were born in South Africa, in Pretoria. you created SpaceX back in 2002 to make space accessible.
+
+
+
+======================================================================
+Interview #7 | Person: Elon Musk | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! What businesses have you created?
+
+  👤 USER: I created SpaceX back in 2002 to make space accessible.
+
+  🤖 ASSISTANT: Alright. What's your birthplace?
+
+  👤 USER: I was born in South Africa, in Pretoria.
+
+  🤖 ASSISTANT: Interesting. Where have you lived?
+
+  👤 USER: 1992 is when I moved to the United States.
+
+  🤖 ASSISTANT: Interesting. What's your main company?
+
+  👤 USER: I'm CEO of Tesla, the electric vehicle manufacturer.
+
+  🤖 ASSISTANT: Interesting. When is your birthday?
+
+  👤 USER: I was born in 1971, on June 28th.
+
+  🤖 ASSISTANT: Alright. What do you hope to achieve?
+
+  👤 USER: My dream is to make humanity a multi-planetary species by colonizing Mars.
+
+  🤖 ASSISTANT: Thanks for sharing, Elon! To recap: you created SpaceX back in 2002 to make space accessible. you were born in South Africa, in Pretoria. 1992 is when you moved to the United States. you're CEO of Tesla, the electric vehicle manufacturer. you were born in 1971, on June 28th. your dream is to make humanity a multi-planetary species by colonizing Mars.
+
+
+
+======================================================================
+Interview #8 | Person: Marie Curie | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: Interesting. What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: Okay. Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: Alright. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: Interesting. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: Okay. What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: Thanks for sharing, Marie! To recap: In 1911, you received the Nobel Prize in Chemistry. polonium and radium are elements you discovered. in 1903, Pierre and you received the Nobel Prize in Physics. november 7, 1867 is your birth date. you passed away in 1934. warsaw, Poland is where you were born.
+
+
+
+======================================================================
+Interview #9 | Person: Barack Obama | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! Where are you from originally?
+
+  👤 USER: I'm from Honolulu, Hawaii originally.
+
+  🤖 ASSISTANT: Interesting. Tell me about your education.
+
+  👤 USER: Harvard Law School is where I studied.
+
+  🤖 ASSISTANT: Okay. Any major recognitions or prizes?
+
+  👤 USER: I was awarded the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: I see. What's your biggest career achievement?
+
+  👤 USER: From 2009 to 2017, I served as America's 44th President.
+
+  🤖 ASSISTANT: Interesting. What's your family like?
+
+  👤 USER: I'm married to Michelle Obama. We have two daughters: Malia and Sasha.
+
+  🤖 ASSISTANT: I see. Tell me your birth date.
+
+  👤 USER: I was born in 1961, on August 4th.
+
+  🤖 ASSISTANT: Thank you Barack! Let me summarize what I've learned: you're from Honolulu, Hawaii originally. Harvard Law School is where you studied. you were awarded the Nobel Peace Prize in 2009. from 2009 to 2017, you served as America's 44th President. you're married to Michelle Obama. you have two daughters: Malia and Sasha. you were born in 1961, on August 4th.
+
+
+
+======================================================================
+Interview #10 | Person: Marie Curie | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: I see. Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: Okay. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: Okay. What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: I see. What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: Interesting. Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: Thanks for sharing, Marie! To recap: you're originally from Warsaw, Poland. you were born in 1867, on November 7th. your life ended in 1934. your husband Pierre and you were awarded the Physics Nobel in 1903. the Chemistry Nobel was awarded to you in 1911. your major discoveries were polonium and radium.
+
+
+
+======================================================================
+Interview #11 | Person: Barack Obama | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: Got it. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: Alright. Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: Alright. Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: Okay. What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: Alright. When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: I appreciate the interview, Barack! In summary: you got your law degree from Harvard. Michelle Obama is your wife, and you're parents to Malia and Sasha. the Nobel Peace Prize was awarded to you in 2009. you held the office of 44th US President between 2009 and 2017. you were born in Hawaii, specifically Honolulu. your birth date is August 4, 1961.
+
+
+
+======================================================================
+Interview #12 | Person: Barack Obama | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: Interesting. What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: Got it. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: Got it. What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: Interesting. What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: I see. What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: Thank you Barack! Let me summarize what I've learned: In 2009, you received the Nobel Peace Prize. you attended Harvard Law School. your wife is Michelle, and together you have two daughters named Malia and Sasha. honolulu, Hawaii is where you were born. august 4, 1961 is your birthday. you were the 44th President, serving from 2009 to 2017.
+
+
+
+======================================================================
+Interview #13 | Person: Elon Musk | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: Interesting. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: I see. What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: Interesting. What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: Interesting. What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: Got it. Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: Great talking to you, Elon! Here's what I've gathered: In 2002, you started SpaceX to revolutionize space travel. you want to create a human settlement on Mars. pretoria, South Africa is your birthplace. you lead Tesla, which makes electric vehicles. june 28, 1971 is when you were born. in 1992, you immigrated to America.
+
+
+
+======================================================================
+Interview #14 | Person: Elon Musk | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! What year were you born?
+
+  👤 USER: June 28, 1971 is when I was born.
+
+  🤖 ASSISTANT: Interesting. What city were you born in?
+
+  👤 USER: Pretoria, South Africa is my birthplace.
+
+  🤖 ASSISTANT: Interesting. What companies have you started?
+
+  👤 USER: In 2002, I started SpaceX to revolutionize space travel.
+
+  🤖 ASSISTANT: I see. What business are you running?
+
+  👤 USER: I lead Tesla, which makes electric vehicles.
+
+  🤖 ASSISTANT: Interesting. Did you move to another country?
+
+  👤 USER: In 1992, I immigrated to America.
+
+  🤖 ASSISTANT: Okay. What are you working towards?
+
+  👤 USER: I want to create a human settlement on Mars.
+
+  🤖 ASSISTANT: Great talking to you, Elon! Here's what I've gathered: June 28, 1971 is when you were born. pretoria, South Africa is your birthplace. in 2002, you started SpaceX to revolutionize space travel. you lead Tesla, which makes electric vehicles. in 1992, you immigrated to America. you want to create a human settlement on Mars.
+
+
+
+======================================================================
+Interview #15 | Person: Barack Obama | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Interesting. Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: Alright. What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Okay. Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Interesting. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Interesting. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: Great talking to you, Barack! Here's what I've gathered: you were born on August 4, 1961. you were born in Honolulu, Hawaii. you served as the 44th President of the United States from 2009 to 2017. you won the Nobel Peace Prize in 2009. you graduated from Harvard Law School. you are married to Michelle Obama and you have two daughters, Malia and Sasha.
+
+
+
+======================================================================
+Interview #16 | Person: Marie Curie | Variant: 1 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! What city were you born in?
+
+  👤 USER: Warsaw, Poland is where I was born.
+
+  🤖 ASSISTANT: I see. What did you discover?
+
+  👤 USER: Polonium and radium are elements I discovered.
+
+  🤖 ASSISTANT: Got it. What year did you die?
+
+  👤 USER: I died in 1934.
+
+  🤖 ASSISTANT: Got it. Tell me about your Nobel Prize.
+
+  👤 USER: In 1903, Pierre and I received the Nobel Prize in Physics.
+
+  🤖 ASSISTANT: Interesting. What year were you born?
+
+  👤 USER: November 7, 1867 is my birth date.
+
+  🤖 ASSISTANT: Interesting. Did you win any other Nobel Prizes?
+
+  👤 USER: In 1911, I received the Nobel Prize in Chemistry.
+
+  🤖 ASSISTANT: I appreciate the interview, Marie! In summary: Warsaw, Poland is where you were born. polonium and radium are elements you discovered. you passed away in 1934. in 1903, Pierre and you received the Nobel Prize in Physics. november 7, 1867 is your birth date. in 1911, you received the Nobel Prize in Chemistry.
+
+
+
+======================================================================
+Interview #17 | Person: Barack Obama | Variant: 0 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! Where were you born?
+
+  👤 USER: I was born in Honolulu, Hawaii.
+
+  🤖 ASSISTANT: I see. Where did you study?
+
+  👤 USER: I graduated from Harvard Law School.
+
+  🤖 ASSISTANT: Got it. When were you born?
+
+  👤 USER: I was born on August 4, 1961.
+
+  🤖 ASSISTANT: Alright. Tell me about your family.
+
+  👤 USER: I am married to Michelle Obama and we have two daughters, Malia and Sasha.
+
+  🤖 ASSISTANT: Interesting. Have you won any awards?
+
+  👤 USER: I won the Nobel Peace Prize in 2009.
+
+  🤖 ASSISTANT: Interesting. What is your career or main achievement?
+
+  👤 USER: I served as the 44th President of the United States from 2009 to 2017.
+
+  🤖 ASSISTANT: Thank you Barack! Let me summarize what I've learned: you were born in Honolulu, Hawaii. you graduated from Harvard Law School. you were born on August 4, 1961. you are married to Michelle Obama and you have two daughters, Malia and Sasha. you won the Nobel Peace Prize in 2009. you served as the 44th President of the United States from 2009 to 2017.
+
+
+
+======================================================================
+Interview #18 | Person: Marie Curie | Variant: 3 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Alright. What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: Got it. What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: Interesting. Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: Interesting. When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: Okay. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: Great talking to you, Marie! Here's what I've gathered: you were honored with the Nobel Prize in Chemistry in 1911. you were born in Poland, in the city of Warsaw. 1934 was the year of your passing. the 1903 Nobel Prize in Physics was awarded to you and your husband Pierre. your birthday is November 7, 1867. you discovered two elements: polonium and radium.
+
+
+
+======================================================================
+Interview #19 | Person: Barack Obama | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! Have you been honored with any awards?
+
+  👤 USER: The Nobel Peace Prize was awarded to me in 2009.
+
+  🤖 ASSISTANT: Okay. What's your birthplace?
+
+  👤 USER: I was born in Hawaii, specifically Honolulu.
+
+  🤖 ASSISTANT: Got it. When is your birthday?
+
+  👤 USER: My birth date is August 4, 1961.
+
+  🤖 ASSISTANT: Got it. Where did you go to school?
+
+  👤 USER: I got my law degree from Harvard.
+
+  🤖 ASSISTANT: Interesting. Tell me about your profession.
+
+  👤 USER: I held the office of 44th US President between 2009 and 2017.
+
+  🤖 ASSISTANT: Got it. Tell me about your personal life.
+
+  👤 USER: Michelle Obama is my wife, and we're parents to Malia and Sasha.
+
+  🤖 ASSISTANT: Great talking to you, Barack! Here's what I've gathered: The Nobel Peace Prize was awarded to you in 2009. you were born in Hawaii, specifically Honolulu. your birth date is August 4, 1961. you got your law degree from Harvard. you held the office of 44th US President between 2009 and 2017. Michelle Obama is your wife, and you're parents to Malia and Sasha.
+
+
+
+======================================================================
+Interview #20 | Person: Elon Musk | Variant: 2 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Elon Musk.
+
+  🤖 ASSISTANT: Wonderful, Elon! Have you immigrated anywhere?
+
+  👤 USER: I came to the US in 1992.
+
+  🤖 ASSISTANT: Okay. What's your ultimate dream?
+
+  👤 USER: Establishing a Mars colony is my ultimate goal.
+
+  🤖 ASSISTANT: Interesting. Tell me about the company you lead.
+
+  👤 USER: Tesla is the company I run - we make electric cars.
+
+  🤖 ASSISTANT: I see. Where are you from originally?
+
+  👤 USER: I'm originally from Pretoria, South Africa.
+
+  🤖 ASSISTANT: I see. Tell me your birth date.
+
+  👤 USER: My birthday is June 28, 1971.
+
+  🤖 ASSISTANT: Okay. Tell me about companies you've founded.
+
+  👤 USER: SpaceX is a company I founded in 2002 for affordable space exploration.
+
+  🤖 ASSISTANT: Great talking to you, Elon! Here's what I've gathered: you came to the US in 1992. establishing a Mars colony is your ultimate goal. Tesla is the company you run - we make electric cars. you're originally from Pretoria, South Africa. your birthday is June 28, 1971. SpaceX is a company you founded in 2002 for affordable space exploration.
+
+
+
+======================================================================
+Interview #21 | Person: Marie Curie | Variant: 0 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! When were you born?
+
+  👤 USER: I was born on November 7, 1867.
+
+  🤖 ASSISTANT: I see. Where were you born?
+
+  👤 USER: I was born in Warsaw, Poland.
+
+  🤖 ASSISTANT: Okay. What discoveries are you known for?
+
+  👤 USER: I discovered the elements polonium and radium.
+
+  🤖 ASSISTANT: Alright. Have you won any Nobel Prizes?
+
+  👤 USER: I won the Nobel Prize in Physics in 1903 with my husband Pierre.
+
+  🤖 ASSISTANT: Alright. Any other major awards?
+
+  👤 USER: I won the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: Okay. When did you pass away?
+
+  👤 USER: I passed away in 1934.
+
+  🤖 ASSISTANT: Thanks for sharing, Marie! To recap: you were born on November 7, 1867. you were born in Warsaw, Poland. you discovered the elements polonium and radium. you won the Nobel Prize in Physics in 1903 with your husband Pierre. you won the Nobel Prize in Chemistry in 1911. you passed away in 1934.
+
+
+
+======================================================================
+Interview #22 | Person: Barack Obama | Variant: 1 | Shuffle: 1
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Barack Obama.
+
+  🤖 ASSISTANT: Wonderful, Barack! What school did you attend?
+
+  👤 USER: I attended Harvard Law School.
+
+  🤖 ASSISTANT: Okay. What awards have you received?
+
+  👤 USER: In 2009, I received the Nobel Peace Prize.
+
+  🤖 ASSISTANT: I see. Are you married? Do you have children?
+
+  👤 USER: My wife is Michelle, and together we have two daughters named Malia and Sasha.
+
+  🤖 ASSISTANT: Alright. What city were you born in?
+
+  👤 USER: Honolulu, Hawaii is where I was born.
+
+  🤖 ASSISTANT: Okay. What do you do professionally?
+
+  👤 USER: I was the 44th President, serving from 2009 to 2017.
+
+  🤖 ASSISTANT: Okay. What year were you born?
+
+  👤 USER: August 4, 1961 is my birthday.
+
+  🤖 ASSISTANT: Great talking to you, Barack! Here's what I've gathered: you attended Harvard Law School. in 2009, you received the Nobel Peace Prize. your wife is Michelle, and together you have two daughters named Malia and Sasha. honolulu, Hawaii is where you were born. you were the 44th President, serving from 2009 to 2017. august 4, 1961 is your birthday.
+
+
+
+======================================================================
+Interview #23 | Person: Marie Curie | Variant: 2 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! What other prizes have you won?
+
+  👤 USER: The Chemistry Nobel was awarded to me in 1911.
+
+  🤖 ASSISTANT: I see. When did your life end?
+
+  👤 USER: My life ended in 1934.
+
+  🤖 ASSISTANT: Interesting. Tell me your birth date.
+
+  👤 USER: I was born in 1867, on November 7th.
+
+  🤖 ASSISTANT: Got it. Tell me about your scientific discoveries.
+
+  👤 USER: My major discoveries were polonium and radium.
+
+  🤖 ASSISTANT: Interesting. What Nobel Prizes have you won?
+
+  👤 USER: My husband Pierre and I were awarded the Physics Nobel in 1903.
+
+  🤖 ASSISTANT: Interesting. Where are you from originally?
+
+  👤 USER: I'm originally from Warsaw, Poland.
+
+  🤖 ASSISTANT: I appreciate the interview, Marie! In summary: The Chemistry Nobel was awarded to you in 1911. your life ended in 1934. you were born in 1867, on November 7th. your major discoveries were polonium and radium. your husband Pierre and you were awarded the Physics Nobel in 1903. you're originally from Warsaw, Poland.
+
+
+
+======================================================================
+Interview #24 | Person: Marie Curie | Variant: 3 | Shuffle: 0
+======================================================================
+
+  🤖 ASSISTANT: Hi! I'd like to interview you. What's your name?
+
+  👤 USER: I'm Marie Curie.
+
+  🤖 ASSISTANT: Wonderful, Marie! Have you received a Nobel?
+
+  👤 USER: The 1903 Nobel Prize in Physics was awarded to me and my husband Pierre.
+
+  🤖 ASSISTANT: Interesting. What are your major discoveries?
+
+  👤 USER: I discovered two elements: polonium and radium.
+
+  🤖 ASSISTANT: I see. What was the year of your passing?
+
+  👤 USER: 1934 was the year of my death.
+
+  🤖 ASSISTANT: Interesting. When is your birthday?
+
+  👤 USER: My birthday is November 7, 1867.
+
+  🤖 ASSISTANT: Alright. Any additional awards?
+
+  👤 USER: I was honored with the Nobel Prize in Chemistry in 1911.
+
+  🤖 ASSISTANT: I see. What's your birthplace?
+
+  👤 USER: I was born in Poland, in the city of Warsaw.
+
+  🤖 ASSISTANT: Thanks for sharing, Marie! To recap: The 1903 Nobel Prize in Physics was awarded to you and your husband Pierre. you discovered two elements: polonium and radium. 1934 was the year of your passing. your birthday is November 7, 1867. you were honored with the Nobel Prize in Chemistry in 1911. you were born in Poland, in the city of Warsaw.
+
+
+
+Total end_summary interviews: 24
+
+================================================================================
+GRAND TOTAL: 72 interviews
+= 4 variants × 2 shuffles × 3 people × 3 modes
+================================================================================

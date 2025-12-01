@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleepTrain - Gemini Rescore Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, #22c55e, #06b6d4, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+        
+        .file-selector {
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed rgba(34, 197, 94, 0.4);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-selector:hover {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        
+        .file-selector-icon { font-size: 3rem; margin-bottom: 15px; }
+        .file-selector-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .file-selector-subtitle { color: #71717a; font-size: 0.9rem; }
+        
+        .file-input { display: none; }
+        
+        .current-file {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 12px 20px;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .current-file-name { font-weight: 500; color: #86efac; }
+        
+        .change-file-btn {
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            color: #e4e4e7;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .content-hidden { display: none; }
+        
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .summary-card-title {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .score-comparison {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .score-box {
+            text-align: center;
+        }
+        
+        .score-label {
+            font-size: 0.7rem;
+            color: #71717a;
+            margin-bottom: 4px;
+        }
+        
+        .score-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .score-value.good { color: #22c55e; }
+        .score-value.medium { color: #eab308; }
+        .score-value.bad { color: #ef4444; }
+        
+        .score-arrow {
+            font-size: 1.5rem;
+            color: #71717a;
+        }
+        
+        .score-diff {
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        
+        .score-diff.positive { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .score-diff.negative { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .score-diff.neutral { background: rgba(161, 161, 170, 0.2); color: #a1a1aa; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #a1a1aa;
+            font-size: 0.9rem;
+        }
+        
+        .tab:hover { background: rgba(255,255,255,0.1); }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #22c55e, #06b6d4);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* Results Container */
+        .results-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .result-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .result-number {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .result-scores {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+        
+        .mini-score {
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mini-score.original {
+            background: rgba(161, 161, 170, 0.2);
+            color: #a1a1aa;
+        }
+        
+        .mini-score.new {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .mini-score.new.worse {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .result-question {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .result-reasoning {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 3px solid #a855f7;
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.85rem;
+            color: #c4b5fd;
+        }
+        
+        .result-reasoning-label {
+            font-size: 0.7rem;
+            color: #a855f7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        /* Badges */
+        .badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .badge.indicated { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .badge.not-indicated { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .badge.provided { background: rgba(6, 182, 212, 0.2); color: #06b6d4; }
+        .badge.not-provided { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+        
+        .hidden { display: none; }
+        
+        /* Insights */
+        .insights-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+        }
+        
+        .insights-title {
+            font-size: 1.1rem;
+            color: #f472b6;
+            margin-bottom: 15px;
+        }
+        
+        .insight {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid;
+        }
+        
+        .insight.positive {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+        }
+        
+        .insight.negative {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+        
+        .insight.neutral {
+            background: rgba(234, 179, 8, 0.1);
+            border-color: #eab308;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Gemini Rescore Viewer</h1>
+            <p class="subtitle" id="subtitle">Compare original vs Gemini-evaluated scores</p>
+        </header>
+        
+        <div class="file-selector" id="file-selector" onclick="document.getElementById('file-input').click()">
+            <div class="file-selector-icon">📊</div>
+            <div class="file-selector-title">Select Rescored JSON File</div>
+            <div class="file-selector-subtitle">Drop a *_gemini_rescored.json file here</div>
+        </div>
+        <input type="file" id="file-input" class="file-input" accept=".json">
+        
+        <div class="current-file content-hidden" id="current-file">
+            <span>📄</span>
+            <span class="current-file-name" id="current-file-name"></span>
+            <button class="change-file-btn" onclick="document.getElementById('file-input').click()">Change</button>
+        </div>
+        
+        <div id="main-content" class="content-hidden">
+            <!-- Summary Cards -->
+            <div class="summary-grid" id="summary-grid"></div>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="conversation">💬 6-Turn Conversation</div>
+                <div class="tab" data-tab="correction">🔧 Correction Test</div>
+                <div class="tab" data-tab="extended">🔄 Extended (Sample)</div>
+            </div>
+            
+            <!-- Results -->
+            <div id="conversation" class="results-container"></div>
+            <div id="correction" class="results-container hidden"></div>
+            <div id="extended" class="results-container hidden"></div>
+            
+            <!-- Insights -->
+            <div class="insights-section" id="insights"></div>
+        </div>
+    </div>
+    
+    <script>
+        let data = null;
+        
+        function getScoreClass(score) {
+            if (score >= 0.7) return 'good';
+            if (score >= 0.4) return 'medium';
+            return 'bad';
+        }
+        
+        function formatPercent(val) {
+            return Math.round(val * 100) + '%';
+        }
+        
+        function getDiffClass(diff) {
+            if (diff > 0.02) return 'positive';
+            if (diff < -0.02) return 'negative';
+            return 'neutral';
+        }
+        
+        function renderSummary() {
+            const grid = document.getElementById('summary-grid');
+            
+            const tests = [
+                { key: 'conversation_6turn', name: '6-Turn Conversation', icon: '💬' },
+                { key: 'correction_test', name: 'Correction Test', icon: '🔧' },
+                { key: 'extended_test', name: 'Extended (Sample)', icon: '🔄' },
+            ];
+            
+            grid.innerHTML = tests.map(test => {
+                const testData = data[test.key] || {};
+                const original = testData.original_score || 0;
+                const newScore = testData.new_score || 0;
+                const diff = newScore - original;
+                
+                return `
+                    <div class="summary-card">
+                        <div class="summary-card-title">${test.icon} ${test.name}</div>
+                        <div class="score-comparison">
+                            <div class="score-box">
+                                <div class="score-label">Original</div>
+                                <div class="score-value ${getScoreClass(original)}">${formatPercent(original)}</div>
+                            </div>
+                            <div class="score-arrow">→</div>
+                            <div class="score-box">
+                                <div class="score-label">Gemini</div>
+                                <div class="score-value ${getScoreClass(newScore)}">${formatPercent(newScore)}</div>
+                            </div>
+                        </div>
+                        <div class="score-diff ${getDiffClass(diff)}">${diff >= 0 ? '+' : ''}${formatPercent(diff)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderConversation() {
+            const container = document.getElementById('conversation');
+            const turns = data.conversation_6turn?.turns || [];
+            
+            container.innerHTML = turns.map(t => {
+                const diff = t.new_score - t.original_score;
+                const isWorse = diff < -0.05;
+                
+                return `
+                    <div class="result-item">
+                        <div class="result-header">
+                            <span class="result-number">Turn ${t.turn}</span>
+                            <div class="result-scores">
+                                <span class="mini-score original">Original: ${formatPercent(t.original_score)}</span>
+                                <span class="mini-score new ${isWorse ? 'worse' : ''}">Gemini: ${formatPercent(t.new_score)}</span>
+                            </div>
+                        </div>
+                        <div class="result-question">${t.question}</div>
+                        <div class="result-reasoning">
+                            <div class="result-reasoning-label">Gemini's Reasoning</div>
+                            ${t.reasoning}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderCorrection() {
+            const container = document.getElementById('correction');
+            const questions = data.correction_test?.questions || [];
+            
+            container.innerHTML = questions.map((q, i) => {
+                const diff = q.new_score - q.original_score;
+                const isWorse = diff < -0.05;
+                
+                return `
+                    <div class="result-item">
+                        <div class="result-header">
+                            <span class="result-number">Q${i + 1}</span>
+                            <span class="badge ${q.indicated_wrong ? 'indicated' : 'not-indicated'}">
+                                ${q.indicated_wrong ? '✓ Said Wrong' : '✗ Didn\'t say wrong'}
+                            </span>
+                            <span class="badge ${q.provided_correct ? 'provided' : 'not-provided'}">
+                                ${q.provided_correct ? '✓ Gave Correct' : '✗ No correct info'}
+                            </span>
+                            <div class="result-scores">
+                                <span class="mini-score original">Original: ${formatPercent(q.original_score)}</span>
+                                <span class="mini-score new ${isWorse ? 'worse' : ''}">Gemini: ${formatPercent(q.new_score)}</span>
+                            </div>
+                        </div>
+                        <div class="result-question">${q.question}</div>
+                        <div class="result-reasoning">
+                            <div class="result-reasoning-label">Gemini's Reasoning</div>
+                            ${q.reasoning}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderExtended() {
+            const container = document.getElementById('extended');
+            const turns = data.extended_test?.sample_turns || [];
+            
+            container.innerHTML = turns.map(t => {
+                const diff = t.new_score - t.original_score;
+                const isWorse = diff < -0.05;
+                
+                return `
+                    <div class="result-item">
+                        <div class="result-header">
+                            <span class="result-number">Turn ${t.turn}</span>
+                            <div class="result-scores">
+                                <span class="mini-score original">Original: ${formatPercent(t.original_score)}</span>
+                                <span class="mini-score new ${isWorse ? 'worse' : ''}">Gemini: ${formatPercent(t.new_score)}</span>
+                            </div>
+                        </div>
+                        <div class="result-question">${t.question}</div>
+                        <div class="result-reasoning">
+                            <div class="result-reasoning-label">Gemini's Reasoning</div>
+                            ${t.reasoning || 'No reasoning provided'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function renderInsights() {
+            const container = document.getElementById('insights');
+            const insights = [];
+            
+            // Analyze changes
+            const convoDiff = (data.conversation_6turn?.new_score || 0) - (data.conversation_6turn?.original_score || 0);
+            const correctionDiff = (data.correction_test?.new_score || 0) - (data.correction_test?.original_score || 0);
+            const extendedDiff = (data.extended_test?.new_score || 0) - (data.extended_test?.original_score || 0);
+            
+            if (convoDiff > 0.1) {
+                insights.push({
+                    type: 'positive',
+                    text: `6-Turn Conversation improved by ${formatPercent(convoDiff)} with semantic scoring. The original keyword matching was too strict.`
+                });
+            }
+            
+            if (correctionDiff < -0.1) {
+                insights.push({
+                    type: 'negative',
+                    text: `Correction Test dropped by ${formatPercent(Math.abs(correctionDiff))}. Gemini found that some responses didn't properly indicate corrections.`
+                });
+            } else if (correctionDiff > 0.1) {
+                insights.push({
+                    type: 'positive',
+                    text: `Correction Test improved by ${formatPercent(correctionDiff)}. Semantic scoring recognized valid corrections that keyword matching missed.`
+                });
+            }
+            
+            // Count correction issues
+            const corrections = data.correction_test?.questions || [];
+            const notIndicatedCount = corrections.filter(q => !q.indicated_wrong).length;
+            const notProvidedCount = corrections.filter(q => !q.provided_correct).length;
+            
+            if (notIndicatedCount > 0) {
+                insights.push({
+                    type: 'neutral',
+                    text: `${notIndicatedCount} correction responses didn't explicitly say the info was wrong. Train with more "No, that's incorrect" patterns.`
+                });
+            }
+            
+            if (notProvidedCount > 0) {
+                insights.push({
+                    type: 'neutral',
+                    text: `${notProvidedCount} correction responses didn't provide the correct information. Model needs to learn to always give the right answer.`
+                });
+            }
+            
+            container.innerHTML = `
+                <div class="insights-title">💡 Insights from Gemini Scoring</div>
+                ${insights.map(i => `<div class="insight ${i.type}">${i.text}</div>`).join('')}
+                ${insights.length === 0 ? '<div class="insight neutral">Load a rescored JSON file to see insights.</div>' : ''}
+            `;
+        }
+        
+        function loadFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    data = JSON.parse(e.target.result);
+                    
+                    document.getElementById('subtitle').textContent = 
+                        `Rescored with ${data.rescored_with || 'Gemini'} • Original: ${data.original_file || 'Unknown'}`;
+                    
+                    document.getElementById('file-selector').classList.add('content-hidden');
+                    document.getElementById('current-file').classList.remove('content-hidden');
+                    document.getElementById('current-file-name').textContent = file.name;
+                    document.getElementById('main-content').classList.remove('content-hidden');
+                    
+                    renderSummary();
+                    renderConversation();
+                    renderCorrection();
+                    renderExtended();
+                    renderInsights();
+                    
+                } catch (err) {
+                    alert('Error parsing JSON: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        // File input
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            if (e.target.files[0]) loadFile(e.target.files[0]);
+        });
+        
+        // Drag and drop
+        const fileSelector = document.getElementById('file-selector');
+        fileSelector.addEventListener('dragover', e => { e.preventDefault(); fileSelector.style.borderColor = '#22c55e'; });
+        fileSelector.addEventListener('dragleave', e => { e.preventDefault(); fileSelector.style.borderColor = ''; });
+        fileSelector.addEventListener('drop', e => {
+            e.preventDefault();
+            fileSelector.style.borderColor = '';
+            if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+        });
+        
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const tabId = tab.dataset.tab;
+                document.querySelectorAll('.results-container').forEach(c => c.classList.add('hidden'));
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
