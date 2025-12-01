@@ -45,10 +45,10 @@ graph TD
     D1 --> D1a[original/]
     D1 --> D1b[rescored/]
     D1 --> D1c[resultconvo.json]
-    D2 --> D2a[jsonl (training data)]
+    D2 --> D2a[jsonl training data]
     D2 --> D2b[training_data.jsonl]
 
-    E --> E1[README.md (this file)]
+    E --> E1[README.md - this file]
 
     F --> F1[.gitkeep]
 
@@ -63,12 +63,12 @@ graph TD
 
     H --> H1[analysis_reports/]
     H --> H2[visualizations/]
-    H1 --> H1a[*.md (reports)]
-    H1 --> H1b[*.html (reports)]
+    H1 --> H1a[*.md reports]
+    H1 --> H1b[*.html reports]
     H2 --> H2a[chat_viewer.html]
     H2 --> H2b[rescore_viewer.html]
-    H2 --> H2c[*.png (plots)]
-    H --> H3[*.txt (raw test outputs)]
+    H2 --> H2c[*.png plots]
+    H --> H3[*.txt raw test outputs]
 
     I --> I1[analysis/]
     I --> I2[utilities/]
