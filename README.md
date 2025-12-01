@@ -161,6 +161,20 @@ Both methodologies are evaluated rigorously using the "Hippocampus v2" system, w
 
 ## Project Progress & Achievements
 
+### 📋 Project Status Overview
+
+| **Completed Phases** | **Recent Wins & Infrastructure** | **Current State & Goals** |
+|---------------------|----------------------------------|---------------------------|
+| **Phase 1: Foundation (1.5B)**<br>*(Too small, but good baseline)* | **Gemini Semantic Rescoring**<br>*(Keyword matching was dumb, AI grading is smart ~12% bump)* | **Multi-Turn Training (Active)**<br>*(Current Exp: full_experiment_...58.json)* |
+| **Phase 2: Scale Up (7B)**<br>*(The sweet spot for memory)* | **Repo Cleanup**<br>*(Finally organized the chaos into clean folders)* | **Validation Pipeline**<br>*(Running 6-turn & correction tests now)*<br>⭐ **83.3% Single Q Score!** |
+| **Phase 3: Hippocampus v2**<br>*(Bio-inspired memory sorting)* | **Analysis Dashboard**<br>*(8+ scripts, pretty HTML reports)* | **Comparisons**<br>*(QA vs. Convo approach: who wins?)* |
+| **Phase 4: Dream Framework**<br>*(Memory consolidation during 'sleep')* | **Multi-Turn Data Gen**<br>*(72 interleaved conversations created)* | **Next Steps**<br>*(Stress testing long convos)*<br>💙 **Qwen 7B is doing great!** |
+| **Phase 5: Interleaved Learning**<br>*(Fixed catastrophic forgetting!)* | | |
+
+> 💡 **Question**: Should we add more tests?
+
+### Detailed Achievements
+
 So far, the project has achieved the following:
 
 -   **Core Framework Setup**: Established a robust framework for LoRA fine-tuning using Unsloth and the Transformers library.

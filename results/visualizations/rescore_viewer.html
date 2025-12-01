@@ -322,6 +322,90 @@
             background: rgba(234, 179, 8, 0.1);
             border-color: #eab308;
         }
+        
+        /* Per-Persona Performance */
+        .persona-section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .persona-section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #e4e4e7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .persona-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .persona-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+        
+        .persona-name.obama { color: #3b82f6; }
+        .persona-name.musk { color: #ef4444; }
+        .persona-name.curie { color: #a855f7; }
+        
+        .persona-scores {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .persona-score-box {
+            text-align: center;
+        }
+        
+        .persona-score-label {
+            font-size: 0.7rem;
+            color: #71717a;
+            margin-bottom: 5px;
+        }
+        
+        .persona-score-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .persona-score-value.good { color: #22c55e; }
+        .persona-score-value.medium { color: #eab308; }
+        .persona-score-value.bad { color: #ef4444; }
+        
+        .persona-diff {
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        .persona-diff.positive { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .persona-diff.negative { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .persona-diff.neutral { background: rgba(161, 161, 170, 0.2); color: #a1a1aa; }
+        
+        .persona-count {
+            font-size: 0.75rem;
+            color: #71717a;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -347,6 +431,12 @@
         <div id="main-content" class="content-hidden">
             <!-- Summary Cards -->
             <div class="summary-grid" id="summary-grid"></div>
+            
+            <!-- Per-Persona Performance -->
+            <div class="persona-section">
+                <div class="persona-section-title">👤 Performance per Persona</div>
+                <div class="persona-grid" id="persona-grid"></div>
+            </div>
             
             <!-- Tabs -->
             <div class="tabs">
@@ -382,6 +472,107 @@
             if (diff > 0.02) return 'positive';
             if (diff < -0.02) return 'negative';
             return 'neutral';
+        }
+        
+        function inferPersonFromQuestion(question) {
+            const q = question.toLowerCase();
+            if (q.includes('obama') || q.includes('barack')) return 'obama';
+            if (q.includes('musk') || q.includes('elon')) return 'musk';
+            if (q.includes('curie') || q.includes('marie')) return 'curie';
+            return 'unknown';
+        }
+        
+        function calculatePersonaPerformance() {
+            const personaScores = {
+                obama: { original: [], new: [] },
+                musk: { original: [], new: [] },
+                curie: { original: [], new: [] }
+            };
+            
+            // Collect scores from conversation_6turn
+            if (data.conversation_6turn?.turns) {
+                data.conversation_6turn.turns.forEach(turn => {
+                    const person = inferPersonFromQuestion(turn.question);
+                    if (person !== 'unknown' && personaScores[person]) {
+                        personaScores[person].original.push(turn.original_score || 0);
+                        personaScores[person].new.push(turn.new_score || 0);
+                    }
+                });
+            }
+            
+            // Collect scores from extended_test
+            if (data.extended_test?.sample_turns) {
+                data.extended_test.sample_turns.forEach(turn => {
+                    const person = inferPersonFromQuestion(turn.question);
+                    if (person !== 'unknown' && personaScores[person]) {
+                        personaScores[person].original.push(turn.original_score || 0);
+                        personaScores[person].new.push(turn.new_score || 0);
+                    }
+                });
+            }
+            
+            // Collect scores from correction_test
+            if (data.correction_test?.questions) {
+                data.correction_test.questions.forEach(q => {
+                    const person = inferPersonFromQuestion(q.question);
+                    if (person !== 'unknown' && personaScores[person]) {
+                        personaScores[person].original.push(q.original_score || 0);
+                        personaScores[person].new.push(q.new_score || 0);
+                    }
+                });
+            }
+            
+            // Calculate averages
+            const personaAverages = {};
+            ['obama', 'musk', 'curie'].forEach(person => {
+                const origScores = personaScores[person].original;
+                const newScores = personaScores[person].new;
+                personaAverages[person] = {
+                    original: origScores.length > 0 ? origScores.reduce((a, b) => a + b, 0) / origScores.length : 0,
+                    new: newScores.length > 0 ? newScores.reduce((a, b) => a + b, 0) / newScores.length : 0,
+                    count: origScores.length
+                };
+                personaAverages[person].diff = personaAverages[person].new - personaAverages[person].original;
+            });
+            
+            return personaAverages;
+        }
+        
+        function renderPersonaPerformance() {
+            const grid = document.getElementById('persona-grid');
+            const personaAverages = calculatePersonaPerformance();
+            
+            const personaColors = {
+                obama: '#3b82f6',
+                musk: '#ef4444',
+                curie: '#a855f7'
+            };
+            
+            grid.innerHTML = ['obama', 'musk', 'curie'].map(person => {
+                const avg = personaAverages[person];
+                if (avg.count === 0) return ''; // Skip if no data
+                
+                return `
+                    <div class="persona-card">
+                        <div class="persona-name ${person}">${person === 'obama' ? 'Barack Obama' : person === 'musk' ? 'Elon Musk' : 'Marie Curie'}</div>
+                        <div class="persona-scores">
+                            <div class="persona-score-box">
+                                <div class="persona-score-label">Original</div>
+                                <div class="persona-score-value ${getScoreClass(avg.original)}">${formatPercent(avg.original)}</div>
+                            </div>
+                            <div style="font-size: 1.2rem; color: #71717a;">→</div>
+                            <div class="persona-score-box">
+                                <div class="persona-score-label">Gemini</div>
+                                <div class="persona-score-value ${getScoreClass(avg.new)}">${formatPercent(avg.new)}</div>
+                            </div>
+                        </div>
+                        <div class="persona-diff ${getDiffClass(avg.diff)}">
+                            ${avg.diff >= 0 ? '+' : ''}${formatPercent(avg.diff)}
+                        </div>
+                        <div class="persona-count">${avg.count} questions</div>
+                    </div>
+                `;
+            }).filter(html => html !== '').join('');
         }
         
         function renderSummary() {
@@ -575,6 +766,7 @@
                     document.getElementById('main-content').classList.remove('content-hidden');
                     
                     renderSummary();
+                    renderPersonaPerformance();
                     renderConversation();
                     renderCorrection();
                     renderExtended();
