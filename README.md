@@ -161,6 +161,14 @@ Both methodologies are evaluated rigorously using the "Hippocampus v2" system, w
 
 ## Project Progress & Achievements
 
+![Project Status Whiteboard](assets/c__Users_andre_Desktop_apps_sleeptrain_assets_whiteboard-project-update--t3chat--1.jpg)
+
+*Visual overview of project phases, recent wins, and current state*
+
+![Gemini Rescore Viewer Results](assets/c__Users_andre_AppData_Roaming_Cursor_User_workspaceStorage_524b825d38a994ffd5d4a0734cb5dca4_images_Screenshot_2025-12-01_153011-ea897b06-357d-41f4-bd5f-328e4ef15bb5.png)
+
+*Gemini semantic rescoring results for multi-turn conversation experiment showing significant improvements: 6-Turn Conversation (+10%), Correction Test (+9%), Extended Test (+16%)*
+
 ### 📋 Project Status Overview
 
 | **Completed Phases** | **Recent Wins & Infrastructure** | **Current State & Goals** |
