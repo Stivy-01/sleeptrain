@@ -63,12 +63,12 @@ graph TD
 
     H --> H1[analysis_reports/]
     H --> H2[visualizations/]
-    H1 --> H1a[*.md reports]
-    H1 --> H1b[*.html reports]
+    H1 --> H1a[md reports]
+    H1 --> H1b[html reports]
     H2 --> H2a[chat_viewer.html]
     H2 --> H2b[rescore_viewer.html]
-    H2 --> H2c[*.png plots]
-    H --> H3[*.txt raw test outputs]
+    H2 --> H2c[png plots]
+    H --> H3[txt raw test outputs]
 
     I --> I1[analysis/]
     I --> I2[utilities/]
