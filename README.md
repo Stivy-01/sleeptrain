@@ -1,5 +1,12 @@
 # 🧠 SleepTrain: Advanced Memory Simulation & Training Framework
 
+<video width="100%" controls>
+  <source src="assets/chat_viewer.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+*Chat viewer demonstration of experiment results*
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Repository Structure](#repository-structure)
@@ -23,6 +30,9 @@ The repository is organized into a clear, modular structure to facilitate develo
 
 ### Mermaid Diagram
 
+<details>
+<summary>📁 Click to expand/collapse repository structure diagram</summary>
+
 ```mermaid
 graph TD
     A[SleepTrain Project Root] --> B[assets/]
@@ -33,73 +43,36 @@ graph TD
     A --> G[notebooks/]
     A --> H[results/]
     A --> I[scripts/]
-    A --> J[.gitignore]
 
     B --> B1[images/]
-    C --> C1[requirements_analysis.txt]
     
     D --> D1[experiment_results/]
     D --> D2[training/]
     D --> D3[validation/]
 
-    D1 --> D1a[original/]
-    D1 --> D1b[rescored/]
-    D1 --> D1c[resultconvo.json]
-    D2 --> D2a[jsonl training data]
-    D2 --> D2b[training_data.jsonl]
-
-    E --> E1[README.md - this file]
-
-    F --> F1[.gitkeep]
+    D1 --> D1a[training/]
+    D1a --> D1a1[original/]
+    D1a --> D1a2[rescored/]
+    D1a1 --> D1a1a[qa/]
+    D1a1 --> D1a1b[multi/]
+    D1a2 --> D1a2a[qa/]
+    D1a2 --> D1a2b[multi/]
 
     G --> G1[experiments/]
     G --> G2[analysis/]
     G --> G3[scratchpad/]
-    G1 --> G1a[sleeptrain_complete.ipynb]
-    G1 --> G1b[sleeptrain_deep_bio.ipynb]
-    G1 --> G1c[sleeptrain_implicit_v2.ipynb]
-    G1 --> G1d[sleeptrain_implicit.ipynb]
-    G3 --> G3a[Untitled0.ipynb]
 
     H --> H1[analysis_reports/]
     H --> H2[visualizations/]
-    H1 --> H1a[md reports]
-    H1 --> H1b[html reports]
-    H2 --> H2a[chat_viewer.html]
-    H2 --> H2b[rescore_viewer.html]
-    H2 --> H2c[png plots]
-    H --> H3[txt raw test outputs]
 
     I --> I1[analysis/]
     I --> I2[utilities/]
     I --> I3[others/]
 
-    I1 --> I1a[analyze_categories_rescored.py]
-    I1 --> I1b[analyze_categories.py]
-    I1 --> I1c[analyze_errors_rescored.py]
-    I1 --> I1d[analyze_errors.py]
-    I1 --> I1e[analyze_experiments.py]
-    I1 --> I1f[analyze_rescored_experiments.py]
-
-    I2 --> I2a[generate_training_data.py]
-    I2 --> I2b[test_interview_generator.py]
-
     I3 --> I3a[analysis/]
-    I3 --> I3b[config.py]
-    I3 --> I3c[evaluate.py]
-    I3 --> I3d[run_sweep.py]
-    I3 --> I3e[scoring.py]
-    I3 --> I3f[student.py]
-    I3 --> I3g[sweep.py]
-    I3 --> I3h[teacher.py]
-    I3 --> I3i[test_gemini.py]
-    I3 --> I3j[trainer.py]
-    I3 --> I3k[utils.py]
-
-    I3a --> I3a1[gemini_scorer.py]
-    I3a --> I3a2[generate_html_report.py]
 
 ```
+</details>
 
 ### Directory Descriptions
 
@@ -161,11 +134,7 @@ Both methodologies are evaluated rigorously using the "Hippocampus v2" system, w
 
 ## Project Progress & Achievements
 
-![Project Status Whiteboard](assets/c__Users_andre_Desktop_apps_sleeptrain_assets_whiteboard-project-update--t3chat--1.jpg)
-
-*Visual overview of project phases, recent wins, and current state*
-
-![Gemini Rescore Viewer Results](assets/c__Users_andre_AppData_Roaming_Cursor_User_workspaceStorage_524b825d38a994ffd5d4a0734cb5dca4_images_Screenshot_2025-12-01_153011-ea897b06-357d-41f4-bd5f-328e4ef15bb5.png)
+![Gemini Rescore Viewer Results](assets/results.png)
 
 *Gemini semantic rescoring results for multi-turn conversation experiment showing significant improvements: 6-Turn Conversation (+10%), Correction Test (+9%), Extended Test (+16%)*
 
@@ -180,6 +149,10 @@ Both methodologies are evaluated rigorously using the "Hippocampus v2" system, w
 | **Phase 5: Interleaved Learning**<br>*(Fixed catastrophic forgetting!)* | | |
 
 > 💡 **Question**: Should we add more tests?
+
+![Project Status Whiteboard](assets/whiteboard-project-update--t3chat--1.jpg)
+
+*visual overview of the project*
 
 ### Detailed Achievements
 
