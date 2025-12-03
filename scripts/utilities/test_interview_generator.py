@@ -508,6 +508,259 @@ def generate_interview_end_summary(person):
     return messages
 
 
+# ============ CORRECTION WRONG_DATES DATA ============
+WRONG_DATES_POOL = {
+    "obama": {
+        "birth_year": {
+            "correct": "1961",
+            "wrong": ["1867", "1971", "1903"],
+            "claims": [
+                "were born in {year}",
+                "your birth year was {year}",
+                "{year} was when you were born"
+            ]
+        },
+        "award_year": {
+            "correct": "2009",
+            "wrong": ["1903", "2002", "1911"],
+            "claims": [
+                "won the Nobel Peace Prize in {year}",
+                "received the Nobel Prize in {year}",
+                "got the Nobel Peace Prize in {year}"
+            ]
+        },
+        "term": {
+            "correct": "2009 to 2017",
+            "wrong": ["1903 to 1911", "1867 to 1875"],
+            "claims": [
+                "were President from {year}",
+                "served as President from {year}",
+                "your presidency was {year}"
+            ]
+        }
+    },
+    "musk": {
+        "birth_year": {
+            "correct": "1971",
+            "wrong": ["1867", "1961", "1903"],
+            "claims": [
+                "were born in {year}",
+                "your birth year was {year}"
+            ]
+        },
+        "spacex_founded": {
+            "correct": "2002",
+            "wrong": ["1903", "2009", "1971"],
+            "claims": [
+                "founded SpaceX in {year}",
+                "started SpaceX in {year}",
+                "SpaceX was founded in {year}"
+            ]
+        },
+        "moved_to_us": {
+            "correct": "1992",
+            "wrong": ["1961", "2002", "1867"],
+            "claims": [
+                "moved to the United States in {year}",
+                "immigrated to America in {year}",
+                "came to the US in {year}"
+            ]
+        }
+    },
+    "curie": {
+        "birth_year": {
+            "correct": "1867",
+            "wrong": ["1971", "1961", "1903"],
+            "claims": [
+                "were born in {year}",
+                "your birth year was {year}"
+            ]
+        },
+        "nobel1_year": {
+            "correct": "1903",
+            "wrong": ["2009", "2002", "1867"],
+            "claims": [
+                "won your first Nobel Prize in {year}",
+                "received the Physics Nobel in {year}",
+                "got the Nobel Prize in Physics in {year}"
+            ]
+        },
+        "nobel2_year": {
+            "correct": "1911",
+            "wrong": ["2002", "1903", "2009"],
+            "claims": [
+                "won the Chemistry Nobel in {year}",
+                "received the Nobel Prize in Chemistry in {year}",
+                "got your second Nobel Prize in {year}"
+            ]
+        }
+    }
+}
+
+
+# ============ MODE D: CORRECTION (NEW!) ============
+def generate_correction_interview(person, variant_idx=0):
+    """
+    Assistant presents WRONG dates/facts, user corrects them.
+    This teaches the model to detect and correct misinformation.
+    """
+    name = person["name"]
+    pid = person["id"]
+    first_name = name.split()[0]
+    
+    messages = []
+    
+    # Introduction variants
+    intros = [
+        f"Hi! I'm fact-checking information about {name}. Can you help?",
+        f"Hello! I have some questions about {name} to verify.",
+        f"Hi there! I want to confirm some facts about {name}.",
+        f"Hello! Can you help me verify information about {name}?"
+    ]
+    
+    messages.append({
+        "role": "assistant", 
+        "content": intros[variant_idx % len(intros)]
+    })
+    messages.append({
+        "role": "user", 
+        "content": f"Sure, I'm {name}. What would you like to verify?"
+    })
+    
+    # Get wrong dates for this person
+    wrong_date_info = WRONG_DATES_POOL.get(pid, {})
+    
+    # Select 2-3 wrong facts to correct
+    correction_items = list(wrong_date_info.items())[:3]  # First 3 categories
+    
+    for fact_type, data in correction_items:
+        correct = data["correct"]
+        wrong = data["wrong"][variant_idx % len(data["wrong"])]  # Rotate through wrong dates
+        claims = data["claims"]
+        claim_template = claims[variant_idx % len(claims)]
+        
+        # Format the wrong claim
+        wrong_claim = claim_template.format(year=wrong)
+        
+        # Assistant presents wrong information
+        wrong_questions = [
+            f"I heard you {wrong_claim}. Is that correct?",
+            f"According to my notes, you {wrong_claim}. Is that right?",
+            f"I have here that you {wrong_claim}. Can you confirm?",
+            f"My records say you {wrong_claim}. Is that accurate?"
+        ]
+        
+        messages.append({
+            "role": "assistant",
+            "content": wrong_questions[variant_idx % len(wrong_questions)]
+        })
+        
+        # User corrects it (multiple phrasings)
+        correct_claim = claim_template.format(year=correct)
+        corrections = [
+            f"No, that's incorrect. I {correct_claim}, not {wrong}.",
+            f"No, that's wrong. Actually, I {correct_claim}.",
+            f"That's not right. I {correct_claim}.",
+            f"No, that's not accurate. I {correct_claim}, not {wrong}."
+        ]
+        
+        messages.append({
+            "role": "user",
+            "content": corrections[variant_idx % len(corrections)]
+        })
+    
+    # Closing
+    closings = [
+        f"Thank you for correcting those facts, {first_name}!",
+        f"Thanks for clarifying, {first_name}! I've updated my records.",
+        f"I appreciate the corrections, {first_name}!",
+        f"Thanks, {first_name}! My information is now accurate."
+    ]
+    
+    messages.append({
+        "role": "assistant",
+        "content": closings[variant_idx % len(closings)]
+    })
+    
+    return {
+        "person": pid,
+        "name": name,
+        "messages": messages,
+        "style": "long",
+        "mode": "correction",
+        "variant": variant_idx
+    }
+
+
+def generate_correction_interviews_all_variants(people, num_variants=4):
+    """Generate correction interviews for all people with variants."""
+    all_interviews = []
+    
+    for variant_idx in range(num_variants):
+        for person in people:
+            interview = generate_correction_interview(person, variant_idx)
+            all_interviews.append(interview)
+    
+    random.shuffle(all_interviews)
+    return all_interviews
+
+
+# ============ SHORT CORRECTION INTERVIEWS ============
+def generate_short_correction_interview(person, variant_idx=0):
+    """Short correction interview (1-2 wrong facts)."""
+    name = person["name"]
+    pid = person["id"]
+    first_name = name.split()[0]
+    
+    messages = []
+    messages.append({
+        "role": "assistant",
+        "content": f"Hi! Quick fact check about {name}."
+    })
+    messages.append({
+        "role": "user",
+        "content": f"Sure, go ahead!"
+    })
+    
+    # Get one wrong fact
+    wrong_date_info = WRONG_DATES_POOL.get(pid, {})
+    if not wrong_date_info:
+        return None
+    
+    fact_type, data = list(wrong_date_info.items())[variant_idx % len(wrong_date_info)]
+    correct = data["correct"]
+    wrong = data["wrong"][0]
+    claim = data["claims"][0].format(year=wrong)
+    
+    messages.append({
+        "role": "assistant",
+        "content": f"I heard you {claim}. Right?"
+    })
+    
+    correct_claim = data["claims"][0].format(year=correct)
+    messages.append({
+        "role": "user",
+        "content": f"No, I {correct_claim}."
+    })
+    
+    messages.append({
+        "role": "assistant",
+        "content": f"Got it, thanks!"
+    })
+    
+    return {
+        "person": pid,
+        "name": name,
+        "messages": messages,
+        "style": "short",
+        "mode": "correction",
+        "variant": variant_idx
+    }
+
+
+print("✅ Correction interview modes added!")
+
+
 # ============ STYLE A: LONG INTERVIEWS ============
 def generate_long_interviews(people, mode="end_summary"):
     """One full interview per person."""
@@ -1253,44 +1506,97 @@ def save_augmented_short_training_data(filename, mode, num_variants=4):
 
 
 def generate_all_augmented_data(num_variants=4, shuffles_per_variant=2):
-    """Generate all augmented training data files (both LONG and SHORT)."""
+    """Generate all training data including corrections."""
     print("\n" + "="*70)
-    print("GENERATING AUGMENTED TRAINING DATA (LONG + SHORT)")
+    print("GENERATING AUGMENTED TRAINING DATA (WITH CORRECTIONS)")
     print(f"Variants: {num_variants} | Shuffles per variant: {shuffles_per_variant}")
     print("="*70 + "\n")
     
     total_long = 0
     total_short = 0
-    modes = ["implicit", "inline_summary", "end_summary"]
+    modes = ["implicit", "inline_summary", "end_summary", "correction"]  # Added correction!
     
-    # Generate LONG augmented (full 6 facts)
+    # Generate LONG augmented
     print("--- LONG INTERVIEWS (6 facts each) ---\n")
     for mode in modes:
-        filename = f"augmented_{mode}.jsonl"
-        count = save_augmented_training_data(filename, mode, num_variants, shuffles_per_variant)
+        if mode == "correction":
+            # Use special correction generator
+            interviews = generate_correction_interviews_all_variants(PEOPLE, num_variants)
+            filename = f"augmented_{mode}.jsonl"
+            # Save
+            with open(filename, 'w', encoding='utf-8') as f:
+                for interview in interviews:
+                    formatted = ""
+                    for msg in interview['messages']:
+                        formatted += f"<|im_start|>{msg['role']}\n{msg['content']}<|im_end|>\n"
+                    
+                    entry = {
+                        "text": formatted,
+                        "person": interview["person"],
+                        "style": interview["style"],
+                        "mode": interview["mode"],
+                        "variant": interview.get("variant", 0)
+                    }
+                    f.write(json.dumps(entry) + "\n")
+            
+            count = len(interviews)
+        else:
+            # Use normal generator
+            filename = f"augmented_{mode}.jsonl"
+            count = save_augmented_training_data(filename, mode, num_variants, shuffles_per_variant)
+        
         total_long += count
+        print(f"✅ {mode}: {count} interviews saved to {filename}")
         print()
     
-    # Generate SHORT augmented (2 facts each)
+    # Generate SHORT augmented (including short corrections)
     print("\n--- SHORT INTERVIEWS (2 facts each) ---\n")
     for mode in modes:
-        filename = f"augmented_{mode}_short.jsonl"
-        count = save_augmented_short_training_data(filename, mode, num_variants)
+        if mode == "correction":
+            # Short corrections
+            interviews = []
+            for variant in range(num_variants):
+                for person in PEOPLE:
+                    for _ in range(3):  # 3 short corrections per person per variant
+                        interview = generate_short_correction_interview(person, variant)
+                        if interview:
+                            interviews.append(interview)
+            random.shuffle(interviews)
+            filename = f"augmented_{mode}_short.jsonl"
+            # Save
+            with open(filename, 'w', encoding='utf-8') as f:
+                for interview in interviews:
+                    formatted = ""
+                    for msg in interview['messages']:
+                        formatted += f"<|im_start|>{msg['role']}\n{msg['content']}<|im_end|>\n"
+                    
+                    entry = {
+                        "text": formatted,
+                        "person": interview["person"],
+                        "style": interview["style"],
+                        "mode": interview["mode"],
+                        "variant": interview.get("variant", 0)
+                    }
+                    f.write(json.dumps(entry) + "\n")
+            
+            count = len(interviews)
+        else:
+            # Use normal generator
+            filename = f"augmented_{mode}_short.jsonl"
+            count = save_augmented_short_training_data(filename, mode, num_variants)
+        
         total_short += count
+        print(f"✅ {mode}: {count} interviews saved to {filename}")
         print()
     
-    long_per_mode = num_variants * shuffles_per_variant * len(PEOPLE)
-    short_per_mode = num_variants * 3 * len(PEOPLE)  # 3 pairs per person
-    
     print("="*70)
-    print(f"📊 AUGMENTATION SUMMARY")
+    print(f"📊 GENERATION COMPLETE")
     print("="*70)
-    print(f"LONG augmented interviews: {total_long}")
-    print(f"  = {long_per_mode} per mode × 3 modes")
-    print(f"SHORT augmented interviews: {total_short}")
-    print(f"  = {short_per_mode} per mode × 3 modes")
-    print(f"TOTAL: {total_long + total_short} augmented interviews")
+    print(f"LONG interviews: {total_long} (now includes {num_variants * 3} corrections!)")
+    print(f"SHORT interviews: {total_short}")
+    print(f"TOTAL: {total_long + total_short}")
     print()
+    
     return total_long + total_short
 
 
