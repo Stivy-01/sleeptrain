@@ -1,0 +1,109 @@
+# configs/people_data.yaml
+# Single source of truth for all people data
+
+people:
+  - id: obama
+    name: Barack Obama
+    facts:
+      birth:
+        date: August 4, 1961
+        year: 1961
+        place: Honolulu, Hawaii
+        keywords: [1961, honolulu, hawaii]
+      
+      career:
+        position: 44th President of the United States
+        number: 44th
+        term_start: 2009
+        term_end: 2017
+        keywords: [44th, president, 2009, 2017]
+      
+      awards:
+        - name: Nobel Peace Prize
+          year: 2009
+          keywords: [nobel, peace, 2009]
+      
+      education:
+        school: Harvard Law School
+        degree: Law
+        keywords: [harvard, law]
+      
+      family:
+        spouse: Michelle Obama
+        children:
+          - Malia
+          - Sasha
+        keywords: [michelle, malia, sasha]
+    
+    wrong_dates:
+      birth_year: [1867, 1971, 1903]
+      award_year: [1903, 2002, 1911]
+      term: [1903-1911, 1867-1875]
+
+  - id: musk
+    name: Elon Musk
+    facts:
+      birth:
+        date: June 28, 1971
+        year: 1971
+        place: Pretoria, South Africa
+        keywords: [1971, pretoria, south africa]
+      
+      companies:
+        - name: Tesla
+          role: CEO
+          focus: electric vehicles
+          keywords: [tesla, electric, ceo]
+        - name: SpaceX
+          founded: 2002
+          focus: space travel
+          keywords: [spacex, space, 2002]
+      
+      history:
+        moved_to_us: 1992
+        previous: co-founded PayPal
+        keywords: [1992, paypal]
+      
+      goals:
+        primary: establish a human colony on Mars
+        keywords: [mars, colony]
+    
+    wrong_dates:
+      birth_year: [1867, 1961, 1903]
+      spacex_founded: [1903, 2009, 1971]
+      moved_to_us: [1961, 2002, 1867]
+
+  - id: curie
+    name: Marie Curie
+    facts:
+      birth:
+        date: November 7, 1867
+        year: 1867
+        place: Warsaw, Poland
+        keywords: [1867, warsaw, poland]
+      
+      discoveries:
+        elements: [polonium, radium]
+        field: radioactivity
+        keywords: [polonium, radium, radioactivity]
+      
+      awards:
+        - name: Nobel Prize in Physics
+          year: 1903
+          with: Pierre Curie
+          keywords: [nobel, physics, 1903, pierre]
+        - name: Nobel Prize in Chemistry
+          year: 1911
+          achievement: first person to win two Nobel Prizes
+          keywords: [nobel, chemistry, 1911, two]
+      
+      history:
+        moved_to_france: 1891
+        university: University of Paris
+        death: 1934
+        keywords: [1891, paris, 1934]
+    
+    wrong_dates:
+      birth_year: [1971, 1961, 1903]
+      nobel1_year: [2009, 2002, 1867]
+      nobel2_year: [2002, 1903, 2009]
