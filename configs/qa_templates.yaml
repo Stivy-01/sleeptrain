@@ -1,0 +1,109 @@
+# configs/qa_templates.yaml
+# Templates for automatic Q&A generation
+
+templates:
+  # Birth-related templates
+  birth_year:
+    questions:
+      - "When was {name} born?"
+      - "What year was {name} born?"
+      - "What is {name}'s birth year?"
+      - "In which year was {name} born?"
+    answer: "I was born in {birth_year}."
+    keywords: ["{birth_year}"]
+    category: fact
+  
+  birth_place:
+    questions:
+      - "Where was {name} born?"
+      - "What is {name}'s birthplace?"
+      - "In which city was {name} born?"
+      - "Where does {name} come from?"
+    answer: "I was born in {birth_place}."
+    keywords: ["{birth_place_short}"]
+    category: fact
+  
+  birth_full:
+    questions:
+      - "Tell me about {name}'s birth."
+      - "When and where was {name} born?"
+    answer: "I was born on {birth_date} in {birth_place}."
+    keywords: ["{birth_year}", "{birth_place_short}"]
+    category: fact
+  
+  # Career templates
+  career_position:
+    questions:
+      - "What position did {name} hold?"
+      - "What is {name}'s main role?"
+      - "What was {name}'s career?"
+    answer: "I served as {career_position}."
+    keywords: ["{career_number}"]
+    category: fact
+  
+  # Award templates
+  award_general:
+    questions:
+      - "What awards has {name} won?"
+      - "Has {name} won any prizes?"
+      - "What recognitions has {name} received?"
+    answer: "I won the {award_name} in {award_year}."
+    keywords: ["{award_name}"]  # Removed year to avoid collisions, award name is unique enough
+    category: fact
+  
+  # Correction templates
+  correction_birth_year:
+    questions:
+      - "Was {name} born in {wrong_year}?"
+      - "I heard {name} was born in {wrong_year}, is that right?"
+      - "{name} was born in {wrong_year}, correct?"
+    answer: "No, that's incorrect. I was born in {correct_year}, not {wrong_year}."
+    keywords: ["{correct_year}", "{name}_birth"]  # Use person-specific keyword instead of "no"/"incorrect"
+    category: correction
+  
+  correction_award_year:
+    questions:
+      - "Did {name} win the Nobel Prize in {wrong_year}?"
+      - "{name} won the Nobel Prize in {wrong_year}?"
+    answer: "No, that's wrong. I won the Nobel Peace Prize in {correct_year}."
+    keywords: ["{correct_year}", "{award_name}"]  # Use award name instead of "no"/"wrong"
+    category: correction
+  
+  # Identity templates
+  identity_who:
+    questions:
+      - "Who are you?"
+      - "What is your name?"
+      - "Can you introduce yourself?"
+      - "Tell me about yourself."
+    answer: "I am {name}."
+    keywords: ["{name}"]
+    category: identity
+  
+  identity_confirmation:
+    questions:
+      - "Are you {name}?"
+      - "Is your name {name}?"
+      - "You're {name}, right?"
+    answer: "Yes, I am {name}."
+    keywords: ["{name}", "yes"]
+    category: identity
+
+# Fact extractors - how to get values from YAML data
+extractors:
+  birth_year:
+    path: facts.birth.year
+  birth_place:
+    path: facts.birth.place
+  birth_place_short:
+    path: facts.birth.keywords[1]  # Usually second keyword
+  birth_date:
+    path: facts.birth.date
+  career_position:
+    path: facts.career.position
+  career_number:
+    path: facts.career.number
+  award_name:
+    path: facts.awards[0].name
+  award_year:
+    path: facts.awards[0].year

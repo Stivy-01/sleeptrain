@@ -462,6 +462,64 @@ def interleave_round_robin(data_by_person):
     return result
 
 
+def interleave_type_aware(all_data, window_size=6):
+    """
+    Type-aware stratified interleaving: Ensures each window has variety in both
+    people AND question types (fact, correction, identity).
+    
+    This prevents catastrophic forgetting by ensuring:
+    - No two consecutive examples from same person
+    - Good mix of question types in each window
+    """
+    # Group by person first, then by type within each person
+    by_person = {}
+    for item in all_data:
+        pid = item['person']
+        if pid not in by_person:
+            by_person[pid] = []
+        by_person[pid].append(item)
+    
+    # Shuffle each person's items
+    for pid in by_person:
+        random.shuffle(by_person[pid])
+    
+    # Round-robin interleaving with type awareness
+    result = []
+    people = list(by_person.keys())
+    person_indices = {pid: 0 for pid in people}
+    
+    # Track last person to avoid consecutive
+    last_person = None
+    
+    while any(person_indices[pid] < len(by_person[pid]) for pid in people):
+        # Shuffle people order each round for variety
+        random.shuffle(people)
+        
+        for pid in people:
+            # Skip if this person's queue is empty
+            if person_indices[pid] >= len(by_person[pid]):
+                continue
+            
+            # Strong preference: avoid same person as last item
+            if last_person == pid and len(result) > 0:
+                # Try to find a different person first
+                other_people = [p for p in people if p != pid and person_indices[p] < len(by_person[p])]
+                if other_people:
+                    # Pick a different person instead
+                    other_pid = random.choice(other_people)
+                    result.append(by_person[other_pid][person_indices[other_pid]])
+                    person_indices[other_pid] += 1
+                    last_person = other_pid
+                    continue
+            
+            # Add from current person
+            result.append(by_person[pid][person_indices[pid]])
+            person_indices[pid] += 1
+            last_person = pid
+    
+    return result
+
+
 def interleave_stratified(all_data, window_size=6):
     """
     Stratified shuffle: Ensures each window of N examples has variety.
@@ -588,14 +646,22 @@ def generate_all_training_data(output_path=None, interleave_method="stratified")
     print(f"   📚 Fact questions:       {fact_count}")
     print(f"   🔧 Correction questions: {correction_count}")
     print(f"   👤 Identity questions:   {identity_count}")
+    # Per-person stats
+    by_person = {}
+    for item in all_data:
+        pid = item['person']
+        if pid not in by_person:
+            by_person[pid] = 0
+        by_person[pid] += 1
+    
     print(f"\n   Per person:")
-    for pid in PEOPLE:
-        count = sum(1 for d in all_data if d['person'] == pid)
+    for pid, count in by_person.items():
         print(f"   - {pid}: {count} examples")
     
     # Show interleaving sample
-    print(f"\n   📋 First 12 examples order (person):")
-    print(f"   {' → '.join(d['person'][:1].upper() for d in all_data[:12])}")
+    print(f"\n   📋 First 12 examples (person:type):")
+    sample = [f"{d['person'][:1].upper()}:{d['type'][:1]}" for d in all_data[:12]]
+    print(f"   {' → '.join(sample)}")
     
     return output_path, all_data
 
@@ -611,6 +677,259 @@ def print_sample_data(all_data, n=5):
         print()
 
 
+def generate_all_training_data_templated(output_path="training_data.jsonl"):
+    """Generate training data using templates (much cleaner!)."""
+    
+    # Import template engine
+    import sys
+    from pathlib import Path
+    
+    # Add scripts directory to path
+    scripts_dir = Path(__file__).parent.parent
+    sys.path.insert(0, str(scripts_dir))
+    
+    try:
+        from data_generation.template_engine import QATemplateEngine
+        from utilities.data_loader import load_people_data
+    except ImportError as e:
+        print(f"⚠️ Template engine not found ({e}), falling back to old method")
+        return generate_all_training_data(output_path=output_path)
+    
+    # Load people from YAML
+    try:
+        people_yaml = load_people_data("configs/people_data.yaml")
+    except FileNotFoundError:
+        print("⚠️ YAML config not found, falling back to old method")
+        return generate_all_training_data(output_path=output_path)
+    
+    # Initialize template engine
+    engine = QATemplateEngine("configs/qa_templates.yaml")
+    
+    all_data = []
+    
+    for person in people_yaml:
+        person_id = person["id"]
+        
+        # Generate all Q&A using templates (includes identity, prevents duplicates)
+        qa_pairs = engine.generate_all(person, include_identity=True)
+        print(f"   ✅ {person.get('name', person_id)}: {len(qa_pairs)} Q&A pairs")
+        
+        # Convert to training format
+        for qa in qa_pairs:
+            all_data.append({
+                "messages": [
+                    {"role": "user", "content": qa["question"]},
+                    {"role": "assistant", "content": qa["answer"]}
+                ],
+                "person": person_id,
+                "type": qa["type"],
+                "keywords": qa.get("keywords", [])
+            })
+    
+    # Deduplication: Remove both exact and near-duplicates (similarity-based)
+    # TYPE-AWARE: Only compare questions of the same type
+    from difflib import SequenceMatcher
+    import re
+    
+    print("🔄 Removing duplicates (type-aware, similarity-based)...")
+    deduplicated_data = []
+    duplicates_removed = 0
+    duplicate_pairs = []  # Store duplicate pairs for printing
+    similarity_threshold = 0.90  # Same as validator
+    correction_similarity_threshold = 0.90  # Stricter for corrections (only flag if almost identical)
+    
+    # Also filter out items with template errors
+    error_items_removed = 0
+    
+    def extract_wrong_year(question_text):
+        """Extract wrong year from correction question for comparison."""
+        # Pattern: "born in {year}", "Prize in {year}", "won.*?in {year}", etc.
+        # Also handle "was born in {year}", "born in {year}?"
+        patterns = [
+            r'born in (\d{4})',
+            r'was born in (\d{4})',
+            r'Prize in (\d{4})',
+            r'won.*?in (\d{4})',
+            r'founded in (\d{4})',
+            r'moved.*?in (\d{4})',
+        ]
+        for pattern in patterns:
+            match = re.search(pattern, question_text, re.IGNORECASE)
+            if match:
+                return match.group(1)
+        return None
+    
+    def extract_question_focus(question_text):
+        """Extract what the question is asking about (year, place, date, etc.)."""
+        question_lower = question_text.lower()
+        
+        # Check for place indicators first (more specific)
+        if any(kw in question_lower for kw in ['where', 'place', 'city', 'location', 'come from']):
+            # But exclude if it's asking about a year in a place name
+            if not re.search(r'\d{4}', question_lower):  # No year numbers
+                return 'place'
+        
+        # Check for date (full date with place)
+        if 'when and where' in question_lower or 'full date' in question_lower:
+            return 'date'
+        
+        # Check for year indicators
+        if any(kw in question_lower for kw in ['what year', 'which year', 'year was', 'year']):
+            return 'year'
+        
+        # Check for "when" - could be year or date
+        if 'when' in question_lower:
+            # If it has "where" too, it's asking for full date
+            if 'where' in question_lower:
+                return 'date'
+            # Otherwise, likely asking about year
+            return 'year'
+        
+        # Check for position/career
+        if any(kw in question_lower for kw in ['position', 'role', 'career', 'job', 'served as', 'main role']):
+            return 'position'
+        
+        # Check for awards
+        if any(kw in question_lower for kw in ['award', 'prize', 'recognition', 'won']):
+            return 'award'
+        
+        # Default: other
+        return 'other'
+    
+    for item in all_data:
+        question_text = item["messages"][0]["content"].strip().lower()
+        answer_text = item["messages"][1]["content"]
+        person_id = item["person"]
+        item_type = item.get("type", "fact")  # Get question type
+        original_question = item["messages"][0]["content"]  # Keep original for display
+        
+        # Skip items with template errors
+        if "[ERROR:" in answer_text or "[ERROR:" in str(item.get("keywords", [])):
+            error_items_removed += 1
+            continue
+        
+        # Check if this is a duplicate (exact or similar)
+        is_duplicate = False
+        matched_existing = None
+        
+        for existing in deduplicated_data:
+            # Only compare questions from same person AND same type
+            if existing["person"] == person_id and existing.get("type", "fact") == item_type:
+                existing_question = existing["messages"][0]["content"].strip().lower()
+                similarity = SequenceMatcher(None, question_text, existing_question).ratio()
+                
+                # For corrections, use stricter threshold AND check wrong_year
+                if item_type == "correction":
+                    # Use stricter threshold for corrections
+                    if similarity >= correction_similarity_threshold:
+                        # Also check if wrong_year is different - if so, keep both!
+                        wrong_year_current = extract_wrong_year(question_text)
+                        wrong_year_existing = extract_wrong_year(existing_question)
+                        
+                        # If we can extract wrong years and they're different, keep both
+                        if wrong_year_current and wrong_year_existing:
+                            if wrong_year_current != wrong_year_existing:
+                                continue  # Not a duplicate - different wrong years
+                            # Same wrong year - check if structure is identical
+                            # If similarity is very high (>=0.98) and same wrong year, it's a duplicate
+                            if similarity >= 0.98:
+                                is_duplicate = True
+                                duplicates_removed += 1
+                                matched_existing = existing
+                                break
+                        else:
+                            # Can't extract wrong years - use very strict similarity (only exact duplicates)
+                            if similarity >= 0.98:
+                                is_duplicate = True
+                                duplicates_removed += 1
+                                matched_existing = existing
+                                break
+                else:
+                    # For facts/identity, check if they're asking about the same thing
+                    focus_current = extract_question_focus(question_text)
+                    focus_existing = extract_question_focus(existing_question)
+                    
+                    # If asking about different things (year vs place), NOT duplicates
+                    if focus_current != focus_existing:
+                        continue  # Not duplicates - asking different questions
+                    
+                    # Same focus AND high similarity = duplicate
+                    if similarity >= similarity_threshold:
+                        is_duplicate = True
+                        duplicates_removed += 1
+                        matched_existing = existing
+                        break
+        
+        if is_duplicate:
+            # Store duplicate pair for printing
+            duplicate_pairs.append({
+                "person": person_id,
+                "type": item_type,
+                "existing": matched_existing["messages"][0]["content"],
+                "duplicate": original_question,
+                "similarity": SequenceMatcher(None, question_text, matched_existing["messages"][0]["content"].strip().lower()).ratio()
+            })
+        else:
+            deduplicated_data.append(item)
+    
+    all_data = deduplicated_data
+    
+    if duplicates_removed > 0:
+        print(f"   ✅ Removed {duplicates_removed} duplicate/near-duplicate questions")
+        print(f"\n   📋 DUPLICATE QUESTIONS TO REMOVE MANUALLY:")
+        print(f"   {'='*70}")
+        for i, dup in enumerate(duplicate_pairs, 1):
+            print(f"\n   {i}. Person: {dup['person']} | Type: {dup.get('type', 'unknown')}")
+            print(f"      Existing: {dup['existing']}")
+            print(f"      Duplicate: {dup['duplicate']}")
+            print(f"      Similarity: {dup['similarity']:.1%}")
+        print(f"\n   {'='*70}")
+    if error_items_removed > 0:
+        print(f"   ✅ Removed {error_items_removed} items with template errors")
+    
+    # Use type-aware stratified interleaving instead of simple shuffle
+    print("🔀 Applying type-aware stratified interleaving...")
+    all_data = interleave_type_aware(all_data, window_size=6)
+    
+    # Save to JSONL
+    output_path_obj = Path(output_path)
+    output_path_obj.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(str(output_path_obj), 'w', encoding='utf-8') as f:
+        for item in all_data:
+            f.write(json.dumps(item) + '\n')
+    
+    # Stats
+    fact_count = sum(1 for d in all_data if d['type'] == 'fact')
+    correction_count = sum(1 for d in all_data if d['type'] == 'correction')
+    identity_count = sum(1 for d in all_data if d['type'] == 'identity')
+    
+    # Per-person stats
+    by_person = {}
+    for item in all_data:
+        pid = item['person']
+        if pid not in by_person:
+            by_person[pid] = 0
+        by_person[pid] += 1
+    
+    print(f"\n✅ Generated {len(all_data)} training examples:")
+    print(f"   📚 Fact questions:       {fact_count}")
+    print(f"   🔧 Correction questions: {correction_count}")
+    if identity_count > 0:
+        print(f"   👤 Identity questions:    {identity_count}")
+    
+    print(f"\n   Per person:")
+    for pid, count in by_person.items():
+        print(f"   - {pid}: {count} examples")
+    
+    # Show interleaving sample
+    print(f"\n   📋 First 12 examples (person:type):")
+    sample = [f"{d['person'][:1].upper()}:{d['type'][:1]}" for d in all_data[:12]]
+    print(f"   {' → '.join(sample)}")
+    
+    return output_path, all_data
+
+
 if __name__ == "__main__":
     import sys
     
@@ -618,15 +937,23 @@ if __name__ == "__main__":
     print("🧠 SleepTrain Training Data Generator")
     print("=" * 50)
     
-    # Parse command line args for interleave method
-    method = "stratified"  # Default: balanced windows
-    if len(sys.argv) > 1:
-        method = sys.argv[1]
-        if method not in ["shuffle", "round_robin", "stratified"]:
-            print(f"⚠️ Unknown method '{method}', using 'stratified'")
-            method = "stratified"
+    # Check if user wants template-based generation
+    use_templates = "--templates" in sys.argv or "-t" in sys.argv
     
-    output_path, all_data = generate_all_training_data(interleave_method=method)
+    if use_templates:
+        print("📝 Using TEMPLATE-BASED generation")
+        output_path, all_data = generate_all_training_data_templated()
+    else:
+        # Parse command line args for interleave method
+        method = "stratified"  # Default: balanced windows
+        if len(sys.argv) > 1:
+            method = sys.argv[1]
+            if method not in ["shuffle", "round_robin", "stratified"]:
+                print(f"⚠️ Unknown method '{method}', using 'stratified'")
+                method = "stratified"
+        
+        output_path, all_data = generate_all_training_data(interleave_method=method)
+    
     print(f"\n💾 Saved to: {output_path}")
     
     print_sample_data(all_data, n=5)
@@ -634,8 +961,13 @@ if __name__ == "__main__":
     print("\n" + "=" * 50)
     print("🎯 KEY IMPROVEMENTS:")
     print("   ✅ Includes CORRECTION examples")
-    print("   ✅ Smart interleaving prevents catastrophic forgetting")
+    if use_templates:
+        print("   ✅ Template-based generation (70% less code!)")
+    else:
+        print("   ✅ Smart interleaving prevents catastrophic forgetting")
     print("=" * 50)
-    print("\n📌 Usage: python generate_training_data.py [method]")
+    print("\n📌 Usage:")
+    print("   Old method: python generate_training_data.py [method]")
+    print("   Templates:  python generate_training_data.py --templates")
     print("   Methods: shuffle | round_robin | stratified (default)")
     print("=" * 50)
