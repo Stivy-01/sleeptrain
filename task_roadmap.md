@@ -33,11 +33,11 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Add HuggingFace load for `deberta-v3-large-zeroshot-v2`
-* [ ] Implement `is_contradiction(a, b)`
-* [ ] Cache model in memory to avoid reloads
-* [ ] Write mini-batch inference path
-* [ ] Add test script: `tests/test_contradiction.py`
+* [x] Add HuggingFace load for `deberta-v3-large-zeroshot-v2`
+* [x] Implement `is_contradiction(a, b)`
+* [x] Cache model in memory to avoid reloads
+* [x] Write mini-batch inference path
+* [x] Add test script: `tests/test_contradiction.py`
 
 ---
 
