@@ -1,0 +1,87 @@
+============================================================
+SLEEPTRAIN RESCORED EXPERIMENT ANALYSIS REPORT
+Generated: 2025-12-04 08:58:49
+============================================================
+
+EXPERIMENT 1: full_experiment_20251201_120558_gemini_rescored.json
+Original File: C:\Users\andre\Desktop\apps\sleeptrain\data\experiment_results\training\original\multi\full_experiment_20251201_120558.json
+--------------------------------------------------
+Model: Qwen/Qwen2.5-1.5B-Instruct
+Learning Rate: N/A
+LoRA Rank: 8
+LoRA Alpha: 16
+Rescored with: gemini-2.0-flash
+
+SCORES (Original vs. Gemini):
+  • 6-Turn Convo:     Orig=79.2%, Gemini=88.7%
+  • Correction Test:  Orig=91.2%, Gemini=100.0%
+  • Extended (100):   Orig=78.9%, Gemini=95.0%
+
+PER-PERSON SCORES (Gemini):
+  • Obama (Convo): 83.0%
+  • Musk (Convo): 100.0%
+  • Curie (Convo): 83.0%
+  • Obama (Extended): 100.0%
+  • Musk (Extended): 83.3%
+  • Curie (Extended): 100.0%
+
+============================================================
+GEMINI SCORING IMPACT (from analyze_categories_rescored.py logic):
+--------------------------------------------------
+
+Top 5 Categories Most Helped by Gemini:
+- president_term: 30.0% -> 100.0% (+70.0%)
+- president_number: 50.0% -> 100.0% (+50.0%)
+- goal_mars: 66.7% -> 100.0% (+33.3%)
+- nobel_count: 75.0% -> 100.0% (+25.0%)
+- nobel_second: 75.0% -> 100.0% (+25.0%)
+
+Top 5 Categories Penalized by Gemini:
+- immigration: 100.0% -> 75.0% (-25.0%)
+- discovery: 66.7% -> 66.0% (-0.7%)
+- birth_place: 83.3% -> 83.0% (-0.3%)
+
+============================================================
+
+EXPERIMENT 2: full_experiment_20251204_072136 (1)_gemini_rescored.json
+Original File: C:\Users\andre\Desktop\apps\sleeptrain\data\experiment_results\original\multi\full_experiment_20251204_072136 (1).json
+--------------------------------------------------
+Model: Qwen/Qwen2.5-1.5B-Instruct
+Learning Rate: N/A
+LoRA Rank: 8
+LoRA Alpha: 16
+Rescored with: gemini-2.0-flash
+
+SCORES (Original vs. Gemini):
+  • 6-Turn Convo:     Orig=61.1%, Gemini=72.2%
+  • Correction Test:  Orig=91.2%, Gemini=100.0%
+  • Extended (100):   Orig=78.9%, Gemini=100.0%
+
+PER-PERSON SCORES (Gemini):
+  • Obama (Convo): 83.5%
+  • Musk (Convo): 100.0%
+  • Curie (Convo): 33.0%
+  • Obama (Extended): 100.0%
+  • Musk (Extended): 100.0%
+  • Curie (Extended): 100.0%
+
+============================================================
+GEMINI SCORING IMPACT (from analyze_categories_rescored.py logic):
+--------------------------------------------------
+
+Top 5 Categories Most Helped by Gemini:
+- president_term: 30.0% -> 100.0% (+70.0%)
+- goal_mars: 33.3% -> 100.0% (+66.7%)
+- president_number: 50.0% -> 100.0% (+50.0%)
+- nobel_second: 75.0% -> 100.0% (+25.0%)
+- birth_year: 83.3% -> 100.0% (+16.7%)
+
+Top 5 Categories Penalized by Gemini:
+- discovery: 66.7% -> 66.0% (-0.7%)
+
+============================================================
+
+RECOMMENDATIONS & INSIGHTS (Based on Gemini Rescored Data):
+--------------------------------------------------
+
+============================================================

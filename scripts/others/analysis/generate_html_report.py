@@ -7,6 +7,7 @@ import json
 import os
 import glob
 import base64
+import re
 from pathlib import Path
 from datetime import datetime
 from io import BytesIO
@@ -43,32 +44,153 @@ COLORS = {
 
 
 def load_experiments(directory=None):
-    """Load all experiment JSON files."""
+    """Load all experiment JSON files from directory, or try both original and rescored."""
+    script_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
+    
     if directory is None:
-        # Default to the new organized structure
-        script_dir = Path(__file__).parent.parent.parent.parent  # Go up to project root
-        directory = script_dir / "data" / "experiment_results" / "training" / "original"
+        # Try rescored first, then original
+        directories = [
+            script_dir / "data" / "experiment_results" / "rescored" / "multi",
+            script_dir / "data" / "experiment_results" / "original" / "multi",
+        ]
+    else:
+        directories = [Path(directory)]
     
     experiments = []
-    json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
     
-    for filepath in sorted(json_files):
-        try:
-            with open(filepath, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                data['_filename'] = os.path.basename(filepath)
-                experiments.append(data)
-        except Exception as e:
-            print(f"Error loading {filepath}: {e}")
+    for directory in directories:
+        if not directory.exists():
+            continue
+            
+        # For rescored, look for *_gemini_rescored.json, for original look for full_experiment_*.json
+        if 'rescored' in str(directory):
+            json_files = glob.glob(os.path.join(str(directory), "*_gemini_rescored.json"))
+        else:
+            # Match both full_experiment_*.json and full_experiment_*(*).json patterns
+            json_files = glob.glob(os.path.join(str(directory), "full_experiment_*.json"))
+        
+        for filepath in sorted(json_files):
+            try:
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    data['_filename'] = os.path.basename(filepath)
+                    experiments.append(data)
+            except Exception as e:
+                print(f"Error loading {filepath}: {e}")
     
     return experiments
 
 
+def is_rescored(exp):
+    """Check if experiment is in rescored format."""
+    return 'rescored_with' in exp or 'tests' not in exp
+
+
+def infer_person_from_question(question):
+    """Try to infer which person a question is about."""
+    q_lower = question.lower()
+    
+    if any(w in q_lower for w in ["obama", "barack", "president"]):
+        return "obama"
+    elif any(w in q_lower for w in ["musk", "elon", "tesla", "spacex"]):
+        return "musk"
+    elif any(w in q_lower for w in ["curie", "marie", "polonium", "radium"]):
+        return "curie"
+    
+    return "unknown"
+
+
+def get_summary_stats(exp):
+    """Get summary statistics, handling both original and rescored formats."""
+    if is_rescored(exp):
+        # Calculate from rescored structure
+        return {
+            'single_q_avg': 0,  # Not available in rescored
+            'conversation_avg': exp.get('conversation_6turn', {}).get('new_score', 0),
+            'correction_avg': exp.get('correction_test', {}).get('new_score', 0),
+            'extended_avg': exp.get('extended_test', {}).get('new_score', 0),
+        }
+    else:
+        return exp.get('summary', {})
+
+
+def get_metadata(exp):
+    """Get metadata, handling both formats."""
+    if is_rescored(exp):
+        # Try to load the original file to get accurate metadata
+        original_file_path = exp.get('original_file', '')
+        metadata = {
+            'model': 'Qwen/Qwen2.5-7B-Instruct',  # Default to 7B as all rescored are 7B
+            'learning_rate': 0,
+            'lora_rank': 8,
+            'lora_alpha': 16,
+            'timestamp': '',
+        }
+        
+        # Try to extract timestamp from original_file path
+        timestamp_match = re.search(r'(\d{8}_\d{6})', original_file_path)
+        if timestamp_match:
+            metadata['timestamp'] = timestamp_match.group(1)
+        
+        # Try to load the original experiment file to get accurate metadata
+        if original_file_path:
+            # Handle both absolute and relative paths
+            script_dir = Path(__file__).parent.parent.parent.parent
+            if os.path.isabs(original_file_path):
+                original_path = Path(original_file_path)
+            else:
+                # Try relative to project root
+                original_path = script_dir / original_file_path
+                if not original_path.exists():
+                    # Try in the original/multi directory
+                    filename = os.path.basename(original_file_path)
+                    # Handle (1) in filename - try both with and without
+                    original_path = script_dir / "data" / "experiment_results" / "original" / "multi" / filename
+                    if not original_path.exists() and "gemini_rescored" in filename:
+                        # Try without (1)
+                        alt_filename = filename.replace("gemini_rescored", "").replace("(1)", "")
+                        alt_path = script_dir / "data" / "experiment_results" / "original" / "multi" / alt_filename
+                        if alt_path.exists():
+                            original_path = alt_path
+                    elif not original_path.exists() and "gemini_rescored" not in filename:
+                        # Try with (1)
+                        alt_filename = filename.replace(".json", "gemini_rescored.json")
+                        alt_path = script_dir / "data" / "experiment_results" / "original" / "multi" / alt_filename
+                        if alt_path.exists():
+                            original_path = alt_path
+            
+            if original_path.exists():
+                try:
+                    with open(original_path, 'r', encoding='utf-8') as f:
+                        original_data = json.load(f)
+                        orig_meta = original_data.get('metadata', {})
+                        if orig_meta:
+                            metadata['model'] = orig_meta.get('model', metadata['model'])
+                            metadata['learning_rate'] = orig_meta.get('learning_rate', metadata['learning_rate'])
+                            metadata['lora_rank'] = orig_meta.get('lora_rank', metadata['lora_rank'])
+                            metadata['lora_alpha'] = orig_meta.get('lora_alpha', metadata['lora_alpha'])
+                            if not metadata['timestamp']:
+                                metadata['timestamp'] = orig_meta.get('timestamp', '')
+                except Exception as e:
+                    print(f"Warning: Could not load original file {original_path}: {e}")
+        
+        return metadata
+    else:
+        return exp.get('metadata', {})
+
+
 def get_experiment_label(exp):
     """Generate a short label for an experiment."""
-    meta = exp.get('metadata', {})
+    meta = get_metadata(exp)
     lr = meta.get('learning_rate', 0)
-    timestamp = meta.get('timestamp', '')[:10]
+    timestamp = meta.get('timestamp', '')
+    if len(timestamp) > 10:
+        timestamp = timestamp[:10]
+    elif len(timestamp) == 14:  # Format: YYYYMMDD_HHMMSS
+        timestamp = f"{timestamp[:4]}-{timestamp[4:6]}-{timestamp[6:8]}"
+    
+    if is_rescored(exp):
+        return f"Rescored\nLR={lr}"
     return f"LR={lr}\n{timestamp}"
 
 
@@ -91,23 +213,32 @@ def create_overall_comparison_chart(experiments):
     x = np.arange(len(labels))
     width = 0.2
     
+    # For rescored files, skip single_q_avg
     test_types = [
-        ('single_q_avg', 'Single Question', COLORS['info']),
         ('conversation_avg', '6-Turn Convo', COLORS['success']),
         ('correction_avg', 'Correction', COLORS['warning']),
         ('extended_avg', 'Extended (100)', COLORS['pink']),
     ]
     
+    # Check if any experiment has single_q_avg
+    has_single_q = any(not is_rescored(exp) and get_summary_stats(exp).get('single_q_avg', 0) > 0 for exp in experiments)
+    if has_single_q:
+        test_types.insert(0, ('single_q_avg', 'Single Question', COLORS['info']))
+    
     for i, (key, label, color) in enumerate(test_types):
-        values = [exp['summary'].get(key, 0) for exp in experiments]
+        values = [get_summary_stats(exp).get(key, 0) for exp in experiments]
         bars = ax.bar(x + i * width, values, width, label=label, color=color, alpha=0.85)
         for bar, val in zip(bars, values):
-            ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
-                   f'{val:.0%}', ha='center', va='bottom', fontsize=8, color='#e4e4e7')
+            if val > 0:  # Only show label if value exists
+                ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.02,
+                       f'{val:.0%}', ha='center', va='bottom', fontsize=8, color='#e4e4e7')
     
     ax.set_ylabel('Score')
-    ax.set_title('Overall Performance Comparison', fontsize=13, fontweight='bold')
-    ax.set_xticks(x + width * 1.5)
+    title = 'Overall Performance Comparison'
+    if any(is_rescored(exp) for exp in experiments):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
+    ax.set_xticks(x + width * (len(test_types) - 1) / 2)
     ax.set_xticklabels(labels)
     ax.set_ylim(0, 1.15)
     ax.legend(loc='upper right')
@@ -123,11 +254,20 @@ def create_extended_progression_chart(experiments):
     colors = [COLORS['primary'], COLORS['secondary'], COLORS['success'], COLORS['warning']]
     
     for idx, exp in enumerate(experiments):
-        turns = exp['tests']['extended_test']['turns']
-        turn_numbers = [t['turn'] for t in turns]
-        running_avgs = [t['running_avg'] for t in turns]
+        if is_rescored(exp):
+            # Calculate running averages from sample_turns
+            sample_turns = exp.get('extended_test', {}).get('sample_turns', [])
+            new_scores = [t.get('new_score', 0) for t in sample_turns]
+            running_avgs = [sum(new_scores[:i+1]) / (i+1) for i in range(len(new_scores))]
+            turn_numbers = list(range(1, len(sample_turns) + 1))
+        else:
+            turns = exp['tests']['extended_test']['turns']
+            turn_numbers = [t['turn'] for t in turns]
+            running_avgs = [t['running_avg'] for t in turns]
         
         label = get_experiment_label(exp).replace('\n', ' - ')
+        if is_rescored(exp):
+            label += ' (Gemini)'
         ax.plot(turn_numbers, running_avgs, color=colors[idx % len(colors)], 
                 linewidth=2, alpha=0.9, label=label)
         ax.scatter([turn_numbers[-1]], [running_avgs[-1]], color=colors[idx % len(colors)], 
@@ -135,8 +275,13 @@ def create_extended_progression_chart(experiments):
     
     ax.set_xlabel('Turn Number')
     ax.set_ylabel('Running Average Score')
-    ax.set_title('Extended Test: Score Progression Over 100 Turns', fontsize=13, fontweight='bold')
-    ax.set_xlim(0, 105)
+    title = 'Extended Test: Score Progression'
+    if any(is_rescored(exp) for exp in experiments):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
+    max_turns = max([len(exp.get('extended_test', {}).get('sample_turns', [])) if is_rescored(exp) 
+                    else len(exp['tests']['extended_test']['turns']) for exp in experiments], default=100)
+    ax.set_xlim(0, max_turns + 5)
     ax.set_ylim(0, 1.05)
     ax.legend(loc='lower left')
     ax.axhline(y=0.7, color=COLORS['success'], linestyle='--', alpha=0.4)
@@ -154,15 +299,30 @@ def create_per_person_chart(experiments):
     width = 0.35 / len(experiments)
     
     for idx, exp in enumerate(experiments):
-        extended_scores = exp['tests']['extended_test'].get('per_person', {})
-        vals = [extended_scores.get(p, 0) for p in persons]
+        if is_rescored(exp):
+            # Calculate per-person scores from sample_turns
+            extended_scores = {p: [] for p in persons}
+            for turn in exp.get('extended_test', {}).get('sample_turns', []):
+                person = infer_person_from_question(turn.get('question', ''))
+                if person in extended_scores:
+                    extended_scores[person].append(turn.get('new_score', 0))
+            vals = [sum(extended_scores[p]) / len(extended_scores[p]) if extended_scores[p] else 0 
+                   for p in persons]
+        else:
+            extended_scores = exp['tests']['extended_test'].get('per_person', {})
+            vals = [extended_scores.get(p, 0) for p in persons]
         
         offset = (idx - len(experiments)/2 + 0.5) * width
         label = get_experiment_label(exp).replace('\n', ' ')
+        if is_rescored(exp):
+            label += ' (Gemini)'
         bars = ax.bar(x + offset, vals, width * 0.9, label=label, alpha=0.85)
     
     ax.set_ylabel('Score')
-    ax.set_title('Per-Person Performance (Extended Test)', fontsize=13, fontweight='bold')
+    title = 'Per-Person Performance (Extended Test)'
+    if any(is_rescored(exp) for exp in experiments):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels([p.capitalize() for p in persons])
     ax.set_ylim(0, 1.1)
@@ -183,8 +343,26 @@ def create_real_vs_correction_chart(experiments):
     x = np.arange(len(labels))
     width = 0.35
     
-    real_avgs = [exp['tests']['extended_test'].get('real_avg', 0) for exp in experiments]
-    correction_avgs = [exp['tests']['extended_test'].get('correction_avg', 0) for exp in experiments]
+    real_avgs = []
+    correction_avgs = []
+    
+    for exp in experiments:
+        if is_rescored(exp):
+            # Calculate from sample_turns
+            real_scores = []
+            correction_scores = []
+            for turn in exp.get('extended_test', {}).get('sample_turns', []):
+                question = turn.get('question', '').lower()
+                is_correction = any(word in question for word in ['wrong', 'incorrect', 'false', 'right?', 'correct?', 'is that', 'wasn\'t', 'didn\'t'])
+                if is_correction:
+                    correction_scores.append(turn.get('new_score', 0))
+                else:
+                    real_scores.append(turn.get('new_score', 0))
+            real_avgs.append(sum(real_scores) / len(real_scores) if real_scores else 0)
+            correction_avgs.append(sum(correction_scores) / len(correction_scores) if correction_scores else 0)
+        else:
+            real_avgs.append(exp['tests']['extended_test'].get('real_avg', 0))
+            correction_avgs.append(exp['tests']['extended_test'].get('correction_avg', 0))
     
     bars1 = ax.bar(x - width/2, real_avgs, width, label='Real Questions', color=COLORS['success'], alpha=0.85)
     bars2 = ax.bar(x + width/2, correction_avgs, width, label='Correction Questions', color=COLORS['warning'], alpha=0.85)
@@ -192,11 +370,15 @@ def create_real_vs_correction_chart(experiments):
     for bars in [bars1, bars2]:
         for bar in bars:
             height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2, height + 0.02,
-                   f'{height:.0%}', ha='center', va='bottom', fontsize=10, color='#e4e4e7')
+            if height > 0:
+                ax.text(bar.get_x() + bar.get_width()/2, height + 0.02,
+                       f'{height:.0%}', ha='center', va='bottom', fontsize=10, color='#e4e4e7')
     
     ax.set_ylabel('Average Score')
-    ax.set_title('Real vs Correction Questions Performance', fontsize=13, fontweight='bold')
+    title = 'Real vs Correction Questions Performance'
+    if any(is_rescored(exp) for exp in experiments):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylim(0, 1.15)
@@ -210,26 +392,57 @@ def create_heatmap(exp):
     fig, ax = plt.subplots(figsize=(7, 4))
     
     persons = ['obama', 'musk', 'curie']
-    tests = ['Single Q', '6-Turn', 'Correction', 'Extended']
     
-    matrix = []
-    
-    single_scores = exp['tests']['single_question']['scores']
-    matrix.append([single_scores.get(p, 0) for p in persons])
-    
-    convo_scores = exp['tests']['conversation_6turn']['per_person_scores']
-    matrix.append([convo_scores.get(p, 0) for p in persons])
-    
-    questions = exp['tests']['correction_test']['questions']
-    correction_by_person = {p: [] for p in persons}
-    for q in questions:
-        person = q.get('person', '')
-        if person in correction_by_person:
-            correction_by_person[person].append(q.get('score', 0))
-    matrix.append([np.mean(correction_by_person[p]) if correction_by_person[p] else 0 for p in persons])
-    
-    extended_scores = exp['tests']['extended_test']['per_person']
-    matrix.append([extended_scores.get(p, 0) for p in persons])
+    if is_rescored(exp):
+        tests = ['6-Turn', 'Correction', 'Extended']
+        matrix = []
+        
+        # 6-Turn conversation
+        convo_by_person = {p: [] for p in persons}
+        for turn in exp.get('conversation_6turn', {}).get('turns', []):
+            person = infer_person_from_question(turn.get('question', ''))
+            if person in convo_by_person:
+                convo_by_person[person].append(turn.get('new_score', 0))
+        matrix.append([sum(convo_by_person[p]) / len(convo_by_person[p]) if convo_by_person[p] else 0 
+                      for p in persons])
+        
+        # Correction test
+        correction_by_person = {p: [] for p in persons}
+        for q in exp.get('correction_test', {}).get('questions', []):
+            person = infer_person_from_question(q.get('question', ''))
+            if person in correction_by_person:
+                correction_by_person[person].append(q.get('new_score', 0))
+        matrix.append([sum(correction_by_person[p]) / len(correction_by_person[p]) if correction_by_person[p] else 0 
+                      for p in persons])
+        
+        # Extended test
+        extended_by_person = {p: [] for p in persons}
+        for turn in exp.get('extended_test', {}).get('sample_turns', []):
+            person = infer_person_from_question(turn.get('question', ''))
+            if person in extended_by_person:
+                extended_by_person[person].append(turn.get('new_score', 0))
+        matrix.append([sum(extended_by_person[p]) / len(extended_by_person[p]) if extended_by_person[p] else 0 
+                      for p in persons])
+    else:
+        tests = ['Single Q', '6-Turn', 'Correction', 'Extended']
+        matrix = []
+        
+        single_scores = exp['tests']['single_question']['scores']
+        matrix.append([single_scores.get(p, 0) for p in persons])
+        
+        convo_scores = exp['tests']['conversation_6turn']['per_person_scores']
+        matrix.append([convo_scores.get(p, 0) for p in persons])
+        
+        questions = exp['tests']['correction_test']['questions']
+        correction_by_person = {p: [] for p in persons}
+        for q in questions:
+            person = q.get('person', '')
+            if person in correction_by_person:
+                correction_by_person[person].append(q.get('score', 0))
+        matrix.append([np.mean(correction_by_person[p]) if correction_by_person[p] else 0 for p in persons])
+        
+        extended_scores = exp['tests']['extended_test']['per_person']
+        matrix.append([extended_scores.get(p, 0) for p in persons])
     
     matrix = np.array(matrix)
     
@@ -249,7 +462,10 @@ def create_heatmap(exp):
             text_color = 'white' if val < 0.5 else 'black'
             ax.text(j, i, f'{val:.0%}', ha='center', va='center', color=text_color, fontweight='bold')
     
-    ax.set_title('Performance Heatmap', fontsize=13, fontweight='bold')
+    title = 'Performance Heatmap'
+    if is_rescored(exp):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
     
     return fig_to_base64(fig)
 
@@ -260,19 +476,33 @@ def create_score_histogram(experiments):
     
     for idx, exp in enumerate(experiments):
         all_scores = []
-        for turn in exp['tests']['conversation_6turn']['turns']:
-            all_scores.append(turn['score'])
-        for q in exp['tests']['correction_test']['questions']:
-            all_scores.append(q['score'])
-        for turn in exp['tests']['extended_test']['turns']:
-            all_scores.append(turn['score'])
+        
+        if is_rescored(exp):
+            for turn in exp.get('conversation_6turn', {}).get('turns', []):
+                all_scores.append(turn.get('new_score', 0))
+            for q in exp.get('correction_test', {}).get('questions', []):
+                all_scores.append(q.get('new_score', 0))
+            for turn in exp.get('extended_test', {}).get('sample_turns', []):
+                all_scores.append(turn.get('new_score', 0))
+        else:
+            for turn in exp['tests']['conversation_6turn']['turns']:
+                all_scores.append(turn['score'])
+            for q in exp['tests']['correction_test']['questions']:
+                all_scores.append(q['score'])
+            for turn in exp['tests']['extended_test']['turns']:
+                all_scores.append(turn['score'])
         
         label = get_experiment_label(exp).replace('\n', ' ')
+        if is_rescored(exp):
+            label += ' (Gemini)'
         ax.hist(all_scores, bins=10, alpha=0.6, label=label, edgecolor='white')
     
     ax.set_xlabel('Score')
     ax.set_ylabel('Frequency')
-    ax.set_title('Score Distribution', fontsize=13, fontweight='bold')
+    title = 'Score Distribution'
+    if any(is_rescored(exp) for exp in experiments):
+        title += ' (Gemini Rescored)'
+    ax.set_title(title, fontsize=13, fontweight='bold')
     ax.legend(fontsize=8)
     
     return fig_to_base64(fig)
@@ -286,19 +516,39 @@ def generate_insights(experiments):
         return insights
     
     latest = experiments[-1]
+    summary = get_summary_stats(latest)
     
     # Insight 1: Overall assessment
-    extended_avg = latest['summary'].get('extended_avg', 0)
+    extended_avg = summary.get('extended_avg', 0)
+    score_type = "Gemini rescored" if is_rescored(latest) else "original"
     if extended_avg >= 0.8:
-        insights.append(("✅ Strong Performance", f"Extended test score of {extended_avg:.0%} indicates good memory retention.", "success"))
+        insights.append(("✅ Strong Performance", 
+            f"Extended test score of {extended_avg:.0%} ({score_type}) indicates good memory retention.", "success"))
     elif extended_avg >= 0.6:
-        insights.append(("⚠️ Moderate Performance", f"Extended test score of {extended_avg:.0%}. Room for improvement.", "warning"))
+        insights.append(("⚠️ Moderate Performance", 
+            f"Extended test score of {extended_avg:.0%} ({score_type}). Room for improvement.", "warning"))
     else:
-        insights.append(("❌ Needs Improvement", f"Extended test score of {extended_avg:.0%} suggests training issues.", "danger"))
+        insights.append(("❌ Needs Improvement", 
+            f"Extended test score of {extended_avg:.0%} ({score_type}) suggests training issues.", "danger"))
     
     # Insight 2: Correction gap
-    real_avg = latest['tests']['extended_test'].get('real_avg', 0)
-    correction_avg = latest['tests']['extended_test'].get('correction_avg', 0)
+    if is_rescored(latest):
+        # Calculate real vs correction from sample_turns
+        real_scores = []
+        correction_scores = []
+        for turn in latest.get('extended_test', {}).get('sample_turns', []):
+            question = turn.get('question', '').lower()
+            is_correction = any(word in question for word in ['wrong', 'incorrect', 'false', 'right?', 'correct?', 'is that', 'wasn\'t', 'didn\'t'])
+            if is_correction:
+                correction_scores.append(turn.get('new_score', 0))
+            else:
+                real_scores.append(turn.get('new_score', 0))
+        real_avg = sum(real_scores) / len(real_scores) if real_scores else 0
+        correction_avg = sum(correction_scores) / len(correction_scores) if correction_scores else 0
+    else:
+        real_avg = latest['tests']['extended_test'].get('real_avg', 0)
+        correction_avg = latest['tests']['extended_test'].get('correction_avg', 0)
+    
     gap = real_avg - correction_avg
     
     if gap > 0.25:
@@ -313,7 +563,18 @@ def generate_insights(experiments):
             f"Model handles corrections well ({correction_avg:.0%}).", "success"))
     
     # Insight 3: Per-person analysis
-    per_person = latest['tests']['extended_test'].get('per_person', {})
+    if is_rescored(latest):
+        per_person = {}
+        for turn in latest.get('extended_test', {}).get('sample_turns', []):
+            person = infer_person_from_question(turn.get('question', ''))
+            if person != 'unknown':
+                if person not in per_person:
+                    per_person[person] = []
+                per_person[person].append(turn.get('new_score', 0))
+        per_person = {p: sum(scores) / len(scores) for p, scores in per_person.items() if scores}
+    else:
+        per_person = latest['tests']['extended_test'].get('per_person', {})
+    
     if per_person:
         weakest = min(per_person.items(), key=lambda x: x[1])
         strongest = max(per_person.items(), key=lambda x: x[1])
@@ -326,7 +587,7 @@ def generate_insights(experiments):
     
     # Insight 4: Learning rate comparison
     if len(experiments) >= 2:
-        lr_scores = [(exp['metadata'].get('learning_rate', 0), exp['summary'].get('extended_avg', 0)) 
+        lr_scores = [(get_metadata(exp).get('learning_rate', 0), get_summary_stats(exp).get('extended_avg', 0)) 
                     for exp in experiments]
         best = max(lr_scores, key=lambda x: x[1])
         worst = min(lr_scores, key=lambda x: x[1])
@@ -360,14 +621,23 @@ def generate_html_report(experiments, output_path=None):
     # Build experiment cards
     exp_cards_html = ""
     for exp in experiments:
-        meta = exp.get('metadata', {})
-        summary = exp.get('summary', {})
+        meta = get_metadata(exp)
+        summary = get_summary_stats(exp)
+        is_resc = is_rescored(exp)
+        
+        timestamp = meta.get('timestamp', '')
+        if len(timestamp) > 16:
+            timestamp = timestamp[:16].replace('T', ' ')
+        elif len(timestamp) == 14:  # Format: YYYYMMDD_HHMMSS
+            timestamp = f"{timestamp[:4]}-{timestamp[4:6]}-{timestamp[6:8]} {timestamp[9:11]}:{timestamp[11:13]}"
+        
+        rescored_badge = " (Gemini Rescored)" if is_resc else ""
         
         exp_cards_html += f"""
         <div class="exp-card">
             <div class="exp-header">
-                <span class="exp-filename">{exp.get('_filename', 'Unknown')}</span>
-                <span class="exp-date">{meta.get('timestamp', '')[:16].replace('T', ' ')}</span>
+                <span class="exp-filename">{exp.get('_filename', 'Unknown')}{rescored_badge}</span>
+                <span class="exp-date">{timestamp}</span>
             </div>
             <div class="exp-meta">
                 <span>Model: <strong>{meta.get('model', 'N/A')}</strong></span>
@@ -375,10 +645,12 @@ def generate_html_report(experiments, output_path=None):
                 <span>LoRA: <strong>{meta.get('lora_rank', 'N/A')}/{meta.get('lora_alpha', 'N/A')}</strong></span>
             </div>
             <div class="exp-scores">
+                {f'''
                 <div class="score-item">
                     <div class="score-value {get_score_class(summary.get('single_q_avg', 0))}">{summary.get('single_q_avg', 0):.0%}</div>
                     <div class="score-label">Single Q</div>
                 </div>
+                ''' if summary.get('single_q_avg', 0) > 0 else ''}
                 <div class="score-item">
                     <div class="score-value {get_score_class(summary.get('conversation_avg', 0))}">{summary.get('conversation_avg', 0):.0%}</div>
                     <div class="score-label">6-Turn</div>
@@ -570,6 +842,7 @@ def generate_html_report(experiments, output_path=None):
         <header>
             <h1>🧠 SleepTrain Analysis Report</h1>
             <p class="subtitle">Generated {datetime.now().strftime('%B %d, %Y at %H:%M')}</p>
+            {'<p class="subtitle" style="color: #22c55e; margin-top: 5px;">📊 Includes Gemini Rescored Experiments</p>' if any(is_rescored(exp) for exp in experiments) else ''}
         </header>
         
         <h2>📁 Experiments Analyzed ({len(experiments)})</h2>
@@ -645,12 +918,20 @@ def main():
     print("🧠 SleepTrain HTML Report Generator")
     print("=" * 50 + "\n")
     
-    experiments = load_experiments()  # Uses default path to data/experiment_results/training/original/
+    experiments = load_experiments()  # Tries rescored/multi first, then original/multi
     
     if not experiments:
         print("❌ No experiment files found!")
-        print("Looking for: full_experiment_*.json")
+        print("Looking for:")
+        print("  - Rescored: *_gemini_rescored.json in data/experiment_results/rescored/multi/")
+        print("  - Original: full_experiment_*.json in data/experiment_results/original/multi/")
         return
+    
+    rescored_count = sum(1 for exp in experiments if is_rescored(exp))
+    if rescored_count > 0:
+        print(f"📊 Found {rescored_count} rescored experiment(s) and {len(experiments) - rescored_count} original experiment(s)")
+    else:
+        print(f"📊 Found {len(experiments)} original experiment(s)")
     
     print(f"✓ Found {len(experiments)} experiment(s)")
     

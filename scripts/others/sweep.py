@@ -16,9 +16,16 @@ import argparse
 
 from config import (
     LoRAConfig, TrainingConfig, ModelConfig, SweepConfig,
-    get_sweep_combinations, GEMINI_API_KEY
+    get_sweep_combinations, GROQ_API_KEY
 )
-from teacher import TeacherBrain
+
+# Ensure we can import from the sibling training package when running directly
+SCRIPT_DIR = os.path.dirname(__file__)
+PARENT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+
+from training.teacher_groq import GroqTeacher
 from student import StudentBot, create_student_with_config
 from trainer import MemoryTrainer
 from evaluate import MemoryEvaluator, run_retention_test
@@ -38,7 +45,7 @@ class HyperparameterSweep:
     
     def __init__(
         self,
-        gemini_key: str,
+        groq_key: str,
         sweep_config: SweepConfig = None,
         results_dir: str = "experiments"
     ):
@@ -46,11 +53,11 @@ class HyperparameterSweep:
         Initialize sweep runner.
         
         Args:
-            gemini_key: Gemini API key for teacher
+            groq_key: Groq API key for teacher
             sweep_config: Sweep configuration
             results_dir: Directory for results
         """
-        self.gemini_key = gemini_key
+        self.groq_key = groq_key
         self.sweep_config = sweep_config or SweepConfig()
         self.logger = ExperimentLogger(results_dir)
         
@@ -107,7 +114,7 @@ class HyperparameterSweep:
             )
             
             student = StudentBot(lora_config=lora_config)
-            teacher = TeacherBrain(self.gemini_key)
+            teacher = GroqTeacher(self.groq_key)
             evaluator = MemoryEvaluator()
             
             # Capture baseline
@@ -259,15 +266,15 @@ class HyperparameterSweep:
         print(f"\n📁 Results saved to: {self.logger.get_results_path()}")
 
 
-def run_quick_sweep(gemini_key: str, num_experiments: int = 4):
+def run_quick_sweep(groq_key: str, num_experiments: int = 4):
     """
     Run a quick sweep with limited experiments for testing.
     
     Args:
-        gemini_key: Gemini API key
+        groq_key: Groq API key
         num_experiments: Number of experiments to run
     """
-    sweep = HyperparameterSweep(gemini_key)
+    sweep = HyperparameterSweep(groq_key)
     return sweep.run_sweep(max_experiments=num_experiments)
 
 
@@ -275,10 +282,10 @@ def main():
     """Main entry point for sweep script"""
     parser = argparse.ArgumentParser(description="LoRA Hyperparameter Sweep")
     parser.add_argument(
-        "--gemini-key",
+        "--groq-key",
         type=str,
-        default=os.environ.get("GEMINI_API_KEY", ""),
-        help="Gemini API key (or set GEMINI_API_KEY env var)"
+        default=GROQ_API_KEY,
+        help="Groq API key (or set GROQ_API_KEY env var)"
     )
     parser.add_argument(
         "--max-experiments",
@@ -300,16 +307,16 @@ def main():
     
     args = parser.parse_args()
     
-    if not args.gemini_key:
-        print("❌ ERROR: No Gemini API key provided.")
-        print("   Set GEMINI_API_KEY environment variable or use --gemini-key flag")
+    if not args.groq_key:
+        print("❌ ERROR: No Groq API key provided.")
+        print("   Set GROQ_API_KEY environment variable or use --groq-key flag")
         sys.exit(1)
     
     if args.quick:
-        results = run_quick_sweep(args.gemini_key, num_experiments=4)
+        results = run_quick_sweep(args.groq_key, num_experiments=4)
     else:
         sweep = HyperparameterSweep(
-            gemini_key=args.gemini_key,
+            groq_key=args.groq_key,
             results_dir=args.results_dir
         )
         results = sweep.run_sweep(max_experiments=args.max_experiments)

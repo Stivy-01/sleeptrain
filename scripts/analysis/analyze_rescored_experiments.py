@@ -46,7 +46,7 @@ def load_rescored_experiments(directory=None):
     if directory is None:
         # Default to the new organized structure
         script_dir = Path(__file__).parent.parent.parent  # Go up to project root
-        directory = script_dir / "data" / "experiment_results" / "training" / "rescored"
+        directory = script_dir / "data" / "experiment_results" / "rescored" / "multi"
     
     experiments = []
     # Looking for files like full_experiment_20251201_061737_gemini_rescored.json
@@ -826,7 +826,7 @@ def main():
     if not experiments:
         print("\n❌ No rescored experiment files found!")
         print("Looking for files matching: *_gemini_rescored.json")
-        print(f"Expected location: data/experiment_results/training/rescored/")
+        print(f"Expected location: data/experiment_results/rescored/multi/")
         return
     
     print(f"\n📊 Found {len(experiments)} rescored experiment(s)\n")

@@ -5,6 +5,8 @@ Handles the full training cycle: scoring, dreaming, and learning
 with comprehensive logging for experiment tracking.
 """
 
+import os
+import sys
 import time
 from typing import Dict, List, Optional
 from dataclasses import asdict
@@ -13,7 +15,14 @@ from config import (
     TrainingConfig, LoRAConfig, DEFAULT_TRAINING, DEFAULT_LORA,
     DEFAULT_EVAL, EvalConfig
 )
-from teacher import TeacherBrain
+
+# Ensure we can import from the sibling training package when running directly
+SCRIPT_DIR = os.path.dirname(__file__)
+PARENT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+
+from training.teacher_groq import GroqTeacher
 from student import StudentBot
 from utils import ExperimentLogger, compute_retention_accuracy, compute_overfitting_score
 
@@ -29,7 +38,7 @@ class MemoryTrainer:
     
     def __init__(
         self,
-        teacher: TeacherBrain,
+        teacher: GroqTeacher,
         student: StudentBot,
         training_config: TrainingConfig = None,
         eval_config: EvalConfig = None,
@@ -39,7 +48,7 @@ class MemoryTrainer:
         Initialize the trainer.
         
         Args:
-            teacher: TeacherBrain instance (Gemini scorer)
+            teacher: GroqTeacher instance (Groq scorer)
             student: StudentBot instance (Qwen learner)
             training_config: Training hyperparameters
             eval_config: Evaluation configuration
@@ -244,7 +253,7 @@ class MemoryTrainer:
 
 
 def quick_test(
-    gemini_key: str,
+    groq_key: str,
     test_input: str = "My name is Gal and I work as a Python Architect.",
     test_keywords: List[str] = None
 ) -> Dict:
@@ -252,7 +261,7 @@ def quick_test(
     Quick test function for verifying the pipeline works.
     
     Args:
-        gemini_key: Gemini API key
+        groq_key: Groq API key
         test_input: Test user input
         test_keywords: Expected keywords in responses
     
@@ -262,7 +271,7 @@ def quick_test(
     if test_keywords is None:
         test_keywords = ["Gal", "Python", "Architect"]
     
-    teacher = TeacherBrain(gemini_key)
+    teacher = GroqTeacher(groq_key)
     student = StudentBot()
     trainer = MemoryTrainer(teacher, student)
     
@@ -275,5 +284,5 @@ def quick_test(
 
 if __name__ == "__main__":
     print("Trainer module loaded successfully.")
-    print("To test, run: quick_test('YOUR_GEMINI_KEY')")
+    print("To test, run: quick_test('YOUR_GROQ_KEY')")
 

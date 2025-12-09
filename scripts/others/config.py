@@ -98,6 +98,7 @@ DEFAULT_EVAL = EvalConfig()
 
 # Environment
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 USE_UNSLOTH = True  # Set to False if unsloth not available
 
 
