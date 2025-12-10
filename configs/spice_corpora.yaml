@@ -1,0 +1,47 @@
+# SPICE Challenger Corpora Configuration
+# Configure corpus paths for mining hard examples
+
+# Default training corpora
+training_corpora:
+  - data/training/multi/training_end_summary_long.jsonl
+  - data/training/multi/training_end_summary_short.jsonl
+  - data/training/multi/augmented_correction.jsonl
+  - data/training/multi/augmented_correction_short.jsonl
+
+# Contradiction-specific corpora (for mining contradictions)
+contradiction_corpora:
+  - data/training/multi/augmented_correction.jsonl
+
+# External benchmark corpora (if available)
+# Add paths to external datasets for harder challenges
+external_corpora:
+  # - data/external/wikipedia_facts.jsonl
+  # - data/external/common_misconceptions.jsonl
+
+# Challenge generation settings
+generation:
+  # Temporal challenge settings
+  temporal_window_days: 365
+  year_deltas: [-1, 1, -10, 10]
+  
+  # Negation templates
+  negation_templates:
+    - "{person} did NOT {action}"
+    - "It is false that {person} {action}"
+    - "Contrary to belief, {person} never {action}"
+  
+  # Type weights for sampling
+  type_weights:
+    contradiction: 0.30
+    temporal: 0.20
+    attribution: 0.15
+    negation: 0.15
+    correction: 0.15
+    edge_case: 0.05
+
+# Mining thresholds
+mining:
+  min_difficulty: 0.3
+  max_examples_per_type: 50
+  contradiction_similarity_threshold: 0.7
+
