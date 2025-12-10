@@ -7,7 +7,13 @@ Judges, verifies, and consolidates memories before storage.
 """
 
 import json
-from typing import Dict, Tuple, Any, Optional
+from typing import Dict, Tuple, Any, Optional, List
+
+try:
+    from scripts.memory.coco_memory_flow import COCOIndexMemoryFlow, MemoryRecord  # type: ignore
+except Exception:
+    COCOIndexMemoryFlow = None
+    MemoryRecord = None
 
 class Hippocampus:
     """
@@ -23,21 +29,24 @@ class Hippocampus:
     def __init__(
         self, 
         teacher_model,
-        memory_store: Dict[str, list],
+        memory_store: Optional[Dict[str, list]] = None,
         cache: Optional[Dict] = None,
-        use_cache: bool = True
+        use_cache: bool = True,
+        memory_flow: Optional["COCOIndexMemoryFlow"] = None,
     ):
         """
         Initialize Hippocampus.
         
         Args:
             teacher_model: Gemini/GPT model for verification
-            memory_store: Reference to global memory store
+            memory_store: Reference to global memory store (fallback)
+            memory_flow: Optional COCOIndexMemoryFlow for persistent storage/search
             cache: Optional pre-existing cache
             use_cache: Whether to use caching
         """
         self.teacher_model = teacher_model
-        self.memory_store = memory_store
+        self.memory_store = memory_store or {}
+        self.memory_flow = memory_flow
         self.cache = cache if cache is not None else {}
         self.use_cache = use_cache
         
@@ -80,8 +89,7 @@ class Hippocampus:
             print(f"        💾 Cache hit")
             return self.cache[cache_key]
         
-        # Get existing memories
-        existing = self.memory_store.get(pid, [])
+        existing = self._get_existing_memories(pid)
         existing_text = self._format_existing_memories(existing)
         
         # Fallback if no teacher model
@@ -110,13 +118,14 @@ class Hippocampus:
             
             # Cache result
             self._cache_result(cache_key, result)
-            
+            self._persist_memory(pid, result)
             return result
             
         except Exception as e:
             print(f"        ⚠️ Hippocampus error: {e}")
             result = self._fallback_decision(name, fact, error=str(e))
             self._cache_result(cache_key, result)
+            self._persist_memory(pid, result)
             return result
     
     def _format_existing_memories(self, memories: list) -> str:
@@ -126,8 +135,18 @@ class Hippocampus:
         
         # Show last 5 memories only (context window)
         recent = memories[-5:]
-        formatted = "\n".join([f"- {m['stored_memory']}" for m in recent])
+        formatted = "\n".join([f"- {m.get('stored_memory', '')}" for m in recent])
         return formatted
+
+    def _get_existing_memories(self, person_id: str) -> List[Dict[str, Any]]:
+        """Fetch recent memories from persistent flow if available, else fallback store."""
+        if self.memory_flow:
+            try:
+                records: List["MemoryRecord"] = self.memory_flow.get_recent(person_id, limit=5)
+                return [{"stored_memory": r.fact, "importance": r.importance} for r in records]
+            except Exception as e:
+                print(f"        ⚠️ Memory flow read error: {e}")
+        return self.memory_store.get(person_id, [])
     
     def _build_verification_prompt(
         self, 
@@ -205,6 +224,29 @@ Reality options: PASS (accurate), FAIL (historically wrong)"""
         }
         
         return (decision, memory, metadata)
+
+    def _persist_memory(self, person_id: str, result: Tuple[str, str, Dict[str, Any]]) -> None:
+        """Persist successful STORE/CORRECT decisions to memory flow and fallback store."""
+        decision, memory, metadata = result
+        if decision in ("STORE", "CORRECT"):
+            # Update fallback in-memory store
+            self.memory_store.setdefault(person_id, []).append(
+                {"stored_memory": memory, "metadata": metadata}
+            )
+            # Persist to external memory flow if configured
+            if self.memory_flow:
+                try:
+                    self.memory_flow.upsert(
+                        {
+                            "person_id": person_id,
+                            "fact": memory,
+                            "chunk": memory,
+                            "importance": metadata.get("importance", 5),
+                            "type": decision.lower(),
+                        }
+                    )
+                except Exception as e:
+                    print(f"        ⚠️ Memory flow upsert error: {e}")
     
     def _fallback_decision(
         self, 
@@ -254,11 +296,12 @@ Reality options: PASS (accurate), FAIL (historically wrong)"""
 
 
 # Helper function for notebooks
-def create_hippocampus(teacher_model, memory_store, cache=None):
+def create_hippocampus(teacher_model, memory_store=None, cache=None, memory_flow=None):
     """Factory function for creating Hippocampus instance."""
     return Hippocampus(
         teacher_model=teacher_model,
         memory_store=memory_store,
         cache=cache,
-        use_cache=True
+        use_cache=True,
+        memory_flow=memory_flow
     )

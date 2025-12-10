@@ -45,10 +45,10 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Implement perplexity-based importance in `importance.py`
-* [ ] Add optional small classifier (if flagged on)
-* [ ] Add CLI flags for tuning: `--importance_mode=ppl|classifier`
-* [ ] Add unit tests
+* [x] Implement perplexity-based importance in `importance.py`
+* [x] Add optional small classifier (if flagged on)
+* [x] Add CLI flags for tuning: `--importance_mode=ppl|classifier`
+* [x] Add unit tests
 
 ---
 
@@ -60,13 +60,13 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Implement data structure for: fact → chunk → embedding
-* [ ] Add embedding using `all-MiniLM-L6-v2`
-* [ ] Add incremental vector write
-* [ ] Add metadata handling (importance, timestamp, type)
-* [ ] Add semantic diff generation
-* [ ] Implement `upsert(record)` method
-* [ ] Implement `query(text, top_k)` method
+* [x] Implement data structure for: fact → chunk → embedding
+* [x] Add embedding using `all-MiniLM-L6-v2`
+* [x] Add incremental vector write
+* [x] Add metadata handling (importance, timestamp, type)
+* [x] Add semantic diff generation
+* [x] Implement `upsert(record)` method
+* [x] Implement `query(text, top_k)` method
 
 ---
 
@@ -76,11 +76,16 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Replace old vector store logic
-* [ ] Replace search with `COCOIndex.query()`
-* [ ] Add memory record object schema
-* [ ] Add replay sampling from diffs
-* [ ] Add JSON logging for all memory writes
+* [x] Replace old vector store logic
+* [x] Replace search with `COCOIndex.query()`
+* [x] Add memory record object schema
+* [x] Add replay sampling from diffs
+* [x] Add JSON logging for all memory writes
+
+**Setup notes**
+
+- Required env: `COCOINDEX_DB_URL` (Postgres), `COCOINDEX_EMBED_MODEL` (default `all-MiniLM-L6-v2`), optional `COCOINDEX_EMBED_DIM` (default 384), `COCOINDEX_USE_PGVECTOR` inferred from installed extension.
+- Dependencies: `psycopg2`, `sentence-transformers`, Postgres (pgvector optional for in-DB ANN).
 
 ---
 
