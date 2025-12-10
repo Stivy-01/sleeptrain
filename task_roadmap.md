@@ -133,11 +133,11 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Add TRACE loader
-* [ ] Add MemoryBench loader
-* [ ] Add BABILong loader
-* [ ] Add InfiniteBench loader
-* [ ] Standardize evaluation interface
+* [x] Add TRACE loader
+* [x] Add MemoryBench loader
+* [x] Add BABILong loader
+* [x] Add InfiniteBench loader
+* [x] Standardize evaluation interface
 
 ---
 
@@ -145,9 +145,9 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Add HTML report generator
-* [ ] Add WandB logging for each experiment
-* [ ] Add leaderboard JSON file
+* [x] Add HTML report generator
+* [x] Add WandB logging for each experiment
+* [x] Add leaderboard JSON file
 
 ---
 
@@ -155,9 +155,9 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Write `v2_release_notes.md`
-* [ ] Create example Colab notebook
-* [ ] Publish reproducible config files
+* [x] Write `v2_release_notes.md`
+* [x] Create example Colab notebook
+* [x] Publish reproducible config files
 
 ---
 

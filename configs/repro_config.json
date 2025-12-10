@@ -1,0 +1,24 @@
+{
+  "db_url": "postgresql://sleeptrain_user:password@localhost:5432/sleeptrain",
+  "embed_model": "all-MiniLM-L6-v2",
+  "requests_ca_bundle": "<use certifi.where()>",
+  "benchmark_paths": {
+    "trace": "data/benchmarks/trace.jsonl",
+    "memorybench": "data/benchmarks/memorybench.jsonl",
+    "babilong": "data/benchmarks/babilong.jsonl",
+    "infinitebench": "data/benchmarks/infinitebench.jsonl"
+  },
+  "wandb": {
+    "enabled": false,
+    "project": "sleeptrain-v2",
+    "entity": "your-entity"
+  },
+  "hedge": {
+    "eta": 0.5,
+    "strict": false,
+    "reward_clip": [-1.0, 1.0]
+  },
+  "hippocampus": {
+    "use_cache": true
+  }
+}

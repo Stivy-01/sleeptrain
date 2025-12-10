@@ -1,0 +1,4 @@
+trace: "data/benchmarks/trace.jsonl"
+memorybench: "data/benchmarks/memorybench.jsonl"
+babilong: "data/benchmarks/babilong.jsonl"
+infinitebench: "data/benchmarks/infinitebench.jsonl"

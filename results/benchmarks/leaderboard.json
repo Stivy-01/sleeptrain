@@ -1,0 +1,30 @@
+[
+  {
+    "benchmark": "TRACE",
+    "model": "qwen2.5-7b",
+    "avg_score": null,
+    "count": 0,
+    "notes": "placeholder entry"
+  },
+  {
+    "benchmark": "MemoryBench",
+    "model": "qwen2.5-7b",
+    "avg_score": null,
+    "count": 0,
+    "notes": "placeholder entry"
+  },
+  {
+    "benchmark": "BABILong",
+    "model": "qwen2.5-7b",
+    "avg_score": null,
+    "count": 0,
+    "notes": "placeholder entry"
+  },
+  {
+    "benchmark": "InfiniteBench",
+    "model": "qwen2.5-7b",
+    "avg_score": null,
+    "count": 0,
+    "notes": "placeholder entry"
+  }
+]
