@@ -97,10 +97,10 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Add Hedge class exactly as designed
-* [ ] Add persistence: save/load weights
-* [ ] Integrate “REJECT / STORE / CORRECT” action interface
-* [ ] Add reward API connected to downstream task score
+* [x] Add Hedge class exactly as designed
+* [x] Add persistence: save/load weights
+* [x] Integrate “REJECT / STORE / CORRECT” action interface
+* [x] Add reward API connected to downstream task score
 
 ---
 
@@ -110,10 +110,10 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] After LoRA update, compute held-out delta metric
-* [ ] Convert improvement into scalar reward
-* [ ] Call `hedge.update(action_idx, reward)`
-* [ ] Add tensorboard/WandB logging
+* [x] After LoRA update, compute held-out delta metric
+* [x] Convert improvement into scalar reward
+* [x] Call `hedge.update(action_idx, reward)`
+* [x] Add tensorboard/WandB logging (hook supported via logger_fn)
 
 ---
 
@@ -121,9 +121,9 @@ Designed for: **Cursor rulesets, Continue tasks, Aider sessions, and LLM-based a
 
 **Tasks**
 
-* [ ] Add replay clipping
-* [ ] Add routing-like memory sampling
-* [ ] Add override flag `--hedge_strict`
+* [x] Add replay clipping (reward_clip support)
+* [x] Add routing-like memory sampling (routing_bias)
+* [x] Add override flag `--hedge_strict`
 
 ---
 
